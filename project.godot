@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "AK",
+"language": "GDScript",
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
+"class": "AkUtils",
+"language": "GDScript",
+"path": "res://wwise/runtime/helpers/ak_utils.gd"
+}, {
+"base": "Node2D",
+"class": "Block",
+"language": "GDScript",
+"path": "res://game_objects/block.gd"
+} ]
+_global_script_class_icons={
+"AK": "",
+"AkUtils": "",
+"Block": ""
+}
+
+[application]
+
+config/name="GGJ2021"
+run/main_scene="res://scenes/main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://core/global.gd"
+GameController="*res://core/game_controller.gd"
+WwiseSettings="res://wwise/wwise_settings.gd"
+Wwise="*res://wwise/bin/wwise-gdnative-debug.gdns"
+Waapi="*res://wwise/bin/waapi-gdnative-debug.gdns"
+
+[display]
+
+window/size/width=1280
+window/size/height=960
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "wwise_custom_nodes", "wwise_ids_converter", "waapi_picker" )
+
+[gui]
+
+theme/custom_font="res://resources/source_han.tres"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
