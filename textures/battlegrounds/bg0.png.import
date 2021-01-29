@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/battleground-bg.png-e9ed6634583904e0a41991f094a0144e.stex"
+path="res://.import/bg0.png-c1ebe9f0c4f68b035d1c1f00b828b5c7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/textures/battleground-bg.png"
-dest_files=[ "res://.import/battleground-bg.png-e9ed6634583904e0a41991f094a0144e.stex" ]
+source_file="res://textures/battlegrounds/bg0.png"
+dest_files=[ "res://.import/bg0.png-c1ebe9f0c4f68b035d1c1f00b828b5c7.stex" ]
 
 [params]
 

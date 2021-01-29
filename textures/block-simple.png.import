@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block-simple.png-64d0368f531fd46b843ade7db8730f7a.stex"
+path="res://.import/block-simple.png-4f66209ed03710077fd0f9df2d59c441.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/textures/block-simple.png"
-dest_files=[ "res://.import/block-simple.png-64d0368f531fd46b843ade7db8730f7a.stex" ]
+source_file="res://textures/block-simple.png"
+dest_files=[ "res://.import/block-simple.png-4f66209ed03710077fd0f9df2d59c441.stex" ]
 
 [params]
 

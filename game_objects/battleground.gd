@@ -1,59 +1,43 @@
-extends Node2D
+tool
+extends Area2D
 
 class_name Battleground
 
-var rows = [
-	3,
-	4, 4,
-	5, 5,
-	6, 6,
-	5, 5,
-	4, 4,
-	3
-]
+export (Texture) var background setget set_background
+
 const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager = null
+const Block = preload("res://game_objects/block.gd")
+const Terrain = preload("res://game_objects/terrain.gd")
 
 
 func is_up(row: int) -> bool:
 	return row % 2 == 1
 
 
-# Only works for our current model.
-const BlockSize = Vector2(128, 112)
-func pixels2pos(pixels: Vector2, is_up: bool) -> Vector2:
-	var y = int(round(pixels.y / BlockSize.y))
-	var row = 0
-	if y == -3:
-		assert(!is_up)
-		row = 0
-	elif y == 3:
-		assert(is_up)
-		row = 11
-	else:
-		row = 5 + y * 2 + (0 if is_up else 1)
-	
-	var t = ((row + 1) / 2) % 2 == 1
-	var x = int(round((pixels.x - (
-		(BlockSize.x / 2) if t else 0
-	)) / BlockSize.x))
-	var column = floor(rows[row] / 2) + x
-	var pos = Vector2(row, column)
-	print(pixels, pos)
-	return pos
+func set_background(value: Texture):
+	background = value
+	if has_node("Background"):
+		$Background.texture = value
 
 
-func initialize(game, terrains, blocks):
-	self.game = game
-	for i in range(rows.size()):
-		for j in range(rows[i]):
-			game.terrains[Vector2(i, j)] = null
-	var center = self.position
-	for terrain in terrains:
-		terrain.game = game
-		terrain.original_pos = pixels2pos(terrain.position - center, terrain.is_up)
-		game.terrains[terrain.original_pos] = terrain
-	for block in blocks:
-		block.game = game
-		block.original_pos = pixels2pos(block.position - center, block.is_up)
-		game.blocks[block.original_pos] = block
+func initialize(game_, area):
+	game = game_
+	var rect = Triangle.get_polygon_rect(area.polygon)
+	var start = Triangle.get_id(rect.position)
+	var end = Triangle.get_id(rect.end)
+	var s = get_world_2d().direct_space_state
+	for i in range(start.x, end.x + 1):
+		for j in range(start.y, end.y + 1):
+			var id = Vector2(i, j)
+			for each in s.intersect_point(Triangle.get_center(id), 32, [], 2147483647, true, true):
+				var c = each.collider
+				if c is Block:
+					c.pos_ids.append(id)
+					game.blocks[id] = c
+				elif c is Terrain:
+					c.pos_id = id
+					game.terrains[id] = c
+				elif each.collider == self:
+					if not game.terrains.has(id):
+						game.terrains[id] = null

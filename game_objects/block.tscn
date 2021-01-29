@@ -1,23 +1,21 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://game_objects/textures/block-simple.png" type="Texture" id=1]
+[ext_resource path="res://textures/block-simple.png" type="Texture" id=1]
 [ext_resource path="res://game_objects/block.gd" type="Script" id=2]
+[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=3]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( -64, 0, 64, 0, 0, -112 )
-
-[node name="Block" type="Node2D"]
+[node name="Block" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -56 )
+position = Vector2( 0, -111 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 0, 64, -111, 128, 0 )
+script = ExtResource( 3 )

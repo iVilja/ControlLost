@@ -5,6 +5,7 @@ const GameManager = preload("res://core/game_manager.gd")
 
 func _ready():
 	var game = GameManager.new()
-	var terrains = $Terrains.get_children()
-	var blocks = $Blocks.get_children()
-	$Battleground.initialize(game, terrains, blocks)
+	var area = $Battleground/TrianglePolygonShape
+	$Battleground.initialize(game, area)
+	print(game.blocks)
+	print(game.terrains)

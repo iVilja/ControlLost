@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game_objects/block.tscn" type="PackedScene" id=2]
 [ext_resource path="res://stages/stage00.gd" type="Script" id=3]
+[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=4]
+[ext_resource path="res://game_objects/terrain.tscn" type="PackedScene" id=5]
 
 [node name="Stage-0" type="Node2D"]
 script = ExtResource( 3 )
@@ -13,24 +15,30 @@ script = ExtResource( 3 )
 current = true
 
 [node name="Battleground" parent="." instance=ExtResource( 1 )]
+space_override = 1
+
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="Battleground"]
+polygon = PoolVector2Array( -128, 0, -64, -111, 64, -111, 0, 0, 64, 111, -64, 111, -128, 0, -384, 0, -256, 222, -192, 111, -128, 222, 128, 222, 192, 111, 256, 222, 384, 0, 256, -222, -256, -222, -384, 0 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Terrains" type="Node2D" parent="."]
 
+[node name="Terrain" parent="Terrains" instance=ExtResource( 5 )]
+
 [node name="Blocks" type="Node2D" parent="."]
 
-[node name="Block" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 64, -1 )
-
 [node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -126.428, -108.398 )
+position = Vector2( -64, -111 )
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -64.1551, 221.918 )
+position = Vector2( 0, 222 )
 
 [node name="Block4" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -0.0775757, 110.91 )
+position = Vector2( 64, 111 )
 
 [node name="Block5" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -0.0775757, 110.91 )
+position = Vector2( -64, 111 )
 rotation = 3.14159
-is_up = false

@@ -19,12 +19,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://wwise/runtime/helpers/ak_utils.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "Battleground",
 "language": "GDScript",
 "path": "res://game_objects/battleground.gd"
 }, {
-"base": "Node2D",
+"base": "KinematicBody2D",
 "class": "Block",
 "language": "GDScript",
 "path": "res://game_objects/block.gd"
@@ -38,6 +38,16 @@ _global_script_classes=[ {
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://core/game_manager.gd"
+}, {
+"base": "Area2D",
+"class": "Terrain",
+"language": "GDScript",
+"path": "res://game_objects/terrain.gd"
+}, {
+"base": "CollisionPolygon2D",
+"class": "TrianglePolygonShape",
+"language": "GDScript",
+"path": "res://core/triangle_polygon_shape.gd"
 } ]
 _global_script_class_icons={
 "AK": "",
@@ -45,7 +55,9 @@ _global_script_class_icons={
 "Battleground": "",
 "Block": "",
 "GameArea": "",
-"GameManager": ""
+"GameManager": "",
+"Terrain": "",
+"TrianglePolygonShape": ""
 }
 
 [application]
@@ -56,10 +68,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Global="*res://core/global.gd"
+Global="*res://core/utils/global.gd"
 WwiseSettings="res://wwise/wwise_settings.gd"
 Wwise="*res://wwise/bin/wwise-gdnative-debug.gdns"
 Waapi="*res://wwise/bin/waapi-gdnative-debug.gdns"
+Triangle="*res://core/utils/triangle.gd"
 
 [display]
 
