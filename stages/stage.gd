@@ -1,11 +1,11 @@
 extends Node2D
+class_name Stage
 
 const GameManager = preload("res://core/game_manager.gd")
-
+var game: GameManager
 
 func _ready():
-	var game = GameManager.new()
+	game = GameManager.new()
 	var area = $Battleground/TrianglePolygonShape
 	$Battleground.initialize(game, area)
-	print(game.blocks)
-	print(game.terrains)
+	add_child(game)

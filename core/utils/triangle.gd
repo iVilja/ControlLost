@@ -1,7 +1,7 @@
 tool
 extends Node
 
-const TriangleSize = Vector2(128, 111)
+const TriangleSize = Vector2(161, 139)
 
 
 func get_nearest_point(v: Vector2):
@@ -68,6 +68,7 @@ func get_id(v: Vector2):
 		return id
 	return Vector2(i + 1, j)
 
+
 func get_polygon_rect(polygon):
 	var x0 = 0
 	var x1 = 0
@@ -83,3 +84,48 @@ func get_polygon_rect(polygon):
 		elif v.y > y1:
 			y1 = v.y
 	return Rect2(x0, y0, x1 - x0, y1 - y0)
+
+
+const ID_DIRECTIONS = [
+	Vector2(2, 0),
+	Vector2(1, 1),
+	Vector2(-1, 1),
+	Vector2(-2, 0),
+	Vector2(-1, -1),
+	Vector2(1, -1)
+]
+const DIRECTIONS = [
+	Vector2(1, 0),
+	Vector2(0.5, sqrt(3) / 2),
+	Vector2(-0.5, sqrt(3) / 2),
+	Vector2(-1, 0),
+	Vector2(-0.5, -sqrt(3) / 2),
+	Vector2(0.5, -sqrt(3) / 2)
+]
+func get_pathway(id: Vector2, d: Vector2):
+	var is_up = get_is_up(id)
+	var signx = sign(d.x)
+	var signy = sign(d.y)
+	var ret = PoolVector2Array()
+	if signy == 0:
+		ret.append(id + Vector2(signx, 0))
+	elif is_up != (signy > 0):
+		ret.append(id + Vector2(signx, 0))
+	else:
+		ret.append(id + Vector2(0, signy))
+	ret.append(id + d)
+	return ret
+
+
+func get_direction(d: Vector2):
+	var t = abs(d.y) > abs(d.x) / sqrt(3)
+	if d.x > 0:
+		if t:
+			return 1 if d.y > 0 else 5
+		else:
+			return 0
+	else:
+		if t:
+			return 2 if d.y > 0 else 4
+		else:
+			return 3

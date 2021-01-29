@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://core/game_manager.gd"
 }, {
+"base": "Node2D",
+"class": "Stage",
+"language": "GDScript",
+"path": "res://stages/stage.gd"
+}, {
 "base": "Area2D",
 "class": "Terrain",
 "language": "GDScript",
@@ -56,13 +61,14 @@ _global_script_class_icons={
 "Block": "",
 "GameArea": "",
 "GameManager": "",
+"Stage": "",
 "Terrain": "",
 "TrianglePolygonShape": ""
 }
 
 [application]
 
-config/name="GGJ2021"
+config/name="Control Lost"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
@@ -76,8 +82,8 @@ Triangle="*res://core/utils/triangle.gd"
 
 [display]
 
-window/size/width=1280
-window/size/height=960
+window/size/width=1920
+window/size/height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -96,6 +102,11 @@ select={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[locale]
+
+translations=PoolStringArray( "res://resources/locales/i18n.csv" )
+locale_filter=[ 0, [ "en", "zh" ] ]
 
 [rendering]
 

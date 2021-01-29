@@ -3,6 +3,8 @@ extends Node
 var current_scene = null
 var current_game = null
 
+var loading_stage = null
+
 
 func _ready():
 	var root = get_tree().get_root()
