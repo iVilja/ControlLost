@@ -20,14 +20,32 @@ _global_script_classes=[ {
 "path": "res://wwise/runtime/helpers/ak_utils.gd"
 }, {
 "base": "Node2D",
+"class": "Battleground",
+"language": "GDScript",
+"path": "res://game_objects/battleground.gd"
+}, {
+"base": "Node2D",
 "class": "Block",
 "language": "GDScript",
 "path": "res://game_objects/block.gd"
+}, {
+"base": "Node2D",
+"class": "GameArea",
+"language": "GDScript",
+"path": "res://game_objects/game_area.gd"
+}, {
+"base": "Node",
+"class": "GameManager",
+"language": "GDScript",
+"path": "res://core/game_manager.gd"
 } ]
 _global_script_class_icons={
 "AK": "",
 "AkUtils": "",
-"Block": ""
+"Battleground": "",
+"Block": "",
+"GameArea": "",
+"GameManager": ""
 }
 
 [application]
@@ -39,7 +57,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://core/global.gd"
-GameController="*res://core/game_controller.gd"
 WwiseSettings="res://wwise/wwise_settings.gd"
 Wwise="*res://wwise/bin/wwise-gdnative-debug.gdns"
 Waapi="*res://wwise/bin/waapi-gdnative-debug.gdns"
@@ -58,6 +75,14 @@ enabled=PoolStringArray( "wwise_custom_nodes", "wwise_ids_converter", "waapi_pic
 [gui]
 
 theme/custom_font="res://resources/source_han.tres"
+
+[input]
+
+select={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [rendering]
 

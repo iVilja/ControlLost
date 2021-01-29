@@ -1,6 +1,7 @@
 extends Node
 
 var current_scene = null
+var current_game = null
 
 
 func _ready():
