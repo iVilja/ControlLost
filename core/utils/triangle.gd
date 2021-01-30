@@ -50,10 +50,10 @@ func _sign(p1: Vector2, p2: Vector2, p3: Vector2):
 	return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y)
 
 
-func point_in_triangle(v: Vector2, tri: PoolVector2Array):
-	var d1 = _sign(v, tri[0], tri[1])
-	var d2 = _sign(v, tri[1], tri[2])
-	var d3 = _sign(v, tri[2], tri[0])
+func point_in_triangle(v: Vector2, triangle):
+	var d1 = _sign(v, triangle[0], triangle[1])
+	var d2 = _sign(v, triangle[1], triangle[2])
+	var d3 = _sign(v, triangle[2], triangle[0])
 	var has_neg = d1 < 0 or d2 < 0 or d3 < 0
 	var has_pos = d1 > 0 or d2 > 0 or d3 > 0
 	return not (has_neg and has_pos)
@@ -106,7 +106,7 @@ func get_pathway(id: Vector2, d: Vector2):
 	var is_up = get_is_up(id)
 	var signx = sign(d.x)
 	var signy = sign(d.y)
-	var ret = PoolVector2Array()
+	var ret = []
 	if signy == 0:
 		ret.append(id + Vector2(signx, 0))
 	elif is_up != (signy > 0):

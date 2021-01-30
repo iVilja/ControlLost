@@ -11,6 +11,6 @@ func interact(block):
 	assert(block.type_name == "player")
 	yield(get_tree(), "idle_frame")
 	print("Completed!")
-	emit_signal("interacted", true)
+	emit_signal("interacted", null)
 	yield(get_tree(), "idle_frame")
 	game.end()

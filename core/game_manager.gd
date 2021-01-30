@@ -1,6 +1,7 @@
 extends Node
-
 class_name GameManager
+
+signal step_completed(step)
 
 var initialized = false
 var animating = {}
@@ -108,12 +109,14 @@ func complete_move(block, di: int):
 	block.move_to(dragging_block_position + to_move)
 	dragging_block_position = dragging_block_position + to_move
 	dragging_start += to_move
-	steps.append([{
+	var step = {
 		"type": "move",
 		"block": block,
 		"direction": di
-	}])
+	}
+	steps.append([step])
 	print(steps[steps.size() - 1])
+	emit_signal("step_completed", step)
 	update_directions()
 
 
@@ -162,20 +165,34 @@ func is_busy():
 	return not initialized or animating.size() > 0 or is_processing
 
 
+func _next_unhandled_event():
+	for block in blocks:
+		for terrain in terrains:
+			if terrain.check_interact(block):
+				return [block, terrain]
+	return null
+
+
 var is_processing = false
 func process_events():
 	if is_processing or last_processed == steps.size():
 		return
 	is_processing = true
-	for block in blocks:
-		for terrain in terrains:
-			if terrain.check_interact(block):
-				cancel_drag()
-				terrain.interact(block)
-				var to_break = yield(terrain, "interacted")
-				if to_break:
-					return
-	last_processed = steps.size()
+	var e = _next_unhandled_event()
+	if e == null:
+		last_processed = steps.size()
+	else:
+		cancel_drag()
+		var block = e[0]
+		var terrain = e[1]
+		terrain.interact(block)
+		var step = yield(terrain, "interacted")
+		if step == null:
+			return
+		if steps.size() > 0:
+			var last_step = steps.back()
+			last_step.append(step)
+		emit_signal("step_completed", step)
 	is_processing = false
 
 
@@ -202,7 +219,7 @@ func initialize():
 
 func restart():
 	if is_busy():
-		return
+		yield(self, "step_completed")
 	print("Restarting...")
 	initialized = false
 	steps = []

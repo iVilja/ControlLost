@@ -7,7 +7,7 @@ export var is_draggable = true
 export var border_color = Color.black setget set_border_color
 export var border_color_hovered = Color.black
 export var border_color_dragging = Color.white
-export var border_width = 3 setget set_border_width
+export var border_width = 5 setget set_border_width
 export var moving_speed = 120
 
 var type_name = "normal"
@@ -76,14 +76,17 @@ func get_current_border_color():
 
 func _on_Boundary_draw():
 	var bc = get_current_border_color()
-	var vertices = $TrianglePolygonShape.polygon
+	var shape = $TrianglePolygonShape
+	var vertices = shape.polygon
 	var boundary = $Boundary
 	var n = vertices.size()
+	var center = shape.get_polygon_center()
+	for i in range(n):
+		vertices[i] = vertices[i].move_toward(center, border_width / 2)
+		boundary.draw_circle(vertices[i], border_width / 2, bc)
 	for i in range(n - 1):
 		boundary.draw_line(vertices[i], vertices[i + 1], bc, border_width)
 	boundary.draw_line(vertices[n - 1], vertices[0], bc, border_width)
-	for i in range(n):
-		boundary.draw_circle(vertices[i], border_width / 2, bc)
 	boundary.z_index = 1 if is_dragging or \
 		hovered and game.dragging_block == null else 0
 
@@ -98,8 +101,6 @@ func _on_input_event(_viewport, event, _shape_idx):
 			game.drag(self)
 		else:
 			game.cancel_drag()
-	elif event is InputEventMouseMotion:
-		pass
 
 
 func _on_mouse_entered():

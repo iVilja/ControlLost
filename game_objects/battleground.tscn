@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://textures/battlegrounds/stage-2.png" type="Texture" id=1]
-[ext_resource path="res://TrianglePolygonShape.tscn" type="PackedScene" id=2]
+[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=2]
 [ext_resource path="res://game_objects/battleground.gd" type="Script" id=3]
 
 [node name="Battleground" type="Area2D"]
@@ -14,4 +14,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TrianglePolygonShape" parent="." instance=ExtResource( 2 )]
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -161, 0, -80.5, -139, 80.5, -139, 0, 0, 80.5, 139, -80.5, 139, -161, 0, -483, 0, -322, 278, -241.5, 139, -161, 278, 161, 278, 241.5, 139, 322, 278, 483, 0, 322, -278, -322, -278, -483, 0 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}

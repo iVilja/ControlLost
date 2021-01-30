@@ -46,21 +46,20 @@ func complete():
 			0: moved_pos = Vector2.UP
 			1: moved_pos = Vector2.LEFT
 			2: moved_pos = Vector2.RIGHT
+	var step = null
 	if backing:
 		block.moved_pos -= moved_pos
 	else:
 		block.moved_pos += moved_pos
-		if game.steps.size() > 0:
-			var last_step = game.steps.back()
-			last_step.append({
-				"type": "reflect",
-				"block": block,
-				"terrain": self
-			})
+		step = {
+			"type": "reflect",
+			"block": block,
+			"terrain": self
+		}
 	interacting_block = null
 	target_scale_y = 0.0
 	game.animating.erase(self)
-	emit_signal("interacted", false)
+	emit_signal("interacted", step)
 
 
 func _process(delta):

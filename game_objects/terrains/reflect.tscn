@@ -11,7 +11,6 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
 auto_interactable = true
-reflecting_speed = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 16, -88 )
@@ -20,5 +19,5 @@ centered = false
 
 [node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
 visible = false
-polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
+polygon = PoolVector2Array( 0, 0, 81, -139, 161, 0 )
 script = ExtResource( 2 )

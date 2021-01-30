@@ -2,7 +2,7 @@ tool
 extends Area2D
 class_name Terrain
 
-signal interacted(to_break)
+signal interacted(step)
 
 export var enabled = true setget set_enabled
 export var is_blocking = false
@@ -41,4 +41,4 @@ func check_interact(block):
 
 
 func interact(block):
-	emit_signal("interacted", false)
+	emit_signal("interacted", {})
