@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
@@ -12,8 +12,236 @@
 [ext_resource path="res://textures/ui/magnet.png" type="Texture" id=10]
 [ext_resource path="res://textures/ui/goback-pressed.png" type="Texture" id=11]
 [ext_resource path="res://textures/ui/goback.png" type="Texture" id=12]
+[ext_resource path="res://textures/characters/lan-0.png" type="Texture" id=13]
+[ext_resource path="res://textures/characters/lan-idle.png" type="Texture" id=14]
+[ext_resource path="res://textures/characters/lan-1.png" type="Texture" id=15]
+[ext_resource path="res://textures/characters/lan-2.png" type="Texture" id=16]
+[ext_resource path="res://textures/characters/lan-3.png" type="Texture" id=17]
+[ext_resource path="res://textures/characters/lan-4.png" type="Texture" id=18]
+[ext_resource path="res://textures/characters/lan-5.png" type="Texture" id=19]
+[ext_resource path="res://textures/ui/headers/stage-1.png" type="Texture" id=20]
+[ext_resource path="res://textures/characters/bo-talking.png" type="Texture" id=21]
+[ext_resource path="res://textures/characters/bo-idle.png" type="Texture" id=22]
+[ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=23]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 19 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 19 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 19 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 216, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 432, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 648, 0, 216, 252 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 216, 252 )
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 2 ), SubResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 7 ), SubResource( 6 ), SubResource( 5 ) ],
+"loop": true,
+"name": "move-0",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 11 ), SubResource( 10 ), SubResource( 9 ) ],
+"loop": true,
+"name": "move-1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 15 ), SubResource( 14 ), SubResource( 13 ) ],
+"loop": true,
+"name": "move-2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 19 ), SubResource( 18 ), SubResource( 17 ) ],
+"loop": true,
+"name": "move-4",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ) ],
+"loop": true,
+"name": "move-5",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 27 ), SubResource( 26 ), SubResource( 25 ) ],
+"loop": true,
+"name": "move-3",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 101, 115 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 101, 0, 101, 115 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 202, 0, 101, 115 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 110, 154 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 110, 0, 110, 154 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+}, {
+"frames": [ SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "talking",
+"speed": 3.0
+} ]
 
 [node name="Main" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -71,6 +299,20 @@ __meta__ = {
 "
 }
 
+[node name="StageName" type="TextureRect" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -527.0
+margin_top = 64.0
+margin_right = -113.0
+margin_bottom = 152.0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "
+"
+}
+
 [node name="Magnet" type="TextureButton" parent="UI"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -102,6 +344,34 @@ texture_pressed = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Characters" type="Node2D" parent="."]
+pause_mode = 1
+
+[node name="Lan" type="Node2D" parent="Characters"]
+position = Vector2( -772, 306 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
+frames = SubResource( 29 )
+animation = "idle"
+playing = true
+
+[node name="Bo" type="Node2D" parent="Characters"]
+position = Vector2( 761, -207 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
+frames = SubResource( 35 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="Player" parent="." instance=ExtResource( 23 )]
+position = Vector2( -80, 35 )
+enabled = true
+is_draggable = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
+moving_speed = 120
 [connection signal="pressed" from="UI/Home" to="." method="_on_Home_pressed"]
 [connection signal="pressed" from="UI/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Magnet" to="." method="_on_Magnet_pressed"]

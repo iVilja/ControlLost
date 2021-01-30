@@ -131,5 +131,18 @@ func get_direction(d: Vector2):
 			return 3
 
 
+func get_direction_in_availables(d: Vector2, availables: Array):
+	var closest = null
+	var tmp = 0.0
+	for v in availables:
+		var t = d.dot(DIRECTIONS[v])
+		if t <= 0:
+			continue
+		if closest == null or t > tmp:
+			tmp = t
+			closest = v
+	return closest
+
+
 func get_opposite(direction: int):
 	return (direction + 3) % 6

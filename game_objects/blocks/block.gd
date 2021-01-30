@@ -70,7 +70,8 @@ func set_is_dragging(value):
 
 func get_current_border_color():
 	return border_color_dragging if is_dragging else \
-		border_color_hovered if hovered and game.dragging_block == null else \
+		border_color_hovered if hovered and game != null and \
+		game.dragging_block == null else \
 		border_color
 
 
@@ -88,13 +89,13 @@ func _on_Boundary_draw():
 		boundary.draw_line(vertices[i], vertices[i + 1], bc, border_width)
 	boundary.draw_line(vertices[n - 1], vertices[0], bc, border_width)
 	boundary.z_index = 1 if is_dragging or \
-		hovered and game.dragging_block == null else 0
+		hovered and game != null and game.dragging_block == null else 0
 
 
 func _on_input_event(_viewport, event, _shape_idx):
-	if not is_draggable or game.is_busy():
+	if not is_draggable or game != null and game.is_busy():
 		return
-	if event is InputEventMouseButton && game != null:
+	if event is InputEventMouseButton and game != null:
 		if event.button_index != BUTTON_LEFT:
 			return
 		if event.pressed:
@@ -105,7 +106,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 
 func _on_mouse_entered():
 	self.hovered = true
-	if game.dragging_block == self and game.dragging_direction == -2:
+	if game != null and game.dragging_block == self and game.dragging_direction == -2:
 		game.dragging_direction = -1
 
 

@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game_objects/terrains/goal.gd"
 }, {
+"base": "Node2D",
+"class": "MainScene",
+"language": "GDScript",
+"path": "res://scenes/main.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -59,6 +64,7 @@ _global_script_class_icons={
 "Block": "",
 "GameManager": "",
 "Goal": "",
+"MainScene": "",
 "Player": "",
 "ReflectTerrain": "",
 "Stage": "",
@@ -75,10 +81,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://core/utils/global.gd"
-WwiseSettings="res://wwise/wwise_settings.gd"
-Wwise="*res://wwise/bin/wwise-gdnative-debug.gdns"
-Waapi="*res://wwise/bin/waapi-gdnative-debug.gdns"
 Triangle="*res://core/utils/triangle.gd"
+Math="*res://core/utils/math.gd"
 
 [display]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://stages/stage.gd" type="Script" id=1]
 [ext_resource path="res://game_objects/blocks/block.tscn" type="PackedScene" id=2]
@@ -10,10 +10,13 @@
 [ext_resource path="res://textures/blocks/block-1-2.png" type="Texture" id=8]
 [ext_resource path="res://textures/blocks/block-3-1.png" type="Texture" id=9]
 [ext_resource path="res://textures/blocks/block-5-1.png" type="Texture" id=10]
+[ext_resource path="res://textures/ui/headers/stage-1.png" type="Texture" id=11]
 
 [node name="Stage-1" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 1 )
 next_stage = "stage-2"
+header_image = ExtResource( 11 )
 
 [node name="Battleground" parent="." instance=ExtResource( 3 )]
 space_override = 1
@@ -27,21 +30,22 @@ polygon = PoolVector2Array( -161, 0, -80, -139, 81, -139, 0, 0, 81, 139, -80, 13
 [node name="Terrains" type="Node2D" parent="."]
 
 [node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
+enabled = true
+is_blocking = false
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -483, 0 )
+enabled = true
+is_draggable = true
+border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
+moving_speed = 180
 
 [node name="Blocks" type="Node2D" parent="."]
 
-[node name="Player" parent="Blocks" instance=ExtResource( 5 )]
-position = Vector2( -483, 0 )
-border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
-moving_speed = 180
-
-[node name="TrianglePolygonShape" parent="Blocks/Player" index="1"]
-polygon = PoolVector2Array( 0, 0, 81, -139, 161, 0 )
-
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402, 139 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block" index="0"]
@@ -53,7 +57,6 @@ polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 161, 0 )
 
 [node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402, 139 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block2" index="0"]
@@ -65,7 +68,6 @@ polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402, -139 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block3" index="0"]
@@ -77,7 +79,6 @@ polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 322, 0, 161, 0 )
 
 [node name="Block4" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 81, 139 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block4" index="0"]
@@ -88,7 +89,6 @@ texture = ExtResource( 7 )
 polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 161, 0 )
 
 [node name="Block5" parent="Blocks" instance=ExtResource( 2 )]
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block5" index="0"]
@@ -100,7 +100,6 @@ polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
 
 [node name="Block6" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 322, 0 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block6" index="0"]
@@ -112,7 +111,6 @@ polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
 
 [node name="Block7" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 322, 0 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block7" index="0"]
@@ -120,7 +118,6 @@ position = Vector2( 0, -139 )
 
 [node name="Block8" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 81, -139 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block8" index="0"]
@@ -131,8 +128,6 @@ texture = ExtResource( 10 )
 polygon = PoolVector2Array( 0, 0, -80, -139, 242, -139, 322, 0, 242, 139, 161, 0 )
 
 [editable path="Battleground"]
-
-[editable path="Blocks/Player"]
 
 [editable path="Blocks/Block"]
 

@@ -12,6 +12,7 @@
 [ext_resource path="res://game_objects/terrains/reflect.tscn" type="PackedScene" id=10]
 
 [node name="Stage-2" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 1 )
 next_stage = "stage-2"
 
@@ -24,6 +25,8 @@ polygon = PoolVector2Array( -241, -139, -161, 0, -241, 139, -161, 278, 161, 278,
 [node name="Terrains" type="Node2D" parent="."]
 
 [node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
+enabled = true
+is_blocking = false
 
 [node name="Sprite" parent="Terrains/Goal" index="0"]
 position = Vector2( 7, 0 )
@@ -34,12 +37,12 @@ polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
 
 [node name="ReflectTerrain" parent="Terrains" instance=ExtResource( 10 )]
 position = Vector2( -241, -139 )
+enabled = true
+is_blocking = false
+direction = 0
+reflecting_speed = 2.0
 
 [node name="Blocks" type="Node2D" parent="."]
-
-[node name="Player" parent="Blocks" instance=ExtResource( 5 )]
-border_width = 6
-moving_speed = 180
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 81, 139 )
@@ -90,11 +93,16 @@ texture = ExtResource( 9 )
 visible = true
 polygon = PoolVector2Array( 0, 0, 161, 0, 81, -139, 242, -139, 322, 0, 242, 139, 81, 139 )
 
+[node name="Player" parent="." instance=ExtResource( 5 )]
+enabled = true
+is_draggable = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 6
+moving_speed = 180
+
 [editable path="Battleground"]
 
 [editable path="Terrains/Goal"]
-
-[editable path="Blocks/Player"]
 
 [editable path="Blocks/Block"]
 

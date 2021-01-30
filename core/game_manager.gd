@@ -2,6 +2,7 @@ extends Node
 class_name GameManager
 
 signal step_completed(step)
+signal direction_changed(direction)
 
 var initialized = false
 var animating = {}
@@ -12,6 +13,7 @@ var blocks_map = {}
 var steps = []
 var last_processed = -1
 var stage = null
+var current_direction = -1 setget set_current_direction
 
 
 func _ready():
@@ -41,6 +43,12 @@ func get_block(pos: Vector2):
 	if pos in blocks_map:
 		return blocks_map[pos]
 	return null
+
+
+func set_current_direction(value: int):
+	if current_direction != value:
+		current_direction = value
+		emit_signal("direction_changed", value)
 
 
 var available_directions = []
@@ -101,6 +109,7 @@ func cancel_drag():
 	dragging_start = Vector2()
 	dragging_direction = -3
 	available_directions = []
+	self.current_direction = -1
 
 
 func complete_move(block, di: int):
@@ -127,37 +136,35 @@ func process_dragging():
 		return
 	var mp = block.get_global_mouse_position() - dragging_start
 	var mp_r2 = mp.length_squared()
-	if mp_r2 < 20 and dragging_direction >= 0:
-		dragging_direction = -1
 	if dragging_direction == -1 and mp_r2 >= DRAGGING_THRESHOLD:
-		var di = Triangle.get_direction(mp)
-		if di in available_directions:
+		var di = Triangle.get_direction_in_availables(mp, available_directions)
+		if di != null:
 			dragging_direction = di
-		else:
-			var opposite = Triangle.get_opposite(di)
-			if opposite in available_directions:
-				dragging_direction = di
-			else:
-				dragging_direction = -2
 	if dragging_direction >= 0:
 		var direction = Triangle.DIRECTIONS[dragging_direction]
+		var opposite = Triangle.get_opposite(dragging_direction)
 		var to_move = mp.dot(direction)
 		var redrag = false
 		if to_move <= 0:
-			var opposite = Triangle.get_opposite(dragging_direction)
 			if opposite in available_directions:
 				if to_move <= -Triangle.SideLength:
 					complete_move(block, opposite)
 					to_move = 0.0
+				else:
+					self.current_direction = opposite
 			else:
 				to_move = 0.0
 		elif dragging_direction in available_directions:
 			if to_move >= Triangle.SideLength:
 				complete_move(block, dragging_direction)
 				to_move = 0.0
+			else:
+				self.current_direction = dragging_direction
 		else:
 			to_move = 0.0
-		if to_move != 0.0:
+		if to_move == 0.0:
+			self.current_direction = -1
+		else:
 			block.position = dragging_block_position + to_move * direction
 
 
@@ -210,6 +217,8 @@ var initial_cache = {}
 func initialize():
 	if initialized:
 		return
+	for terrain in terrains:
+		print(terrain.name, "\t", terrain.pos_ids)
 	for block in blocks:
 		print(block.name, "\t", block.pos_ids)
 	# TODO: Intialize initial_cache
