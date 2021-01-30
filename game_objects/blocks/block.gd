@@ -2,8 +2,8 @@ tool
 extends KinematicBody2D
 class_name Block
 
-export var enabled = true
-export var is_draggable = true setget set_is_draggable
+export var enabled = true setget set_enabled
+export var is_draggable = true
 export var border_color = Color.black setget set_border_color
 export var border_color_hovered = Color.black
 export var border_color_dragging = Color.white
@@ -18,7 +18,7 @@ var is_dragging = false setget set_is_dragging
 const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager
 var pos_ids = []
-var moved_pos = Vector2.ZERO
+var moved_pos = Vector2.ZERO setget set_moved_pos
 var original_position: Vector2
 
 
@@ -27,9 +27,11 @@ func _ready():
 
 
 # Also update the position
-func set_is_draggable(value):
-	is_draggable = value
+func set_enabled(value):
+	enabled = value
 	position = Triangle.get_nearest_point(position)
+	if has_node("Boundary"):
+		$Boundary.update()
 
 
 func set_border_color(value):
@@ -51,16 +53,21 @@ func set_hovered(value):
 	$Boundary.update()
 
 
+func set_moved_pos(value):
+	if moved_pos == value:
+		return
+	for pos_id in pos_ids:
+		game.blocks_map.erase(pos_id + moved_pos)
+	moved_pos = value
+	for pos_id in pos_ids:
+		game.blocks_map[pos_id + moved_pos] = self
+
+
 func set_is_dragging(value):
 	if is_dragging == value:
 		return
 	is_dragging = value
 	$Boundary.update()
-
-
-func _process(_delta):
-	if hovered && has_node("Boundary"):
-		$Boundary.update()
 
 
 func get_current_border_color():
@@ -110,11 +117,7 @@ func _on_mouse_exited():
 var speed = moving_speed
 func move_with_logics(di: int, speed_scale: float):
 	self.speed = speed_scale * moving_speed
-	for pos_id in pos_ids:
-		game.blocks_map.erase(pos_id + moved_pos)
-	moved_pos += Triangle.ID_DIRECTIONS[di]
-	for pos_id in pos_ids:
-		game.blocks_map[pos_id + moved_pos] = self
+	self.moved_pos += Triangle.ID_DIRECTIONS[di]
 	move_to(
 		position +
 		Triangle.DIRECTIONS[di] * Triangle.SideLength
@@ -127,14 +130,13 @@ func move_to(pos: Vector2):
 
 
 func _physics_process(delta):
-	if target_position == null:
-		return
-	position = position.move_toward(target_position, delta * speed)
-	if (position - target_position).length_squared() <= 1e-5:
-		position = target_position
-		target_position = null
-		speed = moving_speed
-		game.animating.erase(self)
+	if target_position != null:
+		position = position.move_toward(target_position, delta * speed)
+		if (position - target_position).length_squared() <= 1e-5:
+			position = target_position
+			target_position = null
+			speed = moving_speed
+			game.animating.erase(self)
 
 
 func get_pos_ids():

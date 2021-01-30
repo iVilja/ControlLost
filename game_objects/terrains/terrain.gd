@@ -4,11 +4,18 @@ class_name Terrain
 
 signal interacted(to_break)
 
+export var enabled = true setget set_enabled
 export var is_blocking = false
 export var auto_interactable = false
 var pos_ids = []
 const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager
+
+
+# Also update the position
+func set_enabled(value):
+	enabled = value
+	position = Triangle.get_nearest_point(position)
 
 
 func will_block(block):

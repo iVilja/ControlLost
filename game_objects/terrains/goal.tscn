@@ -2,7 +2,8 @@
 
 [ext_resource path="res://game_objects/terrains/goal.gd" type="Script" id=1]
 [ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=2]
-[ext_resource path="res://textures/terrains/goal.png" type="Texture" id=3]
+[ext_resource path="res://textures/terrains/goal-1.png" type="Texture" id=3]
+
 
 [node name="Goal" type="Area2D"]
 z_index = 1

@@ -1,3 +1,4 @@
+tool
 extends "res://game_objects/terrains/terrain.gd"
 class_name Goal
 
