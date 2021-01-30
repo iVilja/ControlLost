@@ -5,8 +5,8 @@ class_name Battleground
 
 const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager = null
-const Block = preload("res://game_objects/block.gd")
-const Terrain = preload("res://game_objects/terrain.gd")
+const Block = preload("res://game_objects/blocks/block.gd")
+const Terrain = preload("res://game_objects/terrains/terrain.gd")
 
 
 func is_up(row: int) -> bool:
@@ -30,11 +30,15 @@ func initialize(game_, area):
 				if c is Block:
 					c.pos_ids.append(id)
 					c.game = game
-					game.blocks[id] = c
+					game.blocks[c] = true
+					game.blocks_map[id] = c
 				elif c is Terrain:
 					c.pos_ids.append(id)
 					c.game = game
-					game.terrains[id] = c
+					game.terrains[c] = true
+					game.terrains_map[id] = c
 				elif each.collider == self:
-					if not game.terrains.has(id):
-						game.terrains[id] = null
+					if not (id in game.terrains_map):
+						game.terrains_map[id] = null
+	print("Initialized!")
+	game.initialized = true

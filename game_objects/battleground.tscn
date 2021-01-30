@@ -5,6 +5,7 @@
 [ext_resource path="res://game_objects/battleground.gd" type="Script" id=3]
 
 [node name="Battleground" type="Area2D"]
+gravity_vec = Vector2( 0, 0 )
 script = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="."]

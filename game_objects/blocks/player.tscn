@@ -1,31 +1,30 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://textures/blocks/player-1.png" type="Texture" id=1]
-[ext_resource path="res://game_objects/player.gd" type="Script" id=2]
-[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=3]
+[ext_resource path="res://game_objects/blocks/player.gd" type="Script" id=1]
+[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=2]
+[ext_resource path="res://textures/blocks/player-1.png" type="Texture" id=3]
 [ext_resource path="res://textures/blocks/player-2.png" type="Texture" id=4]
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 2
 input_pickable = true
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 border_color = Color( 0.337255, 0.384314, 0.454902, 1 )
 border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
-border_color_dragging = null
 is_up = true
-sprite_up = ExtResource( 1 )
+sprite_up = ExtResource( 3 )
 sprite_down = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, -135.557 )
 z_index = -1
-texture = ExtResource( 1 )
+texture = ExtResource( 3 )
 centered = false
 
 [node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Boundary" type="Node2D" parent="."]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

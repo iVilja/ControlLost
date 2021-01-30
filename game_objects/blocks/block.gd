@@ -2,11 +2,16 @@ tool
 extends KinematicBody2D
 class_name Block
 
+export var enabled = true
 export var is_draggable = true setget set_is_draggable
 export var border_color = Color.black setget set_border_color
 export var border_color_hovered = Color.black
 export var border_color_dragging = Color.white
 export var border_width = 6 setget set_border_width
+export var moving_speed = 120
+
+var type_name = "normal"
+var is_grouped = false
 
 var hovered = false setget set_hovered
 var is_dragging = false setget set_is_dragging
@@ -79,7 +84,7 @@ func _on_Boundary_draw():
 
 
 func _on_input_event(_viewport, event, _shape_idx):
-	if not is_draggable:
+	if not is_draggable or game.is_busy():
 		return
 	if event is InputEventMouseButton && game != null:
 		if event.button_index != BUTTON_LEFT:
@@ -87,14 +92,41 @@ func _on_input_event(_viewport, event, _shape_idx):
 		if event.pressed:
 			game.drag(self)
 		else:
-			game.cancel_drag(self)
+			game.cancel_drag()
 	elif event is InputEventMouseMotion:
 		pass
 
 
 func _on_mouse_entered():
 	self.hovered = true
+	if game.dragging_block == self and game.dragging_direction == -2:
+		game.dragging_direction = -1
 
 
 func _on_mouse_exited():
 	self.hovered = false
+
+
+var target_position = null
+func move_to(pos: Vector2):
+	game.animating[self] = true
+	target_position = Triangle.get_nearest_point(pos)
+	print(target_position)
+
+
+func _physics_process(delta):
+	if target_position == null:
+		return
+	position = position.move_toward(target_position, delta * moving_speed)
+	if (position - target_position).length_squared() <= 1e-5:
+		position = target_position
+		target_position = null
+		game.animating.erase(self)
+
+
+func get_pos_ids():
+	return null if is_grouped else pos_ids
+
+
+func _to_string():
+	return "[Block (%s): %s]" % [type_name, name]

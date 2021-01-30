@@ -129,3 +129,7 @@ func get_direction(d: Vector2):
 			return 2 if d.y > 0 else 4
 		else:
 			return 3
+
+
+func get_opposite(direction: int):
+	return (direction + 3) % 6
