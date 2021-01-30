@@ -40,5 +40,4 @@ func initialize(game_, area):
 				elif each.collider == self:
 					if not (id in game.terrains_map):
 						game.terrains_map[id] = null
-	print("Initialized!")
-	game.initialized = true
+	game.initialize()

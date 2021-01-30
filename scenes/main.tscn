@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
+[ext_resource path="res://textures/ui/home.png" type="Texture" id=3]
+[ext_resource path="res://textures/ui/restart.png" type="Texture" id=4]
+[ext_resource path="res://textures/ui/home-hover.png" type="Texture" id=5]
+[ext_resource path="res://textures/ui/restart-hover.png" type="Texture" id=6]
+[ext_resource path="res://textures/ui/desk.png" type="Texture" id=7]
+[ext_resource path="res://textures/ui/magnet-disabled.png" type="Texture" id=8]
+[ext_resource path="res://textures/ui/magnet-pressed.png" type="Texture" id=9]
+[ext_resource path="res://textures/ui/magnet.png" type="Texture" id=10]
+[ext_resource path="res://textures/ui/goback-pressed.png" type="Texture" id=11]
+[ext_resource path="res://textures/ui/goback.png" type="Texture" id=12]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -12,8 +22,9 @@ current = true
 [node name="UI" type="Control" parent="."]
 margin_left = -960.0
 margin_top = -540.0
-margin_right = -960.0
-margin_bottom = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -26,3 +37,72 @@ texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Home" type="TextureButton" parent="UI"]
+margin_left = 63.0
+margin_top = 64.0
+margin_right = 239.0
+margin_bottom = 172.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+
+[node name="Restart" type="TextureButton" parent="UI"]
+margin_left = 303.0
+margin_top = 64.0
+margin_right = 479.0
+margin_bottom = 172.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ToolsDesk" type="TextureRect" parent="UI"]
+margin_left = 1421.0
+margin_top = 808.0
+margin_right = 1859.0
+margin_bottom = 1012.0
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "
+"
+}
+
+[node name="Magnet" type="TextureButton" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -426.0
+margin_top = -316.0
+margin_right = -264.0
+margin_bottom = -202.0
+disabled = true
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 9 )
+texture_disabled = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoBack" type="TextureButton" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -245.0
+margin_top = -382.0
+margin_right = -131.0
+margin_bottom = -172.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="UI/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="UI/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="UI/Magnet" to="." method="_on_Magnet_pressed"]
+[connection signal="pressed" from="UI/GoBack" to="." method="_on_GoBack_pressed"]

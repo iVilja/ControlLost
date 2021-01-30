@@ -9,6 +9,8 @@ var blocks = {}
 var terrains_map = {}
 var blocks_map = {}
 var steps = []
+var last_processed = -1
+var stage = null
 
 
 func _init():
@@ -17,6 +19,7 @@ func _init():
 
 
 func end():
+	stage.end()
 	assert(Global.current_game == self)
 	Global.current_game = null
 
@@ -67,7 +70,7 @@ func update_directions():
 const DRAGGING_THRESHOLD = 200
 var dragging_block = null
 var dragging_start = Vector2()
-var dragging_direction = -1
+var dragging_direction = -3
 var dragging_block_position = Vector2()
 func drag(block):
 	if dragging_block != null or not block.is_draggable:
@@ -85,7 +88,7 @@ func cancel_drag():
 	if dragging_direction >= 0:
 		var moved = dragging_block.position - dragging_block_position
 		var moved_length = moved.length()
-		if moved_length < Triangle.TriangleSize.x / 2:
+		if moved_length < Triangle.SideLength / 2:
 			dragging_block.move_to(dragging_block_position)
 		else:
 			complete_move(dragging_block, 
@@ -105,7 +108,7 @@ func complete_move(block, di: int):
 	block.moved_pos += Triangle.ID_DIRECTIONS[di]
 	for pos_id in block.pos_ids:
 		blocks_map[pos_id + block.moved_pos] = block
-	var to_move = Triangle.DIRECTIONS[di] * Triangle.TriangleSize.x
+	var to_move = Triangle.DIRECTIONS[di] * Triangle.SideLength
 	block.move_to(dragging_block_position + to_move)
 	dragging_block_position = dragging_block_position + to_move
 	dragging_start += to_move
@@ -144,13 +147,13 @@ func process_dragging():
 		if to_move <= 0:
 			var opposite = Triangle.get_opposite(dragging_direction)
 			if opposite in available_directions:
-				if to_move <= -Triangle.TriangleSize.x:
+				if to_move <= -Triangle.SideLength:
 					complete_move(block, opposite)
 					to_move = 0.0
 			else:
 				to_move = 0.0
 		elif dragging_direction in available_directions:
-			if to_move >= Triangle.TriangleSize.x:
+			if to_move >= Triangle.SideLength:
 				complete_move(block, dragging_direction)
 				to_move = 0.0
 		else:
@@ -160,13 +163,12 @@ func process_dragging():
 
 
 func is_busy():
-	return animating.size() > 0 or is_processing
+	return not initialized or animating.size() > 0 or is_processing
 
 
-var last_processed = -1
 var is_processing = false
 func process_events():
-	if last_processed == steps.size():
+	if is_processing or last_processed == steps.size():
 		return
 	is_processing = true
 	for block in blocks:
@@ -182,9 +184,52 @@ func process_events():
 
 
 func _process(delta):
-	if not initialized:
+	if is_busy():
 		return
 	if dragging_block != null:
 		process_dragging()
 	if not is_processing:
 		process_events()
+
+
+var initial_cache = {}
+
+func initialize():
+	if initialized:
+		return
+	# TODO: Intialize initial_cache
+	print("Initialized!")
+	initialized = true
+
+
+func restart():
+	if is_busy():
+		return
+	print("Restarting...")
+	initialized = false
+	steps = []
+	blocks_map = {}
+	for block in blocks:
+		block.moved_pos = Vector2.ZERO
+		block.position = block.original_position
+		for pos_id in block.pos_ids:
+			blocks_map[pos_id] = block
+	initialize()
+
+
+func go_back():
+	if is_busy():
+		return
+	if steps.size() == 0:
+		# No step to go back
+		return
+	var last_step = steps.pop_back()
+	last_processed -= 1
+	for each in last_step:
+		match each["type"]:
+			"move":
+				var block = each["block"]
+				var direction = each["direction"]
+				block.move_with_logics(
+					Triangle.get_opposite(direction), 5
+				)

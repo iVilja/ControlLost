@@ -107,20 +107,33 @@ func _on_mouse_exited():
 	self.hovered = false
 
 
+var speed = moving_speed
+func move_with_logics(di: int, speed_scale: float):
+	self.speed = speed_scale * moving_speed
+	for pos_id in pos_ids:
+		game.blocks_map.erase(pos_id + moved_pos)
+	moved_pos += Triangle.ID_DIRECTIONS[di]
+	for pos_id in pos_ids:
+		game.blocks_map[pos_id + moved_pos] = self
+	move_to(
+		position +
+		Triangle.DIRECTIONS[di] * Triangle.SideLength
+	)
+
 var target_position = null
 func move_to(pos: Vector2):
 	game.animating[self] = true
 	target_position = Triangle.get_nearest_point(pos)
-	print(target_position)
 
 
 func _physics_process(delta):
 	if target_position == null:
 		return
-	position = position.move_toward(target_position, delta * moving_speed)
+	position = position.move_toward(target_position, delta * speed)
 	if (position - target_position).length_squared() <= 1e-5:
 		position = target_position
 		target_position = null
+		speed = moving_speed
 		game.animating.erase(self)
 
 

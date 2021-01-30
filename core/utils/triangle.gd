@@ -1,14 +1,14 @@
 tool
 extends Node
 
-const TriangleSize = Vector2(161, 139)
-
+const SideLength = 161
+const TriangleSize = Vector2(SideLength, 139)
 
 func get_nearest_point(v: Vector2):
 	var j = int(round(v.y / TriangleSize.y))
-	var t = (TriangleSize.x / 2) if j % 2 != 0 else 0.0
-	var i = round((v.x + t) / TriangleSize.x)
-	var x = i * TriangleSize.x - t
+	var t = (SideLength / 2) if j % 2 != 0 else 0.0
+	var i = round((v.x + t) / SideLength)
+	var x = i * SideLength - t
 	var y = j * TriangleSize.y
 	return Vector2(x, y)
 
@@ -24,7 +24,7 @@ func get_center(id: Vector2):
 	var j = int(id.y)
 	var is_up = get_is_up(id)
 	return Vector2(
-		i * TriangleSize.x / 2,
+		i * SideLength / 2,
 		j * TriangleSize.y + (74 if is_up else 37)
 	)
 
@@ -36,13 +36,13 @@ func get_triangle(id: Vector2):
 	var is_up = get_is_up(id)
 	var ret = PoolVector2Array()
 	if is_up:
-		ret.append(Vector2((i - 1) * TriangleSize.x / 2, (j + 1) * TriangleSize.y))
-		ret.append(Vector2(i * TriangleSize.x / 2, j * TriangleSize.y))
-		ret.append(Vector2((i + 1) * TriangleSize.x / 2, (j + 1) * TriangleSize.y))
+		ret.append(Vector2((i - 1) * SideLength / 2, (j + 1) * TriangleSize.y))
+		ret.append(Vector2(i * SideLength / 2, j * TriangleSize.y))
+		ret.append(Vector2((i + 1) * SideLength / 2, (j + 1) * TriangleSize.y))
 	else:
-		ret.append(Vector2((i - 1) * TriangleSize.x / 2, j * TriangleSize.y))
-		ret.append(Vector2(i * TriangleSize.x / 2, (j + 1) * TriangleSize.y))
-		ret.append(Vector2((i + 1) * TriangleSize.x / 2, j * TriangleSize.y))
+		ret.append(Vector2((i - 1) * SideLength / 2, j * TriangleSize.y))
+		ret.append(Vector2(i * SideLength / 2, (j + 1) * TriangleSize.y))
+		ret.append(Vector2((i + 1) * SideLength / 2, j * TriangleSize.y))
 	return ret
 
 
@@ -61,7 +61,7 @@ func point_in_triangle(v: Vector2, tri: PoolVector2Array):
 
 func get_id(v: Vector2):
 	var j = int(floor(v.y / TriangleSize.y))
-	var i = int(floor(v.x / TriangleSize.x * 2))
+	var i = int(floor(v.x / SideLength * 2))
 	var id = Vector2(i, j)
 	var t = get_triangle(id)
 	if point_in_triangle(v, t):
