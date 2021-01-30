@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/unconstruct.wav-339171fe311dc54f60000f084197f2c2.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/unconstruct.wav"
+dest_files=[ "res://.import/unconstruct.wav-339171fe311dc54f60000f084197f2c2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

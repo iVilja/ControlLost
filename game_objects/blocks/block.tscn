@@ -22,6 +22,7 @@ centered = false
 visible = false
 polygon = PoolVector2Array( 0, 0, 81, -139, 161, 0 )
 script = ExtResource( 1 )
+enabled = true
 
 [node name="Boundary" type="Node2D" parent="."]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

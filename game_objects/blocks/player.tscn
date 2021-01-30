@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://game_objects/blocks/player.gd" type="Script" id=1]
 [ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=2]
 [ext_resource path="res://textures/blocks/player-1.png" type="Texture" id=3]
 [ext_resource path="res://textures/blocks/player-2.png" type="Texture" id=4]
-[ext_resource path="res://game_objects/blocks/player.tres" type="Material" id=5]
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 2
@@ -12,12 +11,8 @@ input_pickable = true
 script = ExtResource( 1 )
 border_color = Color( 0.337255, 0.384314, 0.454902, 1 )
 border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
-is_up = true
-sprite_up = ExtResource( 3 )
-sprite_down = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = ExtResource( 5 )
 position = Vector2( 1, -135.557 )
 z_index = -1
 texture = ExtResource( 3 )
@@ -31,6 +26,10 @@ script = ExtResource( 2 )
 [node name="Boundary" type="Node2D" parent="."]
 
 [node name="Reversed" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1, -139 )
+texture = ExtResource( 4 )
+centered = false
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

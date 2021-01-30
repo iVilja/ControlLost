@@ -88,6 +88,11 @@ var dragging_block_position = Vector2()
 func drag(block):
 	if dragging_block != null or not block.is_draggable:
 		return
+	if block.is_player():
+		SFX.play(SFX.PLAYER_SELECT)
+	else:
+		SFX.play(SFX.STONE_MOVE_START)
+		SFX.play(SFX.STONE_SELECT)
 	block.is_dragging = true
 	dragging_block = block
 	dragging_start = block.get_global_mouse_position()
@@ -101,7 +106,7 @@ func cancel_drag():
 	if dragging_direction >= 0:
 		var moved = dragging_block.position - dragging_block_position
 		var moved_length = moved.length()
-		if moved_length < Triangle.SideLength / 2:
+		if moved_length < Triangle.SideLength / 2.0:
 			dragging_block.move_to(dragging_block_position)
 			yield(dragging_block, "moved")
 		else:
@@ -135,24 +140,33 @@ func complete_move(block, di: int):
 	update_directions()
 
 
+var wrong_move_sfx_played = -1
 func process_dragging():
 	if dragging_block == null or is_busy():
 		return
 	var block = dragging_block
 	if not Input.is_mouse_button_pressed(BUTTON_LEFT):
+		SFX.stop_keeping(SFX.PLAYER_MOVE)
 		cancel_drag()
 		return
+	if block.is_player():
+		SFX.keep_playing(SFX.PLAYER_MOVE)
 	var mp = block.get_global_mouse_position() - dragging_start
 	var mp_r2 = mp.length_squared()
 	if dragging_direction == -1 and mp_r2 >= DRAGGING_THRESHOLD:
 		var di = Triangle.get_direction_in_availables(mp, available_directions)
-		if di != null:
+		if di == null:
+			if wrong_move_sfx_played <= 3:
+				wrong_move_sfx_played += 1
+			if wrong_move_sfx_played == 3:
+				SFX.keep_playing(SFX.WRONG_MOVE)
+		else:
+			wrong_move_sfx_played = -1
 			dragging_direction = di
 	if dragging_direction >= 0:
 		var direction = Triangle.DIRECTIONS[dragging_direction]
 		var opposite = Triangle.get_opposite(dragging_direction)
 		var to_move = mp.dot(direction)
-		var redrag = false
 		if to_move <= 0:
 			if opposite in available_directions:
 				if to_move <= -Triangle.SideLength:
@@ -211,7 +225,7 @@ func process_events():
 	is_processing = false
 
 
-func _process(delta):
+func _process(_delta):
 	if is_busy():
 		return
 	process_dragging()
@@ -243,6 +257,8 @@ func restart():
 		block.restore_origin()
 		for pos_id in block.pos_ids:
 			blocks_map[pos_id] = block
+	for terrain in terrains:
+		terrain.restore()
 	initialize()
 
 
@@ -250,8 +266,10 @@ func go_back():
 	if is_busy():
 		return
 	if steps.size() == 0:
+		SFX.play(SFX.GENERAL_UI_02)
 		# No step to go back
 		return
+	SFX.play(SFX.UNDO)
 	var last_step = steps.pop_back()
 	last_processed -= 1
 	is_processing = true

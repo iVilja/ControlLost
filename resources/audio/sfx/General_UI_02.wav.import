@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/General_UI_02.wav-5043aca7a131ea13d5651255c865d646.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/General_UI_02.wav"
+dest_files=[ "res://.import/General_UI_02.wav-5043aca7a131ea13d5651255c865d646.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

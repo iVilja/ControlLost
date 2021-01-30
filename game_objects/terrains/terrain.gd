@@ -7,12 +7,20 @@ signal interacted(step)
 export var enabled = true setget set_enabled
 export var is_blocking = false
 export var auto_interactable = false
+export var activated = false setget set_activate
 
 var initialized = false
 var pos_ids = []
 const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager
 
+
+func set_activate(value):
+	if activated == value:
+		return
+	activated = value
+	if has_node("Activated"):
+		$Activated.visible = value
 
 func initialize(game_):
 	if initialized:
@@ -28,8 +36,12 @@ func set_enabled(value):
 		position = Triangle.get_nearest_point(position)
 
 
-func will_block(block):
+func will_block(_block):
 	return is_blocking
+
+
+func restore():
+	pass
 
 
 func enclose(block):
@@ -50,5 +62,5 @@ func check_interact(block):
 	return false
 
 
-func interact(block):
+func interact(_block):
 	emit_signal("interacted", {})

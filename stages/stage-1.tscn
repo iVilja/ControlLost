@@ -15,6 +15,7 @@
 [node name="Stage-1" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 1 )
+stage_name = "stage-1"
 next_stage = "stage-2"
 header_image = ExtResource( 11 )
 

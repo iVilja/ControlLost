@@ -4,8 +4,10 @@ class_name MainScene
 signal stage_entered
 signal stage_exited
 
-export var entering_time = 3.5
-export var exiting_time = 4.5
+export var entering_time = 1.8
+export var exiting_time = 1.8
+
+const DEFAULT_STAGE = "stage-1"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
@@ -20,6 +22,7 @@ onready var original_player_position = player.position
 var entering = -1.0
 var entering_player_start = Vector2()
 var entering_player_target = Vector2()
+var showing_background = null
 func enter_stage(stage: Stage):
 	stage.scale = Vector2.ZERO
 	add_child(stage)
@@ -29,6 +32,7 @@ func enter_stage(stage: Stage):
 	player.enabled = false
 	entering_player_start = player.position
 	entering_player_target = stage.player.position
+	showing_background = null
 	stage.player.queue_free()
 
 
@@ -44,9 +48,12 @@ func update_stage_entering(delta):
 		player.enabled = true
 		emit_signal("stage_entered")
 		return
-	var t = Math.sigmoid(entering / entering_time * 12.0 - 6.0)
-	current_stage.scale = Vector2.ONE * t
-	player.position = entering_player_start.linear_interpolate(entering_player_target, t)
+	var t1 = entering / entering_time
+	if showing_background == null and t1 >= 0.7:
+		showing_background = NodeTransform.fade_in(background, BAKCGROUND_SHOWING_TIME)
+	var t2 = Math.sigmoid(t1 * 12.0 - 6.0)
+	current_stage.scale = Vector2.ONE * t2
+	player.position = entering_player_start.linear_interpolate(entering_player_target, t2)
 
 
 const MAX_STAGE_SCALE = 35
@@ -57,7 +64,10 @@ var exiting_player_target = Vector2()
 var exiting_stage_start = Vector2()
 var exiting_stage_target = Vector2()
 var exiting_fading = null
-func exit_stage(stage: Stage):
+func exit_stage(stage: Stage, has_next_stage = false):
+	SFX.audio_manager.clear_timers()
+	if has_next_stage:
+		SFX.play(SFX.NEXT_STAGE)
 	exiting = 0.0
 	exiting_player_start = player.position
 	exiting_player_target = original_player_position if Triangle.get_is_up(
@@ -69,6 +79,7 @@ func exit_stage(stage: Stage):
 	player.game = null
 	player.enabled = false
 	hide_ui()
+	NodeTransform.fade_out(background, BAKCGROUND_SHOWING_TIME)
 
 
 func update_stage_exiting(delta):
@@ -98,7 +109,7 @@ func start(stage_name: String):
 		return
 	var stage = load("res://stages/%s.tscn" % stage_name)
 	if current_stage != null:
-		exit_stage(current_stage)
+		exit_stage(current_stage, true)
 		yield(self, "stage_exited")
 		current_stage.queue_free()
 	current_stage = stage.instance()
@@ -110,17 +121,17 @@ func start(stage_name: String):
 	yield(current_stage, "initialized")
 	show_ui()
 	current_stage.game.connect("direction_changed", self, "_on_direction_changed")
+	current_stage.start()
 
 
 var UI_SHOWING_TIME = 0.5
+var BAKCGROUND_SHOWING_TIME = 4.0
 func show_ui():
-	NodeTransform.fade_in(background, UI_SHOWING_TIME * 2)
 	NodeTransform.fade_in(ui_node, UI_SHOWING_TIME)
 	NodeTransform.fade_in(characters, UI_SHOWING_TIME)
 
 
 func hide_ui():
-	NodeTransform.fade_out(background, UI_SHOWING_TIME * 2)
 	NodeTransform.fade_out(ui_node, UI_SHOWING_TIME)
 	NodeTransform.fade_out(characters, UI_SHOWING_TIME)
 
@@ -129,7 +140,7 @@ func _ready():
 	background.visible = false
 	ui_node.visible = false
 	characters.visible = false
-	var stage_name = "stage-1"  # for debugging
+	var stage_name = DEFAULT_STAGE  # for debugging
 	if Global.loading_stage != null:
 		stage_name = Global.loading_stage
 		Global.loading_stage = null
@@ -137,10 +148,12 @@ func _ready():
 
 
 func _on_Home_pressed():
+	SFX.play(SFX.RETURN)
 	Global.goto_scene("res://scenes/title.tscn")
 
 
 func _on_Restart_pressed():
+	SFX.play(SFX.RESTART)
 	current_stage.game.restart()
 
 

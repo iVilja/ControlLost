@@ -6,6 +6,7 @@ signal moved
 
 export var enabled = true setget set_enabled
 export var is_draggable = true
+export var draw_border = true
 export var border_color = Color.black setget set_border_color
 export var border_color_hovered = Color.black
 export var border_color_dragging = Color.white
@@ -28,6 +29,10 @@ onready var sprite = $Sprite
 onready var reversed_sprite = $Reversed if has_node("Reversed") else null 
 onready var original_position = position
 onready var original_scale = scale
+
+
+func is_player():
+	return type_name == "player"
 
 
 # Also update the position
@@ -76,6 +81,8 @@ func set_is_dragging(value):
 
 
 func get_current_border_color():
+	if not enabled:
+		return border_color
 	return border_color_dragging if is_dragging else \
 		border_color_hovered if hovered and game != null and \
 		game.dragging_block == null else \
@@ -83,6 +90,8 @@ func get_current_border_color():
 
 
 func _on_Boundary_draw():
+	if not draw_border:
+		return
 	var bc = get_current_border_color()
 	var shape = $TrianglePolygonShape
 	var vertices = shape.polygon
@@ -127,9 +136,9 @@ func restore_origin():
 	scale = original_scale
 
 
-var speed = 0.0
+var block_speed = -1.0
 func move_with_logics(di: int, speed_scale: float):
-	self.speed = speed_scale * moving_speed
+	block_speed = speed_scale * moving_speed
 	self.moved_pos += Triangle.ID_DIRECTIONS[di]
 	move_to(
 		position +
@@ -139,16 +148,18 @@ func move_with_logics(di: int, speed_scale: float):
 var target_position = null
 func move_to(pos: Vector2):
 	game.animating[self] = true
+	if block_speed < 0:
+		block_speed = moving_speed
 	target_position = Triangle.get_nearest_point(pos)
 
 
 func _physics_process(delta):
 	if target_position != null:
-		position = position.move_toward(target_position, delta * speed)
+		position = position.move_toward(target_position, delta * block_speed)
 		if (position - target_position).length_squared() <= 1e-5:
 			position = target_position
 			target_position = null
-			speed = moving_speed
+			block_speed = -1
 			if game != null:
 				game.animating.erase(self)
 			emit_signal("moved")
@@ -168,6 +179,7 @@ func initialize(game_):
 	game = game_
 	original_position = position
 	original_scale = scale
+	update_sprite()
 	initialized = true
 
 

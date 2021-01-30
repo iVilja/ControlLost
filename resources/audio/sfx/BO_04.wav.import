@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BO_04.wav-6f357c7ac1bbc137e2daf0cb7d804055.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/BO_04.wav"
+dest_files=[ "res://.import/BO_04.wav-6f357c7ac1bbc137e2daf0cb7d804055.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

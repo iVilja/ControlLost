@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/amb_mine.wav-5911ca07be0647daedab92de23a6468c.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/amb_mine.wav"
+dest_files=[ "res://.import/amb_mine.wav-5911ca07be0647daedab92de23a6468c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

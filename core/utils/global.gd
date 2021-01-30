@@ -1,5 +1,6 @@
 extends Node
 
+var audio_manager = null
 var current_scene = null
 var current_game = null
 
@@ -7,6 +8,7 @@ var loading_stage = null
 
 
 func _ready():
+	randomize()
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
 

@@ -6,7 +6,7 @@ const TriangleSize = Vector2(SideLength, 139)
 
 func get_nearest_point(v: Vector2) -> Vector2:
 	var j = int(round(v.y / TriangleSize.y))
-	var t = (SideLength / 2) if j % 2 != 0 else 0.0
+	var t = (SideLength / 2.0) if j % 2 != 0 else 0.0
 	var i = round((v.x + t) / SideLength)
 	var x = i * SideLength - t
 	var y = j * TriangleSize.y

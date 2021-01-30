@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/turnaround.wav-76d5a5b7d7651549a1b9e85566bb38c4.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/turnaround.wav"
+dest_files=[ "res://.import/turnaround.wav-76d5a5b7d7651549a1b9e85566bb38c4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

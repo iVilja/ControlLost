@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/push_02.wav-06d1c728da142d42b4afbb8a75b90fd9.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/push_02.wav"
+dest_files=[ "res://.import/push_02.wav-06d1c728da142d42b4afbb8a75b90fd9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/creature_02.wav-06da27efb4932b6d8c2f8e58b155da20.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/creature_02.wav"
+dest_files=[ "res://.import/creature_02.wav-06da27efb4932b6d8c2f8e58b155da20.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
