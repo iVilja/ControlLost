@@ -27,6 +27,8 @@ func initialize(game_, area):
 				32, [], 2147483647, true, true
 			):
 				var c = each.collider
+				if c.game != null and c.game != game:
+					continue
 				if c is Block:
 					c.pos_ids.append(id)
 					c.game = game
