@@ -193,6 +193,8 @@ var initial_cache = {}
 func initialize():
 	if initialized:
 		return
+	for block in blocks:
+		print(block.name, "\t", block.pos_ids)
 	# TODO: Intialize initial_cache
 	print("Initialized!")
 	initialized = true
@@ -206,8 +208,7 @@ func restart():
 	steps = []
 	blocks_map = {}
 	for block in blocks:
-		block.moved_pos = Vector2.ZERO
-		block.position = block.original_position
+		block.restore_origin()
 		for pos_id in block.pos_ids:
 			blocks_map[pos_id] = block
 	initialize()

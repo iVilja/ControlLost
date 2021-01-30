@@ -7,7 +7,7 @@ export var is_draggable = true
 export var border_color = Color.black setget set_border_color
 export var border_color_hovered = Color.black
 export var border_color_dragging = Color.white
-export var border_width = 6 setget set_border_width
+export var border_width = 3 setget set_border_width
 export var moving_speed = 120
 
 var type_name = "normal"
@@ -19,11 +19,9 @@ const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager
 var pos_ids = []
 var moved_pos = Vector2.ZERO setget set_moved_pos
-var original_position: Vector2
 
-
-func _ready():
-	original_position = position
+onready var original_position = position
+onready var original_scale = scale
 
 
 # Also update the position
@@ -112,6 +110,12 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	self.hovered = false
+
+
+func restore_origin():
+	moved_pos = Vector2.ZERO
+	position = original_position
+	scale = original_scale
 
 
 var speed = moving_speed
