@@ -16,7 +16,7 @@ func start(stage_name: String):
 
 
 func _ready():
-	var stage_name = "stage-1"  # for debugging
+	var stage_name = "stage-2"  # for debugging
 	if Global.loading_stage != null:
 		stage_name = Global.loading_stage
 		Global.loading_stage = null

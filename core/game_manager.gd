@@ -4,8 +4,8 @@ class_name GameManager
 
 var initialized = false
 var animating = {}
-var terrains = {}
-var blocks = {}
+var terrains = []
+var blocks = []
 var terrains_map = {}
 var blocks_map = {}
 var steps = []
@@ -13,15 +13,15 @@ var last_processed = -1
 var stage = null
 
 
-func _init():
+func _ready():
 	assert(Global.current_game == null)
 	Global.current_game = self
 
 
 func end():
-	stage.end()
 	assert(Global.current_game == self)
 	Global.current_game = null
+	stage.end()
 
 
 func all_positions():
@@ -103,11 +103,7 @@ func cancel_drag():
 
 
 func complete_move(block, di: int):
-	for pos_id in block.pos_ids:
-		blocks_map.erase(pos_id + block.moved_pos)
 	block.moved_pos += Triangle.ID_DIRECTIONS[di]
-	for pos_id in block.pos_ids:
-		blocks_map[pos_id + block.moved_pos] = block
 	var to_move = Triangle.DIRECTIONS[di] * Triangle.SideLength
 	block.move_to(dragging_block_position + to_move)
 	dragging_block_position = dragging_block_position + to_move
@@ -197,6 +193,8 @@ var initial_cache = {}
 func initialize():
 	if initialized:
 		return
+	for block in blocks:
+		print(block.name, "\t", block.pos_ids)
 	# TODO: Intialize initial_cache
 	print("Initialized!")
 	initialized = true
@@ -210,8 +208,7 @@ func restart():
 	steps = []
 	blocks_map = {}
 	for block in blocks:
-		block.moved_pos = Vector2.ZERO
-		block.position = block.original_position
+		block.restore_origin()
 		for pos_id in block.pos_ids:
 			blocks_map[pos_id] = block
 	initialize()
@@ -225,11 +222,22 @@ func go_back():
 		return
 	var last_step = steps.pop_back()
 	last_processed -= 1
-	for each in last_step:
-		match each["type"]:
+	is_processing = true
+	while last_step.size() > 0:
+		var step = last_step.pop_back()
+		match step["type"]:
 			"move":
-				var block = each["block"]
-				var direction = each["direction"]
+				var block = step["block"]
+				var direction = step["direction"]
 				block.move_with_logics(
 					Triangle.get_opposite(direction), 5
 				)
+			_:
+				if "terrain" in step:
+					var terrain = step["terrain"]
+					terrain.go_back(step)
+					if yield(terrain, "interacted"):
+						return
+				else:
+					print("Cannot go back for ", step)
+	is_processing = false

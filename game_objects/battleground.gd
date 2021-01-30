@@ -27,15 +27,22 @@ func initialize(game_, area):
 				32, [], 2147483647, true, true
 			):
 				var c = each.collider
+				if c.game != null and c.game != game:
+					continue
 				if c is Block:
 					c.pos_ids.append(id)
 					c.game = game
-					game.blocks[c] = true
+					if not (c in game.blocks):
+						if c.is_draggable:
+							game.blocks.insert(0, c)
+						else:
+							game.blocks.append(c)
 					game.blocks_map[id] = c
 				elif c is Terrain:
 					c.pos_ids.append(id)
 					c.game = game
-					game.terrains[c] = true
+					if not (c in game.terrains):
+						game.terrains.append(c)
 					game.terrains_map[id] = c
 				elif each.collider == self:
 					if not (id in game.terrains_map):

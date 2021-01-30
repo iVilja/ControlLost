@@ -1,22 +1,24 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://game_objects/terrains/terrain.gd" type="Script" id=1]
+[ext_resource path="res://game_objects/terrains/reflect.gd" type="Script" id=1]
 [ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=2]
-[ext_resource path="res://textures/terrains/goal-1.png" type="Texture" id=3]
+[ext_resource path="res://textures/terrains/reflect.png" type="Texture" id=3]
 
-
-[node name="Terrain" type="Area2D"]
+[node name="ReflectTerrain" type="Area2D"]
 z_index = 1
 gravity_vec = Vector2( 0, 0 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
+auto_interactable = true
+reflecting_speed = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 7, -129 )
+position = Vector2( 16, -88 )
 texture = ExtResource( 3 )
 centered = false
 
 [node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
 script = ExtResource( 2 )
