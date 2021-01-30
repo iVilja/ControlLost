@@ -2,6 +2,8 @@ tool
 extends KinematicBody2D
 class_name Block
 
+signal moved
+
 export var enabled = true setget set_enabled
 export var is_draggable = true
 export var border_color = Color.black setget set_border_color
@@ -10,6 +12,7 @@ export var border_color_dragging = Color.white
 export var border_width = 5 setget set_border_width
 export var moving_speed = 120
 
+var initialized = false
 var type_name = "normal"
 var is_grouped = false
 
@@ -20,6 +23,9 @@ var game: GameManager
 var pos_ids = []
 var moved_pos = Vector2.ZERO setget set_moved_pos
 
+
+onready var sprite = $Sprite
+onready var reversed_sprite = $Reversed if has_node("Reversed") else null 
 onready var original_position = position
 onready var original_scale = scale
 
@@ -27,7 +33,8 @@ onready var original_scale = scale
 # Also update the position
 func set_enabled(value):
 	enabled = value
-	position = Triangle.get_nearest_point(position)
+	if value:
+		position = Triangle.get_nearest_point(position)
 	if has_node("Boundary"):
 		$Boundary.update()
 
@@ -120,7 +127,7 @@ func restore_origin():
 	scale = original_scale
 
 
-var speed = moving_speed
+var speed = 0.0
 func move_with_logics(di: int, speed_scale: float):
 	self.speed = speed_scale * moving_speed
 	self.moved_pos += Triangle.ID_DIRECTIONS[di]
@@ -142,7 +149,9 @@ func _physics_process(delta):
 			position = target_position
 			target_position = null
 			speed = moving_speed
-			game.animating.erase(self)
+			if game != null:
+				game.animating.erase(self)
+			emit_signal("moved")
 
 
 func get_pos_ids():
@@ -151,3 +160,34 @@ func get_pos_ids():
 
 func _to_string():
 	return "[Block (%s): %s]" % [type_name, name]
+
+
+func initialize(game_):
+	if initialized:
+		return
+	game = game_
+	original_position = position
+	original_scale = scale
+	initialized = true
+
+
+func clear_state():
+	initialized = false
+	is_grouped = false
+	game = null
+	pos_ids = []
+	moved_pos = Vector2.ZERO
+
+
+var showing_reversed = false
+# Based on scales.
+func update_sprite():
+	if reversed_sprite != null:
+		if showing_reversed == (scale.y > 0):
+			showing_reversed = not showing_reversed
+			if showing_reversed:
+				sprite.visible = false
+				reversed_sprite.visible = true
+			else:
+				sprite.visible = true
+				reversed_sprite.visible = false

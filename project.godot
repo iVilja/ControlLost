@@ -83,6 +83,10 @@ config/icon="res://icon.png"
 Global="*res://core/utils/global.gd"
 Triangle="*res://core/utils/triangle.gd"
 Math="*res://core/utils/math.gd"
+NodeTransform="*res://core/utils/transform.gd"
+WwiseSettings="res://wwise/wwise_settings.gd"
+Wwise="*res://wwise/bin/wwise-gdnative-debug.gdns"
+Waapi="*res://wwise/bin/waapi-gdnative-debug.gdns"
 
 [display]
 
@@ -170,4 +174,5 @@ locale_filter=[ 0, [ "en", "zh" ] ]
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 environment/default_environment="res://default_env.tres"

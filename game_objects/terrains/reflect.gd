@@ -68,5 +68,6 @@ func _process(delta):
 	var s = interacting_block.scale
 	var new_y = move_toward(s.y, target_scale_y, delta * speed)
 	interacting_block.scale = Vector2(s.x, new_y)
+	interacting_block.update_sprite()
 	if new_y == target_scale_y:
 		complete()

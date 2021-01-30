@@ -3,6 +3,7 @@ class_name GameManager
 
 signal step_completed(step)
 signal direction_changed(direction)
+signal game_over
 
 var initialized = false
 var animating = {}
@@ -25,6 +26,7 @@ func end():
 	assert(Global.current_game == self)
 	Global.current_game = null
 	stage.end()
+	emit_signal("game_over")
 
 
 func all_positions():
@@ -69,6 +71,8 @@ func check_movable(block, i):
 
 
 func update_directions():
+	if dragging_block == null:
+		return
 	dragging_direction = -1
 	available_directions = []
 	for di in range(6):
@@ -99,6 +103,7 @@ func cancel_drag():
 		var moved_length = moved.length()
 		if moved_length < Triangle.SideLength / 2:
 			dragging_block.move_to(dragging_block_position)
+			yield(dragging_block, "moved")
 		else:
 			complete_move(dragging_block, 
 				dragging_direction if moved.dot(Triangle.DIRECTIONS[dragging_direction]) >= 0 \
@@ -116,6 +121,7 @@ func complete_move(block, di: int):
 	block.moved_pos += Triangle.ID_DIRECTIONS[di]
 	var to_move = Triangle.DIRECTIONS[di] * Triangle.SideLength
 	block.move_to(dragging_block_position + to_move)
+	yield(block, "moved")
 	dragging_block_position = dragging_block_position + to_move
 	dragging_start += to_move
 	var step = {
@@ -124,12 +130,14 @@ func complete_move(block, di: int):
 		"direction": di
 	}
 	steps.append([step])
-	print(steps[steps.size() - 1])
+	print(step)
 	emit_signal("step_completed", step)
 	update_directions()
 
 
 func process_dragging():
+	if dragging_block == null or is_busy():
+		return
 	var block = dragging_block
 	if not Input.is_mouse_button_pressed(BUTTON_LEFT):
 		cancel_drag()
@@ -182,7 +190,7 @@ func _next_unhandled_event():
 
 var is_processing = false
 func process_events():
-	if is_processing or last_processed == steps.size():
+	if is_busy() or last_processed == steps.size():
 		return
 	is_processing = true
 	var e = _next_unhandled_event()
@@ -206,10 +214,8 @@ func process_events():
 func _process(delta):
 	if is_busy():
 		return
-	if dragging_block != null:
-		process_dragging()
-	if not is_processing:
-		process_events()
+	process_dragging()
+	process_events()
 
 
 var initial_cache = {}

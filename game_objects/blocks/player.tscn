@@ -29,6 +29,8 @@ polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
 script = ExtResource( 2 )
 
 [node name="Boundary" type="Node2D" parent="."]
+
+[node name="Reversed" type="Sprite" parent="."]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

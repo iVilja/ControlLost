@@ -30,16 +30,10 @@ polygon = PoolVector2Array( -161, 0, -80, -139, 81, -139, 0, 0, 81, 139, -80, 13
 [node name="Terrains" type="Node2D" parent="."]
 
 [node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
-enabled = true
-is_blocking = false
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -483, 0 )
-enabled = true
-is_draggable = true
 border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
-border_color_dragging = Color( 1, 1, 1, 1 )
-border_width = 5
 moving_speed = 180
 
 [node name="Blocks" type="Node2D" parent="."]
