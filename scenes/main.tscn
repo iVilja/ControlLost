@@ -375,7 +375,6 @@ position = Vector2( 761, -207 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
 frames = SubResource( 35 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Dialog" parent="Characters/Bo" instance=ExtResource( 24 )]
@@ -409,4 +408,6 @@ moving_speed = 120
 [connection signal="pressed" from="UI/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Magnet" to="." method="_on_Magnet_pressed"]
 [connection signal="pressed" from="UI/GoBack" to="." method="_on_GoBack_pressed"]
+[connection signal="characters_typed" from="Characters/Lan/Dialog" to="." method="_on_lan_characters_typed"]
+[connection signal="characters_typed" from="Characters/Bo/Dialog" to="." method="_on_bo_characters_typed"]
 [connection signal="gui_input" from="Characters/DialogCover" to="." method="_on_DialogCover_gui_input"]

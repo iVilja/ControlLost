@@ -9,10 +9,15 @@ export var is_blocking = false
 export var auto_interactable = false
 export var activated = false setget set_activate
 
+var type_name = "unknown"
 var initialized = false
 var pos_ids = []
 const GameManager = preload("res://core/game_manager.gd")
 var game: GameManager
+
+
+func _ready():
+	pass
 
 
 func set_activate(value):

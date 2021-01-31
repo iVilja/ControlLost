@@ -7,7 +7,7 @@ signal stage_exited
 export var entering_time = 1.8
 export var exiting_time = 1.8
 
-const DEFAULT_STAGE = "stage-1"
+const DEFAULT_STAGE = "stage-2"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
@@ -48,8 +48,8 @@ func update_stage_entering(delta):
 		emit_signal("stage_entered")
 		return
 	var t1 = entering / entering_time
-	if showing_background == null and t1 >= 0.7:
-		showing_background = NodeTransform.fade_in(background, BAKCGROUND_SHOWING_TIME)
+	if (showing_background == null or showing_background.ended) and t1 >= 0.7:
+		showing_background = NodeTransform.fade_in(background, BACKGROUND_SHOWING_TIME)
 	var t2 = Math.sigmoid(t1 * 12.0 - 6.0)
 	current_stage.scale = Vector2.ONE * t2
 	player.position = entering_player_start.linear_interpolate(entering_player_target, t2)
@@ -78,7 +78,8 @@ func exit_stage(stage: Stage, has_next_stage = false):
 	player.game = null
 	player.enabled = false
 	hide_ui()
-	NodeTransform.fade_out(background, BAKCGROUND_SHOWING_TIME)
+	NodeTransform.fade_out(characters, UI_SHOWING_TIME)
+	showing_background = NodeTransform.fade_out(background, BACKGROUND_HIDING_TIME)
 
 
 func update_stage_exiting(delta):
@@ -90,6 +91,9 @@ func update_stage_exiting(delta):
 		player.position = exiting_player_target
 		exiting = -1.0
 		exiting_fading = null
+		if showing_background != null and !showing_background.ended:
+			showing_background.stop()
+			showing_background = null
 		emit_signal("stage_exited")
 		return
 	var t = Math.sigmoid(exiting / exiting_time * 12.0 - 6.0)
@@ -116,24 +120,23 @@ func start(stage_name: String):
 	yield(self, "stage_entered")
 	if current_stage.header_image != null:
 		$UI/StageName.texture = current_stage.header_image
-	current_stage.initialize()
+	NodeTransform.fade_in(characters, UI_SHOWING_TIME)
+	current_stage.start()
 	yield(current_stage, "initialized")
 	show_ui()
 	current_stage.game.connect("direction_changed", self, "_on_direction_changed")
 	dialog_cover.visible = false
-	current_stage.start()
 
 
 var UI_SHOWING_TIME = 0.5
-var BAKCGROUND_SHOWING_TIME = 4.0
+var BACKGROUND_SHOWING_TIME = 4.0
+var BACKGROUND_HIDING_TIME = 1.0
 func show_ui():
 	NodeTransform.fade_in(ui_node, UI_SHOWING_TIME)
-	NodeTransform.fade_in(characters, UI_SHOWING_TIME)
 
 
 func hide_ui():
 	NodeTransform.fade_out(ui_node, UI_SHOWING_TIME)
-	NodeTransform.fade_out(characters, UI_SHOWING_TIME)
 
 
 func _ready():
@@ -183,27 +186,40 @@ onready var lan_dialog = $Characters/Lan/Dialog
 onready var bo_dialog = $Characters/Bo/Dialog
 onready var dialog_cover = $Characters/DialogCover
 
+var is_ending = false
 signal said(character, content)
 func say(character, content):
+	if character != "Bo" and character != "Lan":
+		yield(get_tree(), "idle_frame")
+		emit_signal("said", character, content)
 	var is_bo = character == "Bo"
 	var dialog = bo_dialog if is_bo else lan_dialog
-	if is_bo:
+	if is_bo and not is_ending:
 		bo_animation.play("talking")
 	print("%s: %s" % [character, content])
 	dialog.type(content)
 	yield(dialog, "typing_completed")
-	if is_bo:
+	if is_bo and not is_ending:
 		bo_animation.play("idle")
 	emit_signal("said", character, content)
 
 var waiting_for_click = false
 signal cover_clicked
-func run_scripts(scripts):
+signal scripts_completed
+func run_scripts(scripts, ending = false):
 	if scripts == null:
+		yield(get_tree(), "idle_frame")
+		emit_signal("scripts_completed")
 		return
+	is_ending = ending
+	hide_ui()
 	dialog_cover.visible = true
 	for line in scripts:
-		var character = "Bo" if line[0] == "B" else "Lan"
+		var character = line[0]
+		match character:
+			"B": character = "Bo"
+			"": character = "Lan"
+			"N": character = "Narrative"
 		var content = line[1]
 		say(character, content)
 		yield(self, "said")
@@ -214,9 +230,24 @@ func run_scripts(scripts):
 	lan_dialog.clear()
 	bo_dialog.clear()
 	dialog_cover.visible = false
+	emit_signal("scripts_completed")
 
 
 func _on_DialogCover_gui_input(event):
 	if waiting_for_click and event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			emit_signal("cover_clicked")
+
+
+func _on_lan_characters_typed(chars):
+	SFX.play(SFX.TYPEWRITER)
+
+
+var last_bo_typed = -1.0
+func _on_bo_characters_typed(chars):
+	if is_ending:
+		return
+	var t = OS.get_ticks_usec()
+	if t - last_bo_typed > 500:
+		last_bo_typed = t
+		SFX.play(SFX.BO)

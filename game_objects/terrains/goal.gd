@@ -2,6 +2,10 @@ tool
 extends "res://game_objects/terrains/terrain.gd"
 class_name Goal
 
+func _ready():
+	type_name = "goal"
+	._ready()
+
 
 func initialize(game):
 	if initialized:

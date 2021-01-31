@@ -93,6 +93,8 @@ func keep_playing(t, i = -1):
 	var sound = get_sound(t, i)
 	if sound != null:
 		var player = audio_manager.play(sound)
+		if player == null:
+			return
 		keeping_players[t] = player
 		player.connect("finished", self, "on_stopped", [player, t])
 

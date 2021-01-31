@@ -4,5 +4,5 @@
 font_path = "res://resources/SourceHanSansCN-Regular.otf"
 
 [resource]
-size = 18
+size = 20
 font_data = SubResource( 1 )

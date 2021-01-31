@@ -26,8 +26,6 @@ func load_scripts(file_name):
 		var csv = file.get_csv_line()
 		ret.append(csv)
 	file.close()
-	print(file_name)
-	print(ret)
 	return ret
 
 
@@ -51,9 +49,18 @@ func initialize():
 
 
 func start():
-	Global.current_scene.run_scripts(scripts_before)
+	var main = Global.current_scene
+	main.run_scripts(scripts_before)
+	yield(main, "scripts_completed")
+	initialize()
 	print("%s started" % stage_name)
 
 
 func end():
-	Global.current_scene.start(next_stage)
+	SFX.audio_manager.clear_timers()
+	SFX.audio_manager.stop_bgm()
+	var main = Global.current_scene
+	main.run_scripts(scripts_after, true)
+	yield(main, "scripts_completed")
+	print("%s ended" % stage_name)
+	main.start(next_stage)

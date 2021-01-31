@@ -18,7 +18,9 @@ var effect_node = null
 
 
 func _ready():
+	type_name = "reflect"
 	assert(direction == 0)  # only supports up-down for now
+	._ready()
 
 
 func reflect(block, is_backing, speed_scale):

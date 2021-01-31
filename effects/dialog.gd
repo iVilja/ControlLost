@@ -4,7 +4,7 @@ signal characters_typed(chars)
 signal typing_completed(text)
 
 
-export var typing_speed = 12
+export var typing_speed = 48.0
 
 onready var content = $Content
 
@@ -34,6 +34,7 @@ func _physics_process(delta):
 	if vc >= content.text.length():
 		started = -1.0
 		emit_signal("typing_completed", content.text)
+
 
 func clear():
 	content.text = ""

@@ -49,16 +49,21 @@ var sfx_player_i = -1
 
 
 func get_sfx_player():
-	while true:
-		sfx_player_i = (sfx_player_i + 1) % sfx_players.size()
+	var trial = 0
+	var n = sfx_players.size()
+	while trial < n:
+		trial += 1
+		sfx_player_i = (sfx_player_i + 1) % n
 		var player = sfx_players[sfx_player_i]
 		if not player.playing:
 			return player
+	return null
 
 func play(sound):
 	var player = get_sfx_player()
-	player.stream = sound
-	player.play()
+	if player != null:
+		player.stream = sound
+		player.play()
 	return player
 
 

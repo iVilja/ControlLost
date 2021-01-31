@@ -6,8 +6,8 @@
 [node name="Dialog" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1640.0
-margin_bottom = -940.0
+margin_right = -1600.0
+margin_bottom = -920.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -23,9 +23,12 @@ __meta__ = {
 [node name="Content" type="Label" parent="."]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 240.0
-margin_bottom = 100.0
+margin_right = 340.0
+margin_bottom = 140.0
 custom_fonts/font = ExtResource( 1 )
 custom_constants/line_spacing = -4
 text = "杰塔尔矿井...真是让人怀念的名字。"
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

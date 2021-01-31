@@ -11,6 +11,7 @@ var fading_elapsed = -1.0
 var is_fading_out = false
 var color_start = Color()
 var color_target = Color()
+var ended = false
 
 
 func fade_in(node: CanvasItem, time):
@@ -23,6 +24,8 @@ func fade_in(node: CanvasItem, time):
 
 func fade_out(node: CanvasItem, time):
 	if is_busy():
+		return
+	if not node.visible or node.modulate.a == 0.0:
 		return
 	var p = self.duplicate()
 	node.add_child(p)
@@ -43,19 +46,26 @@ func _fade(node: CanvasItem, time, is_out):
 	return self
 
 
+func stop():
+	var node = target
+	node.modulate = color_target
+	if is_fading_out:
+		node.visible = false
+	fading_elapsed = -1
+	target = null
+	ended = true
+	queue_free()
+	emit_signal("transformed", node)
+	
+
+
 func update_fading(delta):
 	if fading_elapsed < 0:
 		return
 	var node = target
 	fading_elapsed += delta
 	if fading_elapsed >= fading_time:
-		node.modulate = color_target
-		if is_fading_out:
-			node.visible = false
-		fading_elapsed = -1
-		target = null
-		queue_free()
-		emit_signal("transformed", node)
+		stop()
 		return
 	var t = fading_elapsed / fading_time
 	target.modulate = color_start.linear_interpolate(color_target, t)
