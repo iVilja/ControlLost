@@ -47,7 +47,6 @@ position = Vector2( 7, -4.34711 )
 
 [node name="AnimatedSprite" parent="Terrains/Goal2" index="2"]
 position = Vector2( 15.5, -0.347107 )
-frame = 0
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -80.5, -417 )

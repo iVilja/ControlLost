@@ -139,7 +139,7 @@ func _on_mouse_exited():
 	self.hovered = false
 
 
-func restore_origin():
+func restore_original():
 	moved_pos = Vector2.ZERO
 	position = original_position
 	scale = original_scale

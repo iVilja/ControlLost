@@ -100,8 +100,6 @@ _global_script_class_icons={
 
 config/name="Control Lost"
 run/main_scene="res://scenes/title.tscn"
-run/disable_stdout=true
-run/disable_stderr=true
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://textures/ui/icon.png"

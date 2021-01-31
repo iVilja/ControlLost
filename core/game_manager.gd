@@ -272,7 +272,7 @@ func restart():
 	steps = []
 	blocks_map = {}
 	for block in blocks:
-		block.restore_origin()
+		block.restore_original()
 		for pos_id in block.pos_ids:
 			blocks_map[pos_id] = block
 	for terrain in terrains:

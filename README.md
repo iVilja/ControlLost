@@ -1,3 +1,3 @@
-# 还没取好
+# 下行失控 / Control Lost
 
-一个游戏。
+A story-based puzzle game. Developed based on the Godot Engine.

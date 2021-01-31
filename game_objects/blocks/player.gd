@@ -86,7 +86,7 @@ func set_moved_pos(value):
 		block.moved_pos += diff
 
 
-func restore_origin():
-	.restore_origin()
+func restore_original():
+	.restore_original()
 	grouped_blocks.clear()
 	grouped_block_offsets.clear()

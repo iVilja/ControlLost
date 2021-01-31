@@ -58,3 +58,8 @@ func check_interact(player):
 		player.groupable_blocks.erase(self)
 	last_checked = t
 	return false
+
+
+func restore_original():
+	clear_availables()
+	.restore_original()

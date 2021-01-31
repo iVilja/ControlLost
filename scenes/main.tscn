@@ -393,6 +393,7 @@ margin_bottom = 162.0
 position = Vector2( 25.4712, -1.49829 )
 frames = SubResource( 29 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Bo" type="Node2D" parent="Characters"]

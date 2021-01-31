@@ -7,7 +7,7 @@ signal stage_exited
 export var entering_time = 1.8
 export var exiting_time = 1.8
 
-const DEFAULT_STAGE = "stage-3"
+const DEFAULT_STAGE = "stage-8"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
