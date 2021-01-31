@@ -25,12 +25,14 @@ func get_pos_ids():
 func group_blocks(add_step = true):
 	if groupable_blocks.size() == 0:
 		return
+	SFX.play(SFX.CONSTRUCT)
 	grouped_blocks.clear()
 	grouped_block_offsets.clear()
 	for block in groupable_blocks:
 		grouped_blocks.append(block)
 		grouped_block_offsets.append(block.position - position)
 		grouped_block_scales.append(block.scale / scale)
+		block.set_states()
 		block.is_grouped = true
 	is_grouped = true
 	if add_step:
@@ -44,7 +46,10 @@ func group_blocks(add_step = true):
 
 
 func ungroup_all(add_step = true):
+	SFX.play(SFX.UNCONSTRUCT)
 	for block in grouped_blocks:
+		block.clear_availables()
+		block.set_states()
 		block.is_grouped = false
 	grouped_blocks.clear()
 	grouped_block_offsets.clear()
@@ -66,12 +71,12 @@ func get_all_blocks():
 	return ret
 
 
-#func _physics_process(delta):
-#	._physics_process(delta)
-#	for i in grouped_blocks.size():
-#		grouped_blocks[i].position = position + grouped_block_offsets[i]
-#		grouped_blocks[i].scale = scale * grouped_block_scales[i]
-
+func _physics_process(delta):
+	._physics_process(delta)
+	for i in grouped_blocks.size():
+		grouped_blocks[i].position = position + grouped_block_offsets[i]
+		grouped_blocks[i].scale = scale * grouped_block_scales[i]
+		
 
 
 func set_moved_pos(value):

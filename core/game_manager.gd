@@ -234,6 +234,7 @@ func process_events():
 		var step = yield(terrain, "interacted")
 		if step == null:
 			return
+		print(step)
 		if steps.size() > 0 and step.size() > 0:
 			var last_step = steps.back()
 			last_step.append(step)
@@ -298,6 +299,7 @@ func go_back():
 				block.move_with_logics(
 					Triangle.get_opposite(direction), 5
 				)
+				yield(block, "moved")
 			"group":
 				var player = step["player"]
 				if step["grouped"]:
@@ -309,6 +311,11 @@ func go_back():
 					var terrain = step["terrain"]
 					terrain.go_back(step)
 					if yield(terrain, "interacted"):
+						return
+				elif "undo" in step:
+					var undo = step["undo"] as FuncRef
+					var t = undo.call_func(step)
+					if yield(t, "interacted"):
 						return
 				else:
 					print("Cannot go back for ", step)

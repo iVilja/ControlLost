@@ -35,14 +35,14 @@ centered = false
 
 [node name="1" type="Sprite" parent="Activated"]
 visible = false
-position = Vector2( 73, -119 )
-texture = ExtResource( 1 )
+position = Vector2( 14, -120 )
+texture = ExtResource( 4 )
 centered = false
 
 [node name="2" type="Sprite" parent="Activated"]
 visible = false
-position = Vector2( 14, -120 )
-texture = ExtResource( 4 )
+position = Vector2( 73, -119 )
+texture = ExtResource( 1 )
 centered = false
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

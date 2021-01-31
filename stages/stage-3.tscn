@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://stages/stage-2.gd" type="Script" id=1]
+[ext_resource path="res://stages/stage-3.gd" type="Script" id=1]
 [ext_resource path="res://game_objects/blocks/block.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game_objects/terrains/goal.tscn" type="PackedScene" id=4]
@@ -10,7 +10,7 @@
 [ext_resource path="res://game_objects/terrains/terrain.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game_objects/terrains/lava.gd" type="Script" id=9]
 [ext_resource path="res://textures/terrains/lava-4-2-1.png" type="Texture" id=10]
-[ext_resource path="res://textures/ui/headers/stage-3.png" type="Texture" id=11]
+[ext_resource path="res://game_objects/blocks/special.tscn" type="PackedScene" id=11]
 [ext_resource path="res://textures/battlegrounds/stage-3.png" type="Texture" id=12]
 [ext_resource path="res://textures/terrains/lava-4-2-2.png" type="Texture" id=13]
 [ext_resource path="res://textures/terrains/lava-4-1-1.png" type="Texture" id=14]
@@ -19,6 +19,7 @@
 [ext_resource path="res://textures/terrains/lava-11-1-2.png" type="Texture" id=17]
 [ext_resource path="res://game_objects/terrains/trigger.tscn" type="PackedScene" id=18]
 [ext_resource path="res://game_objects/blocks/magnetic.tscn" type="PackedScene" id=19]
+[ext_resource path="res://textures/ui/headers/stage-3.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -49,7 +50,7 @@ pause_mode = 1
 script = ExtResource( 1 )
 stage_name = "stage-3"
 next_stage = "stage-4"
-header_image = ExtResource( 11 )
+header_image = ExtResource( 20 )
 
 [node name="Battleground" parent="." instance=ExtResource( 3 )]
 space_override = 1
@@ -77,6 +78,7 @@ polygon = PoolVector2Array( 0, 0, 161, 0, 80.5, 139 )
 [node name="AnimatedSprite" parent="Terrains/Goal" index="2"]
 position = Vector2( 15.5, 12 )
 animation = "down"
+frame = 0
 
 [node name="Lava" parent="Terrains" instance=ExtResource( 8 )]
 position = Vector2( -161, 0 )
@@ -141,6 +143,7 @@ position = Vector2( 0, 278 )
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -322, 0 )
+border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -153,9 +156,19 @@ polygon = PoolVector2Array( 0, 0, 644, 0, 563.5, 139, 80.5, 139 )
 
 [node name="Magnetic" parent="Blocks" instance=ExtResource( 19 )]
 position = Vector2( -322, 0 )
+border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 
 [node name="Magnetic2" parent="Blocks" instance=ExtResource( 19 )]
 position = Vector2( 161, 0 )
+border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
+
+[node name="Special" parent="Blocks" instance=ExtResource( 11 )]
+position = Vector2( -80.5, -139 )
+is_draggable = false
+border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
+border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -80.5, 139 )
@@ -168,7 +181,7 @@ visible = false
 
 [node name="Reversed" parent="Player" index="3"]
 visible = true
-[connection signal="initialized" from="." to="." method="_on_Stage2_initialized"]
+[connection signal="initialized" from="." to="." method="_on_Stage3_initialized"]
 
 [editable path="Battleground"]
 

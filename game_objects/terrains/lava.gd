@@ -31,6 +31,7 @@ func interact(block):
 	}
 	block.position += A_LONG_DISTANCE * Triangle.SideLength
 	block.moved_pos += A_LONG_DISTANCE
+	block.enabled = false
 	emit_signal("interacted", step)
 
 
@@ -38,6 +39,7 @@ func go_back(step):
 	var block = step["block"]
 	block.position -= A_LONG_DISTANCE * Triangle.SideLength
 	block.moved_pos -= A_LONG_DISTANCE
+	block.enabled = true
 	var center = block.get_polygon_center() * block.scale + block.position
 	var t = NodeTransform.rescale(block, center, block.scale / RESCALING_SCALE, rescaling_time / 3)
 	game.animating[self] = t

@@ -7,7 +7,7 @@ signal stage_exited
 export var entering_time = 1.8
 export var exiting_time = 1.8
 
-const DEFAULT_STAGE = "stage-3"
+const DEFAULT_STAGE = "stage-1"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
@@ -169,6 +169,8 @@ func _on_GoBack_pressed():
 
 onready var magnet = $UI/Magnet
 func _on_Magnet_pressed():
+	if current_stage.game.is_busy():
+		return
 	if player.is_grouped:
 		player.ungroup_all()
 	else:
@@ -213,8 +215,6 @@ var waiting_for_click = false
 signal cover_clicked
 signal scripts_completed
 func run_scripts(scripts, ending = false):
-	# TODO: delete it
-	scripts = null
 	if scripts == null:
 		yield(get_tree(), "idle_frame")
 		emit_signal("scripts_completed")

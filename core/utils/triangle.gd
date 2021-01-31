@@ -149,10 +149,12 @@ func get_opposite(direction: int):
 
 
 func get_conjacent(a: Vector2, b: Vector2) -> int:
-	var x = abs(a.x - b.x)
+	var x = a.x - b.x
 	var y = a.y - b.y
-	if x + abs(y) != 1:
+	print(x, " ", y)
+	if abs(x) + abs(y) != 1:
 		return -1
+	var is_up = get_is_up(a)
 	if x == 0:
-		return 0
-	return 1 if y < 0 else 2
+		return -1 if is_up != (y == -1) else 0
+	return 1 if x > 0 else 2

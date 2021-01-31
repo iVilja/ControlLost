@@ -151,7 +151,7 @@ func is_moving():
 
 
 var block_speed = -1.0
-func move_with_logics(di: int, speed_scale: float):
+func move_with_logics(di: int, speed_scale: float = 1.0):
 	block_speed = speed_scale * moving_speed
 	self.moved_pos += Triangle.ID_DIRECTIONS[di]
 	move_to(

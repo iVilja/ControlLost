@@ -15,7 +15,8 @@ func check_interact(block):
 		return false
 	for block_pos in block.pos_ids:
 		if block.moved_pos + block_pos == pos:
-			print(block.name, " ", self.name)
+			SFX.play(SFX.PUSH)
 			self.activated = true
+			break
 	last_checked = game.steps.size()
 	return false

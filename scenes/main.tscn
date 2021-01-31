@@ -370,6 +370,7 @@ position = Vector2( -772, 306 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
 frames = SubResource( 29 )
 animation = "idle"
+frame = 2
 playing = true
 
 [node name="Dialog" parent="Characters/Lan" instance=ExtResource( 24 )]
