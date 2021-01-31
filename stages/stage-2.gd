@@ -1,7 +1,7 @@
 extends "res://stages/stage.gd"
 
 
-onready var event_scripts = load_scripts("res://resources/scripts/stage-2-event.csv")
+onready var event_scripts = Global.load_scripts("res://resources/scripts/stage-2-event.res")
 
 
 func _on_Stage2_initialized():

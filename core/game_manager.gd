@@ -224,6 +224,7 @@ func process_events():
 		return
 	is_processing = true
 	var e = _next_unhandled_event()
+	print(last_processed, "\t", e)
 	if e == null:
 		last_processed = steps.size()
 	else:

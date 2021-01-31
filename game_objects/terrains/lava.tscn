@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=2]
+[ext_resource path="res://game_objects/terrains/lava.gd" type="Script" id=3]
+[ext_resource path="res://textures/terrains/lava/lava-1-1-1.png" type="Texture" id=4]
+[ext_resource path="res://textures/terrains/lava/lava-1-1-2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[node name="Lava" type="Area2D"]
+z_index = 1
+gravity_vec = Vector2( 0, 0 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+auto_interactable = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -139 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+centered = false
+
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
+script = ExtResource( 2 )
+enabled = true

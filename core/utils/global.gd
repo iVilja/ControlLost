@@ -18,8 +18,23 @@ func goto_scene(path):
 
 
 func _deferred_goto_scene(path):
-	current_scene.free()
+	var t = NodeTransform.fade_out(current_scene, 2.0)
+	yield(t, "transformed")
+	current_scene.queue_free()
 	var s = ResourceLoader.load(path)
 	current_scene = s.instance()
 	get_tree().get_root().add_child(current_scene)
 	get_tree().set_current_scene(current_scene)
+
+
+func load_scripts(file_name):
+	var file = File.new()
+	if not file.file_exists(file_name):
+		return null
+	file.open(file_name, file.READ)
+	var ret = []
+	while not file.eof_reached():
+		var csv = file.get_csv_line()
+		ret.append(csv)
+	file.close()
+	return ret

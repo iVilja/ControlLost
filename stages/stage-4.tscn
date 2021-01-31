@@ -1,0 +1,264 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://stages/stage-4.gd" type="Script" id=1]
+[ext_resource path="res://game_objects/terrains/reflect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game_objects/terrains/goal-down.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://textures/battlegrounds/stage-4.png" type="Texture" id=6]
+[ext_resource path="res://game_objects/terrains/reflect-down.tscn" type="PackedScene" id=7]
+[ext_resource path="res://game_objects/terrains/lava.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game_objects/terrains/lava-down.tscn" type="PackedScene" id=9]
+[ext_resource path="res://core/triangle_polygon_shape.gd" type="Script" id=10]
+[ext_resource path="res://game_objects/terrains/lava.gd" type="Script" id=11]
+[ext_resource path="res://textures/terrains/lava/lava-2-1-2.png" type="Texture" id=12]
+[ext_resource path="res://textures/terrains/lava/lava-2-1-1.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[node name="Stage-4" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+stage_name = "stage-4"
+next_stage = "stage-5"
+
+[node name="Battleground" parent="." instance=ExtResource( 3 )]
+space_override = 1
+
+[node name="Background" parent="Battleground" index="0"]
+position = Vector2( 0, -3.17841 )
+texture = ExtResource( 6 )
+
+[node name="TrianglePolygonShape" parent="Battleground" index="1"]
+polygon = PoolVector2Array( 80.5, -139, 0, -278, 161, -278, 80.5, -139, -483, 0, -241.5, 417, 241.5, 417, 483, 0, 241.5, -417, -241.5, -417, -483, 0 )
+
+[node name="Terrains" type="Node2D" parent="."]
+
+[node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
+position = Vector2( 322, 0 )
+enabled = true
+
+[node name="ReflectUp" type="Node2D" parent="Terrains"]
+
+[node name="Reflect" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( -322, -278 )
+
+[node name="Reflect2" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( -161, -278 )
+
+[node name="Reflect3" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( 0, -278 )
+
+[node name="Reflect4" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( 161, -278 )
+
+[node name="Reflect5" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( -322, 0 )
+
+[node name="Reflect6" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( -161, 0 )
+
+[node name="Reflect7" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+
+[node name="Reflect8" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( 161, 0 )
+
+[node name="Reflect9" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( -322, 278 )
+
+[node name="Reflect10" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( -161, 278 )
+
+[node name="Reflect11" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( 0, 278 )
+
+[node name="Reflect12" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+position = Vector2( 161, 278 )
+
+[node name="ReflectDown" type="Node2D" parent="Terrains"]
+
+[node name="Reflect13" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( -402.5, -139 )
+
+[node name="Reflect14" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( -241.5, -139 )
+
+[node name="Reflect15" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( -80.5, -139 )
+
+[node name="Reflect16" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( 80.5, -139 )
+
+[node name="Reflect17" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( 241.5, -139 )
+
+[node name="Reflect18" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( -402.5, 139 )
+
+[node name="Reflect19" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( -241.5, 139 )
+
+[node name="Reflect20" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( -80.5, 139 )
+
+[node name="Reflect21" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( 80.5, 139 )
+
+[node name="Reflect22" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
+position = Vector2( 241.5, 139 )
+
+[node name="Lavas" type="Node2D" parent="Terrains"]
+
+[node name="Lava" parent="Terrains/Lavas" instance=ExtResource( 8 )]
+position = Vector2( -483, 0 )
+rescaling_time = 1.0
+
+[node name="Lava2" parent="Terrains/Lavas" instance=ExtResource( 8 )]
+position = Vector2( 322, 0 )
+rescaling_time = 1.0
+
+[node name="Lava3" parent="Terrains/Lavas" instance=ExtResource( 8 )]
+position = Vector2( 241.5, 139 )
+rescaling_time = 1.0
+
+[node name="Lava4" parent="Terrains/Lavas" instance=ExtResource( 8 )]
+position = Vector2( -80.5, 417 )
+rescaling_time = 1.0
+
+[node name="Lava5" parent="Terrains/Lavas" instance=ExtResource( 8 )]
+position = Vector2( -241.5, 417 )
+rescaling_time = 1.0
+
+[node name="Lava6" parent="Terrains/Lavas" instance=ExtResource( 9 )]
+position = Vector2( -322, -278 )
+
+[node name="Lava7" parent="Terrains/Lavas" instance=ExtResource( 9 )]
+position = Vector2( -161, -278 )
+
+[node name="Lava8" parent="Terrains/Lavas" instance=ExtResource( 9 )]
+position = Vector2( -241.5, -417 )
+
+[node name="Lava9" parent="Terrains/Lavas" instance=ExtResource( 9 )]
+position = Vector2( -80.5, -417 )
+
+[node name="Lava10" parent="Terrains/Lavas" instance=ExtResource( 9 )]
+position = Vector2( 80.5, -417 )
+
+[node name="Lava11" parent="Terrains/Lavas" instance=ExtResource( 9 )]
+position = Vector2( 161, -278 )
+
+[node name="Lava12" type="Area2D" parent="Terrains/Lavas"]
+position = Vector2( -80.5, 139 )
+z_index = 1
+gravity_vec = Vector2( 0, 0 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 11 )
+auto_interactable = true
+rescaling_time = 1.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lavas/Lava12"]
+position = Vector2( 0, -139 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+centered = false
+
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="Terrains/Lavas/Lava12"]
+visible = false
+polygon = PoolVector2Array( 0, 0, 80.5, -139, 241.5, -139, 161, 0 )
+script = ExtResource( 10 )
+enabled = true
+
+[node name="Lava14" type="Area2D" parent="Terrains/Lavas"]
+position = Vector2( 80.5, 417 )
+z_index = 1
+gravity_vec = Vector2( 0, 0 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 11 )
+auto_interactable = true
+rescaling_time = 1.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lavas/Lava14"]
+position = Vector2( 0, -139 )
+frames = SubResource( 1 )
+playing = true
+centered = false
+
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="Terrains/Lavas/Lava14"]
+visible = false
+polygon = PoolVector2Array( 0, 0, 80.5, -139, 241.5, -139, 161, 0 )
+script = ExtResource( 10 )
+enabled = true
+
+[node name="Lava13" type="Area2D" parent="Terrains/Lavas"]
+position = Vector2( -80.5, 139 )
+scale = Vector2( -1, 1 )
+z_index = 1
+gravity_vec = Vector2( 0, 0 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 11 )
+auto_interactable = true
+rescaling_time = 1.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lavas/Lava13"]
+position = Vector2( 0, -139 )
+frames = SubResource( 1 )
+playing = true
+centered = false
+
+[node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="Terrains/Lavas/Lava13"]
+visible = false
+polygon = PoolVector2Array( 0, 0, 80.5, -139, 241.5, -139, 161, 0 )
+script = ExtResource( 10 )
+enabled = true
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -483, 0 )
+scale = Vector2( 1, -1 )
+border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+moving_speed = 180
+
+[node name="Sprite" parent="Player" index="0"]
+visible = false
+
+[node name="TrianglePolygonShape" parent="Player" index="1"]
+enabled = true
+
+[node name="Reversed" parent="Player" index="3"]
+visible = true
+
+[node name="Blocks" type="Node2D" parent="."]
+[connection signal="initialized" from="." to="." method="_on_Stage4_initialized"]
+
+[editable path="Battleground"]
+
+[editable path="Terrains/ReflectDown/Reflect13"]
+
+[editable path="Terrains/ReflectDown/Reflect14"]
+
+[editable path="Terrains/ReflectDown/Reflect15"]
+
+[editable path="Terrains/ReflectDown/Reflect16"]
+
+[editable path="Terrains/ReflectDown/Reflect17"]
+
+[editable path="Terrains/ReflectDown/Reflect18"]
+
+[editable path="Terrains/ReflectDown/Reflect19"]
+
+[editable path="Terrains/ReflectDown/Reflect20"]
+
+[editable path="Terrains/ReflectDown/Reflect21"]
+
+[editable path="Terrains/ReflectDown/Reflect22"]
+
+[editable path="Player"]

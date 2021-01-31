@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lava-4-1-2.png-f9df05d61052aa3ca470a5313854aae5.stex"
+path="res://.import/lava-1-1-2.png-c40c7ca1f62dd4023e7eeda990cad23a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/terrains/lava-4-1-2.png"
-dest_files=[ "res://.import/lava-4-1-2.png-f9df05d61052aa3ca470a5313854aae5.stex" ]
+source_file="res://textures/terrains/lava/lava-1-1-2.png"
+dest_files=[ "res://.import/lava-1-1-2.png-c40c7ca1f62dd4023e7eeda990cad23a.stex" ]
 
 [params]
 

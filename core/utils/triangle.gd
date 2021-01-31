@@ -151,7 +151,6 @@ func get_opposite(direction: int):
 func get_conjacent(a: Vector2, b: Vector2) -> int:
 	var x = a.x - b.x
 	var y = a.y - b.y
-	print(x, " ", y)
 	if abs(x) + abs(y) != 1:
 		return -1
 	var is_up = get_is_up(a)

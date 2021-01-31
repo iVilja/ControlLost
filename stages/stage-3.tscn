@@ -1,27 +1,26 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://stages/stage-3.gd" type="Script" id=1]
 [ext_resource path="res://game_objects/blocks/block.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game_objects/terrains/goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_objects/terrains/goal-down.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://textures/terrains/goal-2.png" type="Texture" id=6]
 [ext_resource path="res://textures/blocks/block-7-1.png" type="Texture" id=7]
 [ext_resource path="res://game_objects/terrains/terrain.tscn" type="PackedScene" id=8]
 [ext_resource path="res://game_objects/terrains/lava.gd" type="Script" id=9]
-[ext_resource path="res://textures/terrains/lava-4-2-1.png" type="Texture" id=10]
+[ext_resource path="res://textures/terrains/lava/lava-4-2-1.png" type="Texture" id=10]
 [ext_resource path="res://game_objects/blocks/special.tscn" type="PackedScene" id=11]
 [ext_resource path="res://textures/battlegrounds/stage-3.png" type="Texture" id=12]
-[ext_resource path="res://textures/terrains/lava-4-2-2.png" type="Texture" id=13]
-[ext_resource path="res://textures/terrains/lava-4-1-1.png" type="Texture" id=14]
-[ext_resource path="res://textures/terrains/lava-4-1-2.png" type="Texture" id=15]
-[ext_resource path="res://textures/terrains/lava-11-1-1.png" type="Texture" id=16]
-[ext_resource path="res://textures/terrains/lava-11-1-2.png" type="Texture" id=17]
+[ext_resource path="res://textures/terrains/lava/lava-4-2-2.png" type="Texture" id=13]
+[ext_resource path="res://textures/terrains/lava/lava-4-1-1.png" type="Texture" id=14]
+[ext_resource path="res://textures/terrains/lava/lava-4-1-2.png" type="Texture" id=15]
+[ext_resource path="res://textures/terrains/lava/lava-11-1-1.png" type="Texture" id=16]
+[ext_resource path="res://textures/terrains/lava/lava-11-1-2.png" type="Texture" id=17]
 [ext_resource path="res://game_objects/terrains/trigger.tscn" type="PackedScene" id=18]
 [ext_resource path="res://game_objects/blocks/magnetic.tscn" type="PackedScene" id=19]
 [ext_resource path="res://textures/ui/headers/stage-3.png" type="Texture" id=20]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
@@ -29,7 +28,7 @@ animations = [ {
 "speed": 1.5
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
@@ -37,7 +36,7 @@ animations = [ {
 "speed": 1.5
 } ]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 13 ) ],
 "loop": true,
@@ -65,25 +64,15 @@ polygon = PoolVector2Array( -80.5, -417, -402.5, 139, -241.5, 417, 241.5, 417, 4
 [node name="Terrains" type="Node2D" parent="."]
 
 [node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
-position = Vector2( -80.5, -417 )
-enabled = false
-
-[node name="Sprite" parent="Terrains/Goal" index="0"]
-position = Vector2( 7, 8 )
-texture = ExtResource( 6 )
-
-[node name="TrianglePolygonShape" parent="Terrains/Goal" index="1"]
-polygon = PoolVector2Array( 0, 0, 161, 0, 80.5, 139 )
 
 [node name="AnimatedSprite" parent="Terrains/Goal" index="2"]
-position = Vector2( 15.5, 12 )
-animation = "down"
-frame = 0
+frame = 2
 
 [node name="Lava" parent="Terrains" instance=ExtResource( 8 )]
 position = Vector2( -161, 0 )
 script = ExtResource( 9 )
 auto_interactable = true
+rescaling_time = 1.0
 
 [node name="Sprite" parent="Terrains/Lava" index="0"]
 visible = false
@@ -93,8 +82,7 @@ polygon = PoolVector2Array( -80.5, -139, 80.5, -417, 161, -278, 80.5, -139, 241.
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava"]
 position = Vector2( -80, -412 )
-frames = SubResource( 2 )
-frame = 1
+frames = SubResource( 1 )
 playing = true
 centered = false
 
@@ -102,6 +90,7 @@ centered = false
 position = Vector2( -241.5, 139 )
 script = ExtResource( 9 )
 auto_interactable = true
+rescaling_time = 1.0
 
 [node name="Sprite" parent="Terrains/Lava2" index="0"]
 visible = false
@@ -111,7 +100,8 @@ polygon = PoolVector2Array( -80.5, 139, 0, 278, 161, 278, 241.5, 139, 80.5, 139,
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava2"]
 position = Vector2( -80, 0 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
+frame = 1
 playing = true
 centered = false
 
@@ -119,6 +109,7 @@ centered = false
 position = Vector2( 0, 278 )
 script = ExtResource( 9 )
 auto_interactable = true
+rescaling_time = 1.0
 
 [node name="Sprite" parent="Terrains/Lava3" index="0"]
 visible = false
@@ -128,8 +119,7 @@ polygon = PoolVector2Array( 80.5, 139, 241.5, 139, 322, 0, 241.5, -139, 161, 0, 
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava3"]
 position = Vector2( 0, -138 )
-frames = SubResource( 1 )
-frame = 1
+frames = SubResource( 3 )
 playing = true
 centered = false
 
@@ -143,7 +133,6 @@ position = Vector2( 0, 278 )
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -322, 0 )
-border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -153,6 +142,7 @@ texture = ExtResource( 7 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block" index="1"]
 polygon = PoolVector2Array( 0, 0, 644, 0, 563.5, 139, 80.5, 139 )
+enabled = true
 
 [node name="Magnetic" parent="Blocks" instance=ExtResource( 19 )]
 position = Vector2( -322, 0 )
@@ -178,6 +168,9 @@ moving_speed = 180
 
 [node name="Sprite" parent="Player" index="0"]
 visible = false
+
+[node name="TrianglePolygonShape" parent="Player" index="1"]
+enabled = true
 
 [node name="Reversed" parent="Player" index="3"]
 visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://textures/characters/bo-talking-1.png" type="Texture" id=22]
 [ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=23]
 [ext_resource path="res://effects/dialog.tscn" type="PackedScene" id=24]
+[ext_resource path="res://textures/ui/common/dialog-lan.png" type="Texture" id=25]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -67,102 +68,102 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 15 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 15 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 15 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 17 )
+atlas = ExtResource( 19 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 17 )
+atlas = ExtResource( 19 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 17 )
+atlas = ExtResource( 19 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 17 )
+atlas = ExtResource( 19 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 17 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 17 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 17 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 17 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="SpriteFrames" id=29]
@@ -179,44 +180,44 @@ animations = [ {
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
-"name": "move-1",
+"name": "move-4",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
-"name": "move-5",
+"name": "move-1",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
-"name": "move-4",
+"name": "move-2",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": true,
-"name": "move-3",
+"name": "move-5",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
-"name": "move-2",
+"name": "move-3",
 "speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 21 )
-region = Rect2( 105, 0, 105, 140 )
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 21 )
-region = Rect2( 210, 0, 105, 140 )
+atlas = ExtResource( 22 )
+region = Rect2( 105, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 21 )
-region = Rect2( 0, 0, 105, 140 )
+atlas = ExtResource( 22 )
+region = Rect2( 210, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
@@ -225,39 +226,40 @@ region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
-atlas = ExtResource( 22 )
+atlas = ExtResource( 21 )
 region = Rect2( 105, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
-atlas = ExtResource( 22 )
+atlas = ExtResource( 21 )
 region = Rect2( 210, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
-atlas = ExtResource( 22 )
+atlas = ExtResource( 21 )
 region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="SpriteFrames" id=37]
 animations = [ {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
-"loop": true,
-"name": "talking-2",
-"speed": 3.0
-}, {
-"frames": [ SubResource( 33 ) ],
+"frames": [ SubResource( 30 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
 "name": "talking-1",
 "speed": 2.5
+}, {
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": true,
+"name": "talking-2",
+"speed": 3.0
 } ]
 
 [node name="Main" type="Node2D"]
 pause_mode = 2
+position = Vector2( 0, -2 )
 script = ExtResource( 1 )
 
 [node name="Background" type="TextureRect" parent="."]
@@ -372,31 +374,50 @@ pause_mode = 1
 [node name="Lan" type="Node2D" parent="Characters"]
 position = Vector2( -772, 306 )
 
+[node name="Dialog" parent="Characters/Lan" instance=ExtResource( 24 )]
+margin_left = -123.502
+margin_top = -280.028
+margin_right = -123.502
+margin_bottom = -280.028
+
+[node name="Background" parent="Characters/Lan/Dialog" index="0"]
+texture = ExtResource( 25 )
+
+[node name="Content" parent="Characters/Lan/Dialog" index="1"]
+margin_left = 19.0
+margin_top = 18.0
+margin_right = 305.0
+margin_bottom = 162.0
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
+position = Vector2( 25.4712, -1.49829 )
 frames = SubResource( 29 )
 animation = "idle"
-frame = 1
 playing = true
-
-[node name="Dialog" parent="Characters/Lan" instance=ExtResource( 24 )]
-margin_left = -75.5099
-margin_top = -229.3
-margin_right = -75.5099
-margin_bottom = -229.3
 
 [node name="Bo" type="Node2D" parent="Characters"]
 position = Vector2( 761, -207 )
 
+[node name="Dialog" parent="Characters/Bo" instance=ExtResource( 24 )]
+margin_left = -193.66
+margin_top = -119.571
+margin_right = -193.66
+margin_bottom = -119.571
+
+[node name="Background" parent="Characters/Bo/Dialog" index="0"]
+texture = ExtResource( 25 )
+
+[node name="Content" parent="Characters/Bo/Dialog" index="1"]
+margin_left = 19.0
+margin_top = 18.0
+margin_right = 305.0
+margin_bottom = 162.0
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
+position = Vector2( 75.5099, 114.156 )
 frames = SubResource( 37 )
 animation = "idle"
 playing = true
-
-[node name="Dialog" parent="Characters/Bo" instance=ExtResource( 24 )]
-margin_left = -207.802
-margin_top = -120.278
-margin_right = -207.802
-margin_bottom = -120.278
 
 [node name="DialogCover" type="Control" parent="Characters"]
 anchor_right = 1.0
@@ -421,3 +442,7 @@ enabled = false
 [connection signal="characters_typed" from="Characters/Lan/Dialog" to="." method="_on_lan_characters_typed"]
 [connection signal="characters_typed" from="Characters/Bo/Dialog" to="." method="_on_bo_characters_typed"]
 [connection signal="gui_input" from="Characters/DialogCover" to="." method="_on_DialogCover_gui_input"]
+
+[editable path="Characters/Lan/Dialog"]
+
+[editable path="Characters/Bo/Dialog"]

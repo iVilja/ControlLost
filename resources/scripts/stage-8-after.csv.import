@@ -1,13 +1,10 @@
 [remap]
 
-importer="csv_translation"
-type="Translation"
-valid=false
+importer="csv"
+type="TextFile"
 
 [deps]
 
 source_file="res://resources/scripts/stage-8-after.csv"
 [params]
 
-compress=true
-delimiter=0

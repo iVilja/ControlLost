@@ -44,7 +44,6 @@ func check_interact(player):
 		self.pos_ids[0] + self.moved_pos,
 		player.pos_ids[0] + player.moved_pos
 	)
-	print(name, " ", c)
 	if c >= 0:
 		availables[c] = true
 		if main.magnet.disabled:

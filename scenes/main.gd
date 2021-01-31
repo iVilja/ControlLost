@@ -7,7 +7,7 @@ signal stage_exited
 export var entering_time = 1.8
 export var exiting_time = 1.8
 
-const DEFAULT_STAGE = "stage-1"
+const DEFAULT_STAGE = "stage-3"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
@@ -155,6 +155,7 @@ func _ready():
 
 func _on_Home_pressed():
 	SFX.play(SFX.RETURN)
+	current_stage.clear_states()
 	Global.goto_scene("res://scenes/title.tscn")
 
 
@@ -220,9 +221,16 @@ func run_scripts(scripts, ending = false):
 		emit_signal("scripts_completed")
 		return
 	is_ending = ending
+	bo_dialog.content.modulate = Color("c0c0c0") if ending else Color.white
+	if ending:
+		NodeTransform.fade_out($Characters/Lan, UI_SHOWING_TIME)
+	elif not $Characters/Lan.visible:
+		yield(NodeTransform.fade_in($Characters/Lan, UI_SHOWING_TIME), "transformed")
 	hide_ui()
 	dialog_cover.visible = true
 	for line in scripts:
+		if len(line) < 2:
+			continue
 		var character = line[0]
 		match character:
 			"B": character = "Bo"

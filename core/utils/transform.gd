@@ -14,7 +14,7 @@ var color_target = Color()
 var ended = false
 
 
-func fade_in(node: CanvasItem, time):
+func fade_in(node: CanvasItem, time = 1.0):
 	if is_busy():
 		return
 	var p = self.duplicate()
@@ -22,7 +22,7 @@ func fade_in(node: CanvasItem, time):
 	return p._fade(node, time, false)
 
 
-func fade_out(node: CanvasItem, time):
+func fade_out(node: CanvasItem, time = 1.0):
 	if is_busy():
 		return
 	if not node.visible or node.modulate.a == 0.0:

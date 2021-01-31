@@ -49,6 +49,7 @@ texture = ExtResource( 7 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block" index="1"]
 polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 161, 0 )
+enabled = true
 
 [node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402.5, 139 )
@@ -60,6 +61,7 @@ texture = ExtResource( 8 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block2" index="1"]
 polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
+enabled = true
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402.5, -139 )
@@ -71,6 +73,7 @@ texture = ExtResource( 9 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block3" index="1"]
 polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 322, 0, 161, 0 )
+enabled = true
 
 [node name="Block4" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 80.5, 139 )
@@ -82,6 +85,7 @@ texture = ExtResource( 7 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block4" index="1"]
 polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 161, 0 )
+enabled = true
 
 [node name="Block5" parent="Blocks" instance=ExtResource( 2 )]
 moving_speed = 180
@@ -92,6 +96,7 @@ texture = ExtResource( 8 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block5" index="1"]
 polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
+enabled = true
 
 [node name="Block6" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 322, 0 )
@@ -103,6 +108,7 @@ texture = ExtResource( 8 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block6" index="1"]
 polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
+enabled = true
 
 [node name="Block7" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 322, 0 )
@@ -110,6 +116,9 @@ moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block7" index="0"]
 position = Vector2( 0, -139 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block7" index="1"]
+enabled = true
 
 [node name="Block8" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 80.5, -139 )
@@ -121,6 +130,7 @@ texture = ExtResource( 10 )
 
 [node name="TrianglePolygonShape" parent="Blocks/Block8" index="1"]
 polygon = PoolVector2Array( 0, 0, -80, -139, 242, -139, 322, 0, 242, 139, 161, 0 )
+enabled = true
 
 [editable path="Battleground"]
 

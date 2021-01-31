@@ -12,7 +12,6 @@ z_index = 2
 input_pickable = true
 script = ExtResource( 2 )
 is_draggable = false
-draw_border = false
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, -135.557 )
@@ -24,6 +23,7 @@ centered = false
 visible = false
 polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
 script = ExtResource( 3 )
+enabled = true
 
 [node name="Activated" type="Node2D" parent="."]
 

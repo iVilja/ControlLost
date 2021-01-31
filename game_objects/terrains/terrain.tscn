@@ -19,3 +19,4 @@ centered = false
 [node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
 script = ExtResource( 2 )
+enabled = true

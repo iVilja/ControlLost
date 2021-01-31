@@ -1,0 +1,242 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://stages/stage-8.gd" type="Script" id=1]
+[ext_resource path="res://game_objects/blocks/block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game_objects/terrains/goal-down.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://textures/battlegrounds/stage-8.png" type="Texture" id=6]
+[ext_resource path="res://textures/blocks/stage-8/k1.png" type="Texture" id=7]
+[ext_resource path="res://textures/blocks/stage-8/k2.png" type="Texture" id=8]
+[ext_resource path="res://textures/blocks/stage-8/k3.png" type="Texture" id=9]
+[ext_resource path="res://textures/blocks/stage-8/k4.png" type="Texture" id=10]
+[ext_resource path="res://textures/ui/headers/stage-x.png" type="Texture" id=11]
+[ext_resource path="res://textures/blocks/stage-8/k5.png" type="Texture" id=12]
+[ext_resource path="res://textures/blocks/stage-8/k6.png" type="Texture" id=13]
+[ext_resource path="res://textures/blocks/stage-8/t1.png" type="Texture" id=14]
+[ext_resource path="res://textures/blocks/stage-8/t2.png" type="Texture" id=15]
+[ext_resource path="res://textures/blocks/stage-8/t3.png" type="Texture" id=16]
+[ext_resource path="res://textures/blocks/stage-8/t4.png" type="Texture" id=17]
+[ext_resource path="res://textures/blocks/stage-8/t5.png" type="Texture" id=18]
+[ext_resource path="res://textures/blocks/stage-8/t6.png" type="Texture" id=19]
+
+[node name="Stage-8" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+stage_name = "stage-8"
+header_image = ExtResource( 11 )
+
+[node name="Battleground" parent="." instance=ExtResource( 3 )]
+space_override = 1
+
+[node name="Background" parent="Battleground" index="0"]
+position = Vector2( 0, 36.8111 )
+texture = ExtResource( 6 )
+
+[node name="TrianglePolygonShape" parent="Battleground" index="1"]
+polygon = PoolVector2Array( -483, 0, -241.5, 417, -80.5, 417, 0, 556, 80.5, 417, 241.5, 417, 80.5, 139, -80.5, 139, -161, 0, 161, 0, 80.5, 139, 241.5, 417, 483, 0, 241.5, -417, -241.5, -417, -483, 0 )
+
+[node name="Terrains" type="Node2D" parent="."]
+
+[node name="Goal2" parent="Terrains" instance=ExtResource( 4 )]
+position = Vector2( -80.5, 417 )
+enabled = true
+
+[node name="Sprite" parent="Terrains/Goal2" index="0"]
+position = Vector2( 7, -4.34711 )
+
+[node name="AnimatedSprite" parent="Terrains/Goal2" index="2"]
+position = Vector2( 15.5, -0.347107 )
+frame = 0
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -80.5, -417 )
+scale = Vector2( 1, -1 )
+border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+moving_speed = 180
+
+[node name="Sprite" parent="Player" index="0"]
+visible = false
+
+[node name="TrianglePolygonShape" parent="Player" index="1"]
+enabled = true
+
+[node name="Reversed" parent="Player" index="3"]
+visible = true
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 161, 0 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block" index="0"]
+position = Vector2( 0, -273 )
+texture = ExtResource( 7 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, -278, 241.5, -139, 161, 0 )
+enabled = true
+
+[node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -80.5, -417 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block2" index="0"]
+position = Vector2( -81, 0 )
+texture = ExtResource( 8 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block2" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 278, 0, 278, -80.5, 139 )
+enabled = true
+
+[node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 161, -278 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block3" index="0"]
+position = Vector2( -81, 0 )
+texture = ExtResource( 9 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block3" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 0, 0, 278, -80.5, 139 )
+enabled = true
+
+[node name="Block4" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -241.5, 139 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block4" index="0"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 10 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block4" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 0, 241.5, 139, 161, 278 )
+enabled = true
+
+[node name="Block5" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 0, 278 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block5" index="0"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 12 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block5" index="1"]
+polygon = PoolVector2Array( 0, 0, 322, 0, 241.5, 139, 80.5, 139 )
+enabled = true
+
+[node name="Block6" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 0, -278 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block6" index="0"]
+position = Vector2( 0, -139 )
+texture = ExtResource( 13 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block6" index="1"]
+polygon = PoolVector2Array( 0, 0, 322, 0, 241.5, -139, 80.5, -139 )
+enabled = true
+
+[node name="Block7" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 322, 0 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block7" index="0"]
+position = Vector2( -81, 0 )
+texture = ExtResource( 14 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block7" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 0, 0, 278, -80.5, 139 )
+enabled = true
+
+[node name="Block8" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -402.5, -139 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block8" index="0"]
+position = Vector2( 0, -273 )
+texture = ExtResource( 15 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block8" index="1"]
+visible = true
+polygon = PoolVector2Array( 0, 0, 161, -278, 241.5, -139, 161, 0 )
+enabled = true
+
+[node name="Block9" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -241.5, -139 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block9" index="0"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 16 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block9" index="1"]
+polygon = PoolVector2Array( 0, 0, 322, 0, 241.5, 139, 80.5, 139 )
+enabled = true
+
+[node name="Block10" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( 0, 278 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block10" index="0"]
+position = Vector2( 0, -139 )
+texture = ExtResource( 17 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block10" index="1"]
+polygon = PoolVector2Array( 0, 0, 322, 0, 241.5, -139, 80.5, -139 )
+enabled = true
+
+[node name="Block11" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -241.5, -139 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block11" index="0"]
+position = Vector2( -81, 0 )
+texture = ExtResource( 18 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block11" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 278, 0, 278, -80.5, 139 )
+enabled = true
+
+[node name="Block12" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -402.5, 139 )
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block12" index="0"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 19 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block12" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 0, 241.5, 139, 161, 278 )
+enabled = true
+
+[editable path="Battleground"]
+
+[editable path="Terrains/Goal2"]
+
+[editable path="Player"]
+
+[editable path="Blocks/Block"]
+
+[editable path="Blocks/Block2"]
+
+[editable path="Blocks/Block3"]
+
+[editable path="Blocks/Block4"]
+
+[editable path="Blocks/Block5"]
+
+[editable path="Blocks/Block6"]
+
+[editable path="Blocks/Block7"]
+
+[editable path="Blocks/Block8"]
+
+[editable path="Blocks/Block9"]
+
+[editable path="Blocks/Block10"]
+
+[editable path="Blocks/Block11"]
+
+[editable path="Blocks/Block12"]

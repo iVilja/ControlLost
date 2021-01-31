@@ -144,6 +144,7 @@ func restore_origin():
 	position = original_position
 	scale = original_scale
 	is_grouped = false
+	self.enabled = true
 
 
 func is_moving():
@@ -247,6 +248,6 @@ func get_polygon_center():
 	var n = 0
 	for block in get_all_blocks():
 		for v in block.get_polygon():
-			ret += v
+			ret += v * block.scale + block.position
 			n += 1
 	return ret / n

@@ -40,6 +40,16 @@ func reflect(block, is_backing, speed_scale):
 		SFX.play(SFX.TURN_AROUND)
 
 
+func check_interact(block):
+	if not .check_interact(block):
+		return false
+	var mp = calc_moved_pos()
+	if game.get_block(pos_ids[0] + mp) == null:
+		return true
+	SFX.play(SFX.WRONG_MOVE)
+	return false
+
+
 func interact(block):
 	self.activated = true
 	reflect(block, false, 1)
@@ -50,8 +60,7 @@ func go_back(step):
 	reflect(block, true, 3)
 
 
-func complete():
-	var block = interacting_block
+func calc_moved_pos():
 	var moved_pos = Vector2.DOWN
 	var is_up = Triangle.get_is_up(pos_ids[0])
 	if is_up:
@@ -63,6 +72,13 @@ func complete():
 			0: moved_pos = Vector2.UP
 			1: moved_pos = Vector2.LEFT
 			2: moved_pos = Vector2.RIGHT
+	return moved_pos
+
+
+func complete():
+	var block = interacting_block
+	var is_up = Triangle.get_is_up(pos_ids[0])
+	var moved_pos = calc_moved_pos()
 	var step = null
 	if block.is_player() and (is_up != backing):
 		end_effect()

@@ -16,25 +16,12 @@ var scripts_before = null
 var scripts_after = null
 
 
-func load_scripts(file_name):
-	var file = File.new()
-	if not file.file_exists(file_name):
-		return null
-	file.open(file_name, file.READ)
-	var ret = []
-	while not file.eof_reached():
-		var csv = file.get_csv_line()
-		ret.append(csv)
-	file.close()
-	return ret
-
-
 func _ready():
 	game = GameManager.new()
 	game.stage = self
 	player = $Player
-	scripts_before = load_scripts("res://resources/scripts/%s.csv" % stage_name)
-	scripts_after = load_scripts("res://resources/scripts/%s-after.csv" % stage_name)
+	scripts_before = Global.load_scripts("res://resources/scripts/%s.res" % stage_name)
+	scripts_after = Global.load_scripts("res://resources/scripts/%s-after.res" % stage_name)
 
 
 func initialize():
@@ -56,9 +43,13 @@ func start():
 	print("%s started" % stage_name)
 
 
-func end():
+func clear_states():
 	SFX.audio_manager.clear_timers()
 	SFX.audio_manager.stop_bgm()
+
+
+func end():
+	clear_states()
 	var main = Global.current_scene
 	main.run_scripts(scripts_after, true)
 	yield(main, "scripts_completed")

@@ -1,8 +1,83 @@
-[gd_scene format=2]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/ending.gd" type="Script" id=1]
+[ext_resource path="res://textures/background.png" type="Texture" id=2]
+[ext_resource path="res://textures/ui/credits/bg.png" type="Texture" id=3]
+[ext_resource path="res://textures/ui/credits/credits.png" type="Texture" id=4]
+[ext_resource path="res://textures/ui/credits/title.png" type="Texture" id=5]
+[ext_resource path="res://textures/ui/common/icon.png" type="Texture" id=6]
+[ext_resource path="res://effects/dialog.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://resources/SourceHanSansCN-Regular.otf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+extra_spacing_bottom = 6
+font_data = SubResource( 1 )
 
 [node name="Ending" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Background" type="TextureButton" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="Sprite" parent="."]
+visible = false
+position = Vector2( 436, 298 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="credits" type="Sprite" parent="."]
+visible = false
+position = Vector2( 553, 323 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="title" type="Sprite" parent="."]
+visible = false
+position = Vector2( 677, 134 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="icon" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1433.68, 788.773 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Dialog" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1920.0
+margin_bottom = -1080.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+typing_speed = 12.0
+
+[node name="Content" type="Label" parent="Dialog"]
+margin_left = 1098.39
+margin_top = 773.398
+margin_right = 1428.39
+margin_bottom = 832.398
+custom_fonts/font = SubResource( 2 )
+custom_constants/line_spacing = -4
+text = "感谢您能玩到这里！"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Background" to="." method="_on_Background_pressed"]
