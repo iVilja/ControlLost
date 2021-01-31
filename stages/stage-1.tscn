@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://stages/stage.gd" type="Script" id=1]
+[ext_resource path="res://stages/stage-1.gd" type="Script" id=1]
 [ext_resource path="res://game_objects/blocks/block.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game_objects/terrains/goal.tscn" type="PackedScene" id=4]
@@ -34,13 +34,18 @@ polygon = PoolVector2Array( -161, 0, -80, -139, 81, -139, 0, 0, 81, 139, -80, 13
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -483, 0 )
+enabled = true
+is_draggable = true
+draw_border = true
 border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Blocks" type="Node2D" parent="."]
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -402, 139 )
+position = Vector2( -402.5, 139 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block" index="0"]
@@ -51,7 +56,7 @@ texture = ExtResource( 7 )
 polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 161, 0 )
 
 [node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -402, 139 )
+position = Vector2( -402.5, 139 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block2" index="0"]
@@ -62,7 +67,7 @@ texture = ExtResource( 8 )
 polygon = PoolVector2Array( 0, 0, 161, 0, 81, 139 )
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( -402, -139 )
+position = Vector2( -402.5, -139 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block3" index="0"]
@@ -73,7 +78,7 @@ texture = ExtResource( 9 )
 polygon = PoolVector2Array( 0, 0, 81, -139, 242, -139, 322, 0, 161, 0 )
 
 [node name="Block4" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 81, 139 )
+position = Vector2( 80.5, 139 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block4" index="0"]
@@ -111,8 +116,11 @@ moving_speed = 180
 [node name="Sprite" parent="Blocks/Block7" index="0"]
 position = Vector2( 0, -139 )
 
+[node name="TrianglePolygonShape" parent="Blocks/Block7" index="1"]
+polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
+
 [node name="Block8" parent="Blocks" instance=ExtResource( 2 )]
-position = Vector2( 81, -139 )
+position = Vector2( 80.5, -139 )
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block8" index="0"]

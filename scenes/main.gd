@@ -12,7 +12,6 @@ const DEFAULT_STAGE = "stage-1"
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
 
-onready var lan_animation = $Characters/Lan/AnimatedSprite
 onready var player = $Player
 onready var ui_node = $UI
 onready var characters = $Characters
@@ -121,6 +120,7 @@ func start(stage_name: String):
 	yield(current_stage, "initialized")
 	show_ui()
 	current_stage.game.connect("direction_changed", self, "_on_direction_changed")
+	dialog_cover.visible = false
 	current_stage.start()
 
 
@@ -140,6 +140,7 @@ func _ready():
 	background.visible = false
 	ui_node.visible = false
 	characters.visible = false
+	dialog_cover.visible = false
 	var stage_name = DEFAULT_STAGE  # for debugging
 	if Global.loading_stage != null:
 		stage_name = Global.loading_stage
@@ -174,3 +175,48 @@ func _on_direction_changed(value):
 func _physics_process(delta):
 	update_stage_entering(delta)
 	update_stage_exiting(delta)
+
+
+onready var lan_animation = $Characters/Lan/AnimatedSprite
+onready var bo_animation = $Characters/Bo/AnimatedSprite
+onready var lan_dialog = $Characters/Lan/Dialog
+onready var bo_dialog = $Characters/Bo/Dialog
+onready var dialog_cover = $Characters/DialogCover
+
+signal said(character, content)
+func say(character, content):
+	var is_bo = character == "Bo"
+	var dialog = bo_dialog if is_bo else lan_dialog
+	if is_bo:
+		bo_animation.play("talking")
+	print("%s: %s" % [character, content])
+	dialog.type(content)
+	yield(dialog, "typing_completed")
+	if is_bo:
+		bo_animation.play("idle")
+	emit_signal("said", character, content)
+
+var waiting_for_click = false
+signal cover_clicked
+func run_scripts(scripts):
+	if scripts == null:
+		return
+	dialog_cover.visible = true
+	for line in scripts:
+		var character = "Bo" if line[0] == "B" else "Lan"
+		var content = line[1]
+		say(character, content)
+		yield(self, "said")
+		yield(get_tree().create_timer(0.4), "timeout")
+		waiting_for_click = true
+		yield(self, "cover_clicked")
+		waiting_for_click = false
+	lan_dialog.clear()
+	bo_dialog.clear()
+	dialog_cover.visible = false
+
+
+func _on_DialogCover_gui_input(event):
+	if waiting_for_click and event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			emit_signal("cover_clicked")

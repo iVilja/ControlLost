@@ -68,7 +68,20 @@ func on_timeout(timer, interval, sounds):
 	timer.start()
 
 
+func load_bgm(bgm):
+	return load("res://resources/audio/music/%s.wav" % bgm)
+
 onready var bgm_player = $BGM
-func play_bgm(bgm):
-	bgm_player.stream = bgm
+onready var bgm_player2 = $BGM2
+func play_bgm(bgm, bgm2 = ""):
+	bgm_player.stream = load_bgm(bgm)
 	bgm_player.play()
+	if bgm2.empty():
+		bgm_player2.stream = null
+	else:
+		bgm_player2.stream = load_bgm(bgm2)
+
+
+func stop_bgm():
+	bgm_player.stop()
+	bgm_player2.stop()

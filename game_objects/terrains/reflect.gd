@@ -5,7 +5,7 @@ class_name ReflectTerrain
 # Direction: 0 for up-down, 1 for upright-downleft, 2 for upleft-downright
 export var direction = 0
 export var reflecting_speed = 2.0
-export var effect_showing_time = 0.8
+export var effect_showing_time = 0.4
 
 var backing = false
 var interacting_block: Node2D = null
@@ -28,6 +28,14 @@ func reflect(block, is_backing, speed_scale):
 	target_scale_y = block.scale.y * -1
 	interacting_block = block
 	speed = reflecting_speed * speed_scale
+	var is_up = Triangle.get_is_up(pos_ids[0])
+	if block.is_player():
+		var to_down = is_up != backing
+		if to_down:  # to "down" state
+			start_effect()
+		SFX.switch_bgm(to_down)
+	if not backing:
+		SFX.play(SFX.TURN_AROUND)
 
 
 func interact(block):
@@ -43,7 +51,8 @@ func go_back(step):
 func complete():
 	var block = interacting_block
 	var moved_pos = Vector2.DOWN
-	if Triangle.get_is_up(pos_ids[0]):
+	var is_up = Triangle.get_is_up(pos_ids[0])
+	if is_up:
 		match direction:
 			1: moved_pos = Vector2.RIGHT
 			2: moved_pos = Vector2.LEFT
@@ -53,12 +62,9 @@ func complete():
 			1: moved_pos = Vector2.LEFT
 			2: moved_pos = Vector2.RIGHT
 	var step = null
-	if block.is_player():
-		if block.scale.y >= 0:
-			end_effect(backing)
-		else:
-			start_effect(backing)
-		
+	if block.is_player() and (is_up != backing):
+		end_effect()
+
 	if backing:
 		block.moved_pos -= moved_pos
 	else:
@@ -87,22 +93,18 @@ func _process(delta):
 
 
 const BACKING_FACTOR = 3.0
-func start_effect(backing):
+func start_effect():
 	if effect_node != null:
 		return
 	effect_node = ReflectingEffect.instance()
 	Global.current_scene.add_child(effect_node)
-	NodeTransform.fade_in(effect_node, effect_showing_time / (
-		BACKING_FACTOR if backing else 1.0
-	))
+	NodeTransform.fade_in(effect_node, effect_showing_time)
 
 
-func end_effect(backing):
+func end_effect():
 	if effect_node == null:
 		return
-	var t = NodeTransform.fade_out(effect_node, effect_showing_time / (
-		BACKING_FACTOR if backing else 1.0
-	))
+	var t = NodeTransform.fade_out(effect_node, effect_showing_time)
 	effect_node = null
 	t.connect("transformed", self, "on_effect_out")
 
@@ -115,4 +117,6 @@ func restore():
 	if effect_node != null:
 		effect_node.queue_free()
 		effect_node = null
-	Global.current_scene.player.update_sprite()
+	var player = Global.current_scene.player
+	SFX.switch_bgm(not Triangle.get_is_up(player.pos_ids[0]))
+	player.update_sprite()

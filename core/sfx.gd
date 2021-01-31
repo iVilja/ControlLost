@@ -109,3 +109,17 @@ func on_stopped(player, t):
 		player.disconnect("finished", self, "on_stopped")
 	if t in keeping_players:
 		keeping_players.erase(t)
+
+
+func switch_bgm(toggled):
+	var bgm2 = audio_manager.bgm_player2
+	if bgm2 == null:
+		return
+	var bgm1 = audio_manager.bgm_player
+	if not toggled:
+		var t = bgm1
+		bgm1 = bgm2
+		bgm2 = t
+	bgm2.play()
+	bgm2.seek(bgm1.get_playback_position())
+	bgm1.stop()

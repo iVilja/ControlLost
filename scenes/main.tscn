@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://textures/characters/bo-talking.png" type="Texture" id=21]
 [ext_resource path="res://textures/characters/bo-idle.png" type="Texture" id=22]
 [ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=23]
+[ext_resource path="res://effects/dialog.tscn" type="PackedScene" id=24]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -66,22 +67,22 @@ region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 16 )
 region = Rect2( 216, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 16 )
 region = Rect2( 432, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 16 )
 region = Rect2( 648, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=13]
@@ -106,42 +107,42 @@ region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 15 )
 region = Rect2( 216, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 15 )
 region = Rect2( 432, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 15 )
 region = Rect2( 648, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 13 )
 region = Rect2( 216, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 13 )
 region = Rect2( 432, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 13 )
 region = Rect2( 648, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=25]
@@ -178,7 +179,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 10 ), SubResource( 9 ), SubResource( 12 ) ],
 "loop": true,
-"name": "move-1",
+"name": "move-2",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 14 ), SubResource( 13 ), SubResource( 16 ) ],
@@ -188,12 +189,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 18 ), SubResource( 17 ), SubResource( 20 ) ],
 "loop": true,
-"name": "move-0",
+"name": "move-1",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ), SubResource( 24 ) ],
 "loop": true,
-"name": "move-2",
+"name": "move-0",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 26 ), SubResource( 25 ), SubResource( 28 ) ],
@@ -359,8 +360,14 @@ position = Vector2( -772, 306 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
 frames = SubResource( 29 )
 animation = "idle"
-frame = 4
+frame = 1
 playing = true
+
+[node name="Dialog" parent="Characters/Lan" instance=ExtResource( 24 )]
+margin_left = -75.5099
+margin_top = -229.3
+margin_right = -75.5099
+margin_bottom = -229.3
 
 [node name="Bo" type="Node2D" parent="Characters"]
 position = Vector2( 761, -207 )
@@ -368,7 +375,25 @@ position = Vector2( 761, -207 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
 frames = SubResource( 35 )
 animation = "idle"
+frame = 1
 playing = true
+
+[node name="Dialog" parent="Characters/Bo" instance=ExtResource( 24 )]
+margin_left = -207.802
+margin_top = -120.278
+margin_right = -207.802
+margin_bottom = -120.278
+
+[node name="DialogCover" type="Control" parent="Characters"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player" parent="." instance=ExtResource( 23 )]
 position = Vector2( -80, 35 )
@@ -384,3 +409,4 @@ moving_speed = 120
 [connection signal="pressed" from="UI/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Magnet" to="." method="_on_Magnet_pressed"]
 [connection signal="pressed" from="UI/GoBack" to="." method="_on_GoBack_pressed"]
+[connection signal="gui_input" from="Characters/DialogCover" to="." method="_on_DialogCover_gui_input"]
