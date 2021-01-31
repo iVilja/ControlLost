@@ -1,17 +1,17 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
-[ext_resource path="res://textures/ui/home.png" type="Texture" id=3]
-[ext_resource path="res://textures/ui/restart.png" type="Texture" id=4]
-[ext_resource path="res://textures/ui/home-hover.png" type="Texture" id=5]
-[ext_resource path="res://textures/ui/restart-hover.png" type="Texture" id=6]
-[ext_resource path="res://textures/ui/desk.png" type="Texture" id=7]
-[ext_resource path="res://textures/ui/magnet-disabled.png" type="Texture" id=8]
-[ext_resource path="res://textures/ui/magnet-pressed.png" type="Texture" id=9]
-[ext_resource path="res://textures/ui/magnet.png" type="Texture" id=10]
-[ext_resource path="res://textures/ui/goback-pressed.png" type="Texture" id=11]
-[ext_resource path="res://textures/ui/goback.png" type="Texture" id=12]
+[ext_resource path="res://textures/ui/common/home.png" type="Texture" id=3]
+[ext_resource path="res://textures/ui/common/restart.png" type="Texture" id=4]
+[ext_resource path="res://textures/ui/common/home-hover.png" type="Texture" id=5]
+[ext_resource path="res://textures/ui/common/restart-hover.png" type="Texture" id=6]
+[ext_resource path="res://textures/ui/common/desk.png" type="Texture" id=7]
+[ext_resource path="res://textures/ui/common/magnet-disabled.png" type="Texture" id=8]
+[ext_resource path="res://textures/ui/common/magnet-pressed.png" type="Texture" id=9]
+[ext_resource path="res://textures/ui/common/magnet.png" type="Texture" id=10]
+[ext_resource path="res://textures/ui/common/goback-pressed.png" type="Texture" id=11]
+[ext_resource path="res://textures/ui/common/goback.png" type="Texture" id=12]
 [ext_resource path="res://textures/characters/lan-0.png" type="Texture" id=13]
 [ext_resource path="res://textures/characters/lan-idle.png" type="Texture" id=14]
 [ext_resource path="res://textures/characters/lan-1.png" type="Texture" id=15]
@@ -20,235 +20,240 @@
 [ext_resource path="res://textures/characters/lan-4.png" type="Texture" id=18]
 [ext_resource path="res://textures/characters/lan-5.png" type="Texture" id=19]
 [ext_resource path="res://textures/ui/headers/stage-1.png" type="Texture" id=20]
-[ext_resource path="res://textures/characters/bo-talking.png" type="Texture" id=21]
-[ext_resource path="res://textures/characters/bo-idle.png" type="Texture" id=22]
+[ext_resource path="res://textures/characters/bo-talking-2.png" type="Texture" id=21]
+[ext_resource path="res://textures/characters/bo-talking-1.png" type="Texture" id=22]
 [ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=23]
 [ext_resource path="res://effects/dialog.tscn" type="PackedScene" id=24]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 14 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 14 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 13 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 14 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 17 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 17 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 13 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 17 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 13 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 17 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 13 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 15 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 15 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 16 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 15 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 18 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 18 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 19 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 18 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 19 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 18 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 19 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 18 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 18 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 18 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 15 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 18 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 19 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 19 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 17 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 19 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 17 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 19 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 17 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 216, 0, 216, 252 )
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 432, 0, 216, 252 )
+atlas = ExtResource( 16 )
+region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 648, 0, 216, 252 )
+atlas = ExtResource( 16 )
+region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 216, 252 )
+atlas = ExtResource( 16 )
+region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="SpriteFrames" id=29]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 1 ), SubResource( 4 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 3.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "move-0",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 6 ), SubResource( 5 ), SubResource( 8 ) ],
-"loop": true,
-"name": "move-3",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 10 ), SubResource( 9 ), SubResource( 12 ) ],
-"loop": true,
-"name": "move-2",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 14 ), SubResource( 13 ), SubResource( 16 ) ],
-"loop": true,
-"name": "move-4",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 18 ), SubResource( 17 ), SubResource( 20 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "move-1",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ), SubResource( 24 ) ],
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "move-5",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 26 ), SubResource( 25 ), SubResource( 28 ) ],
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
-"name": "idle",
-"speed": 3.0
+"name": "move-4",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": true,
+"name": "move-3",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "move-2",
+"speed": 5.0
 } ]
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 22 )
-region = Rect2( 0, 0, 101, 115 )
+atlas = ExtResource( 21 )
+region = Rect2( 105, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 22 )
-region = Rect2( 101, 0, 101, 115 )
+atlas = ExtResource( 21 )
+region = Rect2( 210, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 22 )
-region = Rect2( 202, 0, 101, 115 )
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
-atlas = ExtResource( 21 )
-region = Rect2( 0, 0, 110, 154 )
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
-atlas = ExtResource( 21 )
-region = Rect2( 110, 0, 110, 154 )
+atlas = ExtResource( 22 )
+region = Rect2( 105, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
-atlas = ExtResource( 21 )
-region = Rect2( 110, 0, 110, 154 )
+atlas = ExtResource( 22 )
+region = Rect2( 210, 0, 105, 140 )
 
-[sub_resource type="SpriteFrames" id=36]
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 105, 140 )
+
+[sub_resource type="SpriteFrames" id=37]
 animations = [ {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
-"loop": true,
-"name": "talking-1",
-"speed": 2.5
-}, {
-"frames": [ SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
 "name": "talking-2",
 "speed": 3.0
 }, {
-"frames": [ SubResource( 35 ) ],
+"frames": [ SubResource( 33 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": true,
+"name": "talking-1",
+"speed": 2.5
 } ]
 
 [node name="Main" type="Node2D"]
@@ -318,9 +323,9 @@ __meta__ = {
 [node name="StageName" type="TextureRect" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -527.0
+margin_left = -478.0
 margin_top = 64.0
-margin_right = -113.0
+margin_right = -63.9999
 margin_bottom = 152.0
 texture = ExtResource( 20 )
 __meta__ = {
@@ -370,7 +375,7 @@ position = Vector2( -772, 306 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
 frames = SubResource( 29 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Dialog" parent="Characters/Lan" instance=ExtResource( 24 )]
@@ -383,7 +388,7 @@ margin_bottom = -229.3
 position = Vector2( 761, -207 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
-frames = SubResource( 36 )
+frames = SubResource( 37 )
 animation = "idle"
 playing = true
 

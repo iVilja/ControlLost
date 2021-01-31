@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/magnet-disabled.png-46a93f307c1bade30cb53723c95bd453.stex"
+path="res://.import/title-background.png-b63528ed76564f2d89a7894ea501716d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/magnet-disabled.png"
-dest_files=[ "res://.import/magnet-disabled.png-46a93f307c1bade30cb53723c95bd453.stex" ]
+source_file="res://textures/title-background.png"
+dest_files=[ "res://.import/title-background.png-b63528ed76564f2d89a7894ea501716d.stex" ]
 
 [params]
 

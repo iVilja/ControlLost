@@ -203,12 +203,12 @@ func say(character, content):
 	var is_bo = character == "Bo"
 	var dialog = bo_dialog if is_bo else lan_dialog
 	if is_bo and not is_ending:
-		bo_animation.play("talking" if randi() % 2 == 0 else "talking-2")
+		bo_animation.play("talking-1" if randi() % 2 == 0 else "talking-2")
+	else:
+		bo_animation.play("idle")
 	print("%s: %s" % [character, content])
 	dialog.type(content)
 	yield(dialog, "typing_completed")
-	if is_bo and not is_ending:
-		bo_animation.play("idle")
 	emit_signal("said", character, content)
 
 var waiting_for_click = false
@@ -238,6 +238,7 @@ func run_scripts(scripts, ending = false):
 	lan_dialog.clear()
 	bo_dialog.clear()
 	dialog_cover.visible = false
+	bo_animation.play("idle")
 	emit_signal("scripts_completed")
 
 

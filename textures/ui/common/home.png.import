@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/goback.png-87af40cfe18e809a74cdeca1120d624b.stex"
+path="res://.import/home.png-d19b6feedac5f611003ed78f45bc4fe6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/goback.png"
-dest_files=[ "res://.import/goback.png-87af40cfe18e809a74cdeca1120d624b.stex" ]
+source_file="res://textures/ui/common/home.png"
+dest_files=[ "res://.import/home.png-d19b6feedac5f611003ed78f45bc4fe6.stex" ]
 
 [params]
 

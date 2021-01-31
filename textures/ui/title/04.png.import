@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/restart-hover.png-8e343c3755b79a8ec9620ad4ad2b532e.stex"
+path="res://.import/04.png-d91403baa71715196170bf38d1150790.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/restart-hover.png"
-dest_files=[ "res://.import/restart-hover.png-8e343c3755b79a8ec9620ad4ad2b532e.stex" ]
+source_file="res://textures/ui/title/04.png"
+dest_files=[ "res://.import/04.png-d91403baa71715196170bf38d1150790.stex" ]
 
 [params]
 

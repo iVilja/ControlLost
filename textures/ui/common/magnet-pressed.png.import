@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/desk.png-903a3aee162bc11c5320d2c8c921389d.stex"
+path="res://.import/magnet-pressed.png-c971395849f2e89a67f94b8deb37abb5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/desk.png"
-dest_files=[ "res://.import/desk.png-903a3aee162bc11c5320d2c8c921389d.stex" ]
+source_file="res://textures/ui/common/magnet-pressed.png"
+dest_files=[ "res://.import/magnet-pressed.png-c971395849f2e89a67f94b8deb37abb5.stex" ]
 
 [params]
 

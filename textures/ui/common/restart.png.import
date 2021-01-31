@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/goback-pressed.png-66ffe54c3e83b7096dd99ca5a6ddcbda.stex"
+path="res://.import/restart.png-0195f4109c355af464b3f527ab5b5223.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ui/goback-pressed.png"
-dest_files=[ "res://.import/goback-pressed.png-66ffe54c3e83b7096dd99ca5a6ddcbda.stex" ]
+source_file="res://textures/ui/common/restart.png"
+dest_files=[ "res://.import/restart.png-0195f4109c355af464b3f527ab5b5223.stex" ]
 
 [params]
 
