@@ -7,7 +7,7 @@ signal stage_exited
 export var entering_time = 1.8
 export var exiting_time = 1.8
 
-const DEFAULT_STAGE = "stage-2"
+const DEFAULT_STAGE = "stage-3"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
@@ -29,6 +29,8 @@ func enter_stage(stage: Stage):
 	player.clear_state()
 	player.game = stage.game
 	player.enabled = false
+	player.scale = stage.player.scale
+	player.update_sprite()
 	entering_player_start = player.position
 	entering_player_target = stage.player.position
 	showing_background = null
@@ -92,7 +94,7 @@ func update_stage_exiting(delta):
 		exiting = -1.0
 		exiting_fading = null
 		if showing_background != null and !showing_background.ended:
-			showing_background.stop()
+			showing_background.stop_fading()
 			showing_background = null
 		emit_signal("stage_exited")
 		return
@@ -165,8 +167,12 @@ func _on_GoBack_pressed():
 	current_stage.game.go_back()
 
 
+onready var magnet = $UI/Magnet
 func _on_Magnet_pressed():
-	pass # Replace with function body.
+	if player.is_grouped:
+		player.ungroup_all()
+	else:
+		player.group_blocks()
 
 
 func _on_direction_changed(value):
@@ -195,7 +201,7 @@ func say(character, content):
 	var is_bo = character == "Bo"
 	var dialog = bo_dialog if is_bo else lan_dialog
 	if is_bo and not is_ending:
-		bo_animation.play("talking")
+		bo_animation.play("talking" if randi() % 2 == 0 else "talking-2")
 	print("%s: %s" % [character, content])
 	dialog.type(content)
 	yield(dialog, "typing_completed")
@@ -207,6 +213,8 @@ var waiting_for_click = false
 signal cover_clicked
 signal scripts_completed
 func run_scripts(scripts, ending = false):
+	# TODO: delete it
+	scripts = null
 	if scripts == null:
 		yield(get_tree(), "idle_frame")
 		emit_signal("scripts_completed")

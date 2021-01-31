@@ -1,0 +1,185 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://stages/stage-2.gd" type="Script" id=1]
+[ext_resource path="res://game_objects/blocks/block.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game_objects/battleground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game_objects/terrains/goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://textures/terrains/goal-2.png" type="Texture" id=6]
+[ext_resource path="res://textures/blocks/block-7-1.png" type="Texture" id=7]
+[ext_resource path="res://game_objects/terrains/terrain.tscn" type="PackedScene" id=8]
+[ext_resource path="res://game_objects/terrains/lava.gd" type="Script" id=9]
+[ext_resource path="res://textures/terrains/lava-4-2-1.png" type="Texture" id=10]
+[ext_resource path="res://textures/ui/headers/stage-3.png" type="Texture" id=11]
+[ext_resource path="res://textures/battlegrounds/stage-3.png" type="Texture" id=12]
+[ext_resource path="res://textures/terrains/lava-4-2-2.png" type="Texture" id=13]
+[ext_resource path="res://textures/terrains/lava-4-1-1.png" type="Texture" id=14]
+[ext_resource path="res://textures/terrains/lava-4-1-2.png" type="Texture" id=15]
+[ext_resource path="res://textures/terrains/lava-11-1-1.png" type="Texture" id=16]
+[ext_resource path="res://textures/terrains/lava-11-1-2.png" type="Texture" id=17]
+[ext_resource path="res://game_objects/terrains/trigger.tscn" type="PackedScene" id=18]
+[ext_resource path="res://game_objects/blocks/magnetic.tscn" type="PackedScene" id=19]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.5
+} ]
+
+[node name="Stage-3" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 1 )
+stage_name = "stage-3"
+next_stage = "stage-4"
+header_image = ExtResource( 11 )
+
+[node name="Battleground" parent="." instance=ExtResource( 3 )]
+space_override = 1
+
+[node name="Background" parent="Battleground" index="0"]
+texture = ExtResource( 12 )
+
+[node name="TrianglePolygonShape" parent="Battleground" index="1"]
+visible = true
+polygon = PoolVector2Array( -80.5, -417, -402.5, 139, -241.5, 417, 241.5, 417, 402.5, 139, 80.5, -417 )
+
+[node name="Terrains" type="Node2D" parent="."]
+
+[node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
+position = Vector2( -80.5, -417 )
+enabled = false
+
+[node name="Sprite" parent="Terrains/Goal" index="0"]
+position = Vector2( 7, 8 )
+texture = ExtResource( 6 )
+
+[node name="TrianglePolygonShape" parent="Terrains/Goal" index="1"]
+polygon = PoolVector2Array( 0, 0, 161, 0, 80.5, 139 )
+
+[node name="AnimatedSprite" parent="Terrains/Goal" index="2"]
+position = Vector2( 15.5, 12 )
+animation = "down"
+
+[node name="Lava" parent="Terrains" instance=ExtResource( 8 )]
+position = Vector2( -161, 0 )
+script = ExtResource( 9 )
+auto_interactable = true
+
+[node name="Sprite" parent="Terrains/Lava" index="0"]
+visible = false
+
+[node name="TrianglePolygonShape" parent="Terrains/Lava" index="1"]
+polygon = PoolVector2Array( -80.5, -139, 80.5, -417, 161, -278, 80.5, -139, 241.5, -139, 161, -278, 241.5, -417, 402.5, -139, 322, 0, 0, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava"]
+position = Vector2( -80, -412 )
+frames = SubResource( 2 )
+frame = 1
+playing = true
+centered = false
+
+[node name="Lava2" parent="Terrains" instance=ExtResource( 8 )]
+position = Vector2( -241.5, 139 )
+script = ExtResource( 9 )
+auto_interactable = true
+
+[node name="Sprite" parent="Terrains/Lava2" index="0"]
+visible = false
+
+[node name="TrianglePolygonShape" parent="Terrains/Lava2" index="1"]
+polygon = PoolVector2Array( -80.5, 139, 0, 278, 161, 278, 241.5, 139, 80.5, 139, 0, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava2"]
+position = Vector2( -80, 0 )
+frames = SubResource( 3 )
+playing = true
+centered = false
+
+[node name="Lava3" parent="Terrains" instance=ExtResource( 8 )]
+position = Vector2( 0, 278 )
+script = ExtResource( 9 )
+auto_interactable = true
+
+[node name="Sprite" parent="Terrains/Lava3" index="0"]
+visible = false
+
+[node name="TrianglePolygonShape" parent="Terrains/Lava3" index="1"]
+polygon = PoolVector2Array( 80.5, 139, 241.5, 139, 322, 0, 241.5, -139, 161, 0, 0, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava3"]
+position = Vector2( 0, -138 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+centered = false
+
+[node name="Trigger" parent="Terrains" instance=ExtResource( 18 )]
+position = Vector2( -161, 278 )
+
+[node name="Trigger2" parent="Terrains" instance=ExtResource( 18 )]
+position = Vector2( 0, 278 )
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Block" parent="Blocks" instance=ExtResource( 2 )]
+position = Vector2( -322, 0 )
+border_width = 6
+moving_speed = 180
+
+[node name="Sprite" parent="Blocks/Block" index="0"]
+position = Vector2( 0, 0 )
+texture = ExtResource( 7 )
+
+[node name="TrianglePolygonShape" parent="Blocks/Block" index="1"]
+polygon = PoolVector2Array( 0, 0, 644, 0, 563.5, 139, 80.5, 139 )
+
+[node name="Magnetic" parent="Blocks" instance=ExtResource( 19 )]
+position = Vector2( -322, 0 )
+
+[node name="Magnetic2" parent="Blocks" instance=ExtResource( 19 )]
+position = Vector2( 161, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( -80.5, 139 )
+scale = Vector2( 1, -1 )
+border_width = 6
+moving_speed = 180
+
+[node name="Sprite" parent="Player" index="0"]
+visible = false
+
+[node name="Reversed" parent="Player" index="3"]
+visible = true
+[connection signal="initialized" from="." to="." method="_on_Stage2_initialized"]
+
+[editable path="Battleground"]
+
+[editable path="Terrains/Goal"]
+
+[editable path="Terrains/Lava"]
+
+[editable path="Terrains/Lava2"]
+
+[editable path="Terrains/Lava3"]
+
+[editable path="Blocks/Block"]
+
+[editable path="Player"]

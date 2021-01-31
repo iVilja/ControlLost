@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/start_noise.wav-a0d953a424d407fc5aae837acc992c47.sample"
+
+[deps]
+
+source_file="res://resources/audio/sfx/start_noise.wav"
+dest_files=[ "res://.import/start_noise.wav-a0d953a424d407fc5aae837acc992c47.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

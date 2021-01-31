@@ -40,7 +40,7 @@ enabled = true
 [node name="AnimatedSprite" parent="Terrains/Goal" index="2"]
 position = Vector2( 15.5, 12 )
 animation = "down"
-frame = 6
+frame = 2
 
 [node name="ReflectTerrain" parent="Terrains" instance=ExtResource( 10 )]
 position = Vector2( -241.5, -139 )
@@ -49,10 +49,6 @@ position = Vector2( -241.5, -139 )
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 80.5, 139 )
-enabled = true
-is_draggable = true
-draw_border = true
-border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -64,10 +60,6 @@ texture = ExtResource( 8 )
 polygon = PoolVector2Array( 0, 0, 161, 0, 80.5, 139 )
 
 [node name="Block1" parent="Blocks" instance=ExtResource( 2 )]
-enabled = true
-is_draggable = true
-draw_border = true
-border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -80,10 +72,6 @@ polygon = PoolVector2Array( 0, 0, 80.5, 139, 0, 278, -80.5, 139 )
 
 [node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 161, -278 )
-enabled = true
-is_draggable = true
-draw_border = true
-border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -96,10 +84,6 @@ polygon = PoolVector2Array( 0, 0, 80.5, 139, 0, 278, -80.5, 139 )
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -241.5, -139 )
-enabled = true
-is_draggable = true
-draw_border = true
-border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -111,10 +95,7 @@ texture = ExtResource( 9 )
 polygon = PoolVector2Array( 0, 0, 161, 0, 80.5, -139, 241.5, -139, 322, 0, 241.5, 139, 80.5, 139 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-enabled = true
-is_draggable = true
 draw_border = null
-border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 [connection signal="initialized" from="." to="." method="_on_Stage2_initialized"]

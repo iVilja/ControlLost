@@ -57,12 +57,14 @@ var available_directions = []
 
 func check_movable(block, i):
 	var direction = Triangle.ID_DIRECTIONS[i]
-	for pos_id in block.pos_ids:
-		for next in Triangle.get_pathway(pos_id + block.moved_pos, direction):
+	var ids = block.get_pos_ids()
+	var allowed_blocks = block.get_all_blocks()
+	for pos_id in ids:
+		for next in Triangle.get_pathway(pos_id, direction):
 			if not in_map(next):
 				return false
 			var existing_block = get_block(next)
-			if existing_block != null and existing_block != block:
+			if existing_block != null and not (existing_block in allowed_blocks):
 				return false
 			var terrain = get_terrain(next)
 			if terrain != null and terrain.will_block(block):
@@ -100,13 +102,15 @@ func drag(block):
 	update_directions()
 
 
-func cancel_drag():
+func cancel_drag(force_back = false):
 	if dragging_block == null:
 		return
 	if dragging_direction >= 0:
 		var moved = dragging_block.position - dragging_block_position
 		var moved_length = moved.length()
-		if moved_length < Triangle.SideLength / 2.0:
+		if force_back:
+			dragging_block.position = dragging_block_position
+		elif moved_length < Triangle.SideLength / 2.0:
 			dragging_block.move_to(dragging_block_position)
 			yield(dragging_block, "moved")
 		else:
@@ -142,7 +146,8 @@ func complete_move(block, di: int):
 
 var wrong_move_sfx_played = -1
 func process_dragging():
-	if dragging_block == null or is_busy():
+	if dragging_block == null or is_busy() or \
+			last_processed < steps.size():  # to avoid moving too fast
 		return
 	var block = dragging_block
 	if not Input.is_mouse_button_pressed(BUTTON_LEFT):
@@ -194,11 +199,22 @@ func is_busy():
 	return not initialized or animating.size() > 0 or is_processing
 
 
+func get_player():
+	for block in blocks:
+		if block.is_player():
+			return block
+	return null
+
 func _next_unhandled_event():
 	for block in blocks:
 		for terrain in terrains:
 			if terrain.check_interact(block):
-				return [block, terrain]
+				return [terrain, block]
+	var player = get_player()
+	for block in blocks:
+		if block != player:
+			if block.check_interact(player):
+				return [block, player]
 	return null
 
 
@@ -211,14 +227,14 @@ func process_events():
 	if e == null:
 		last_processed = steps.size()
 	else:
-		cancel_drag()
-		var block = e[0]
-		var terrain = e[1]
+		cancel_drag(true)
+		var terrain = e[0]  # or_block
+		var block = e[1]
 		terrain.interact(block)
 		var step = yield(terrain, "interacted")
 		if step == null:
 			return
-		if steps.size() > 0:
+		if steps.size() > 0 and step.size() > 0:
 			var last_step = steps.back()
 			last_step.append(step)
 		emit_signal("step_completed", step)
@@ -271,10 +287,10 @@ func go_back():
 		return
 	SFX.play(SFX.UNDO)
 	var last_step = steps.pop_back()
-	last_processed -= 1
 	is_processing = true
 	while last_step.size() > 0:
 		var step = last_step.pop_back()
+		print("Undo: ", step)
 		match step["type"]:
 			"move":
 				var block = step["block"]
@@ -282,6 +298,12 @@ func go_back():
 				block.move_with_logics(
 					Triangle.get_opposite(direction), 5
 				)
+			"group":
+				var player = step["player"]
+				if step["grouped"]:
+					player.ungroup_all(false)
+				else:
+					player.group_blocks(false)
 			_:
 				if "terrain" in step:
 					var terrain = step["terrain"]
@@ -290,4 +312,5 @@ func go_back():
 						return
 				else:
 					print("Cannot go back for ", step)
+	last_processed -= 1
 	is_processing = false

@@ -146,3 +146,13 @@ func get_direction_in_availables(d: Vector2, availables: Array):
 
 func get_opposite(direction: int):
 	return (direction + 3) % 6
+
+
+func get_conjacent(a: Vector2, b: Vector2) -> int:
+	var x = abs(a.x - b.x)
+	var y = a.y - b.y
+	if x + abs(y) != 1:
+		return -1
+	if x == 0:
+		return 0
+	return 1 if y < 0 else 2

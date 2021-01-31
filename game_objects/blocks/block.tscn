@@ -8,7 +8,7 @@
 z_index = 2
 input_pickable = true
 script = ExtResource( 2 )
-border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
 border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
 moving_speed = 8
 
@@ -20,9 +20,8 @@ centered = false
 
 [node name="TrianglePolygonShape" type="CollisionPolygon2D" parent="."]
 visible = false
-polygon = PoolVector2Array( 0, 0, 81, -139, 161, 0 )
+polygon = PoolVector2Array( 0, 0, 80.5, -139, 161, 0 )
 script = ExtResource( 1 )
-enabled = true
 
 [node name="Boundary" type="Node2D" parent="."]
 [connection signal="input_event" from="." to="." method="_on_input_event"]

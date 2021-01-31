@@ -46,7 +46,7 @@ func _fade(node: CanvasItem, time, is_out):
 	return self
 
 
-func stop():
+func stop_fading():
 	var node = target
 	node.modulate = color_target
 	if is_fading_out:
@@ -65,11 +65,51 @@ func update_fading(delta):
 	var node = target
 	fading_elapsed += delta
 	if fading_elapsed >= fading_time:
-		stop()
+		stop_fading()
 		return
 	var t = fading_elapsed / fading_time
 	target.modulate = color_start.linear_interpolate(color_target, t)
 
 
+var rescaling_elapsed = -1.0
+var rescaling_time = 0.0
+var rescaling_center = Vector2()
+var rescaling_start = Vector2()
+var scale_start = Vector2()
+var scale_target = Vector2()
+func rescale(node: CanvasItem, center, target_scale, time):
+	target = node
+	rescaling_center = center
+	rescaling_start = node.position
+	scale_start = node.scale
+	scale_target = target_scale
+	rescaling_elapsed = 0.0
+	rescaling_time = time
+	return self
+
+
+func stop_rescaling():
+	var node = target
+	rescaling_elapsed = -1.0
+	node.scale = scale_target
+	node.position = scale_target / scale_start * (rescaling_start - rescaling_center) + rescaling_center
+	target = null
+	emit_signal("transformed", node)
+
+
+func update_rescaling(delta):
+	if rescaling_elapsed < 0:
+		return
+	var node = target
+	rescaling_elapsed += delta
+	if rescaling_elapsed >= rescaling_time:
+		stop_rescaling()
+		return
+	var t = rescaling_elapsed / rescaling_time
+	node.scale = scale_start.linear_interpolate(scale_target, t)
+	node.position = node.scale / scale_start * (rescaling_start - rescaling_center) + rescaling_center
+
+
 func _process(delta):
 	update_fading(delta)
+	update_rescaling(delta)

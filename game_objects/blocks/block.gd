@@ -60,17 +60,23 @@ func set_hovered(value):
 	if hovered == value:
 		return
 	hovered = value
-	$Boundary.update()
+	if has_node("Boundary"):
+		$Boundary.update()
 
 
 func set_moved_pos(value):
 	if moved_pos == value:
 		return
+	var ap = game.all_positions()
 	for pos_id in pos_ids:
-		game.blocks_map.erase(pos_id + moved_pos)
+		var t = pos_id + moved_pos
+		if t in ap:
+			game.blocks_map.erase(pos_id + moved_pos)
 	moved_pos = value
 	for pos_id in pos_ids:
-		game.blocks_map[pos_id + moved_pos] = self
+		var t = pos_id + moved_pos
+		if t in ap:
+			game.blocks_map[pos_id + moved_pos] = self
 
 
 func set_is_dragging(value):
@@ -89,15 +95,18 @@ func get_current_border_color():
 		border_color
 
 
+func get_polygon():
+	return $TrianglePolygonShape.polygon
+
+
 func _on_Boundary_draw():
 	if not draw_border:
 		return
 	var bc = get_current_border_color()
-	var shape = $TrianglePolygonShape
-	var vertices = shape.polygon
+	var vertices = get_polygon()
 	var boundary = $Boundary
 	var n = vertices.size()
-	var center = shape.get_polygon_center()
+	var center = Math.get_polygon_center(vertices)
 	for i in range(n):
 		vertices[i] = vertices[i].move_toward(center, border_width / 2)
 		boundary.draw_circle(vertices[i], border_width / 2, bc)
@@ -134,6 +143,11 @@ func restore_origin():
 	moved_pos = Vector2.ZERO
 	position = original_position
 	scale = original_scale
+	is_grouped = false
+
+
+func is_moving():
+	return target_position != null
 
 
 var block_speed = -1.0
@@ -153,7 +167,7 @@ func move_to(pos: Vector2):
 	target_position = Triangle.get_nearest_point(pos)
 
 
-func _physics_process(delta):
+func update_moving(delta):
 	if target_position != null:
 		position = position.move_toward(target_position, delta * block_speed)
 		if (position - target_position).length_squared() <= 1e-5:
@@ -165,8 +179,21 @@ func _physics_process(delta):
 			emit_signal("moved")
 
 
+func _physics_process(delta):
+	update_moving(delta)
+
+
 func get_pos_ids():
-	return null if is_grouped else pos_ids
+	if is_grouped:
+		return null
+	var ret = []
+	for each in pos_ids:
+		ret.append(each + moved_pos)
+	return ret
+
+
+func get_all_blocks():
+	return [self]
 
 
 func _to_string():
@@ -203,3 +230,23 @@ func update_sprite():
 			else:
 				sprite.visible = true
 				reversed_sprite.visible = false
+
+
+func check_interact(player):
+	return false
+
+
+signal interacted(step)
+func interact(player):
+	yield(get_tree(), "idle_frame")
+	emit_signal("interacted", {})
+
+
+func get_polygon_center():
+	var ret = Vector2.ZERO
+	var n = 0
+	for block in get_all_blocks():
+		for v in block.get_polygon():
+			ret += v
+			n += 1
+	return ret / n

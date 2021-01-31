@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
@@ -27,22 +27,22 @@
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 14 )
+atlas = ExtResource( 13 )
 region = Rect2( 216, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 14 )
+atlas = ExtResource( 13 )
 region = Rect2( 432, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 14 )
+atlas = ExtResource( 13 )
 region = Rect2( 648, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 14 )
+atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=5]
@@ -127,50 +127,50 @@ region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 19 )
 region = Rect2( 216, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 19 )
 region = Rect2( 432, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 19 )
 region = Rect2( 648, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 13 )
+atlas = ExtResource( 19 )
 region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 14 )
 region = Rect2( 216, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 14 )
 region = Rect2( 432, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 14 )
 region = Rect2( 648, 0, 216, 252 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 14 )
 region = Rect2( 0, 0, 216, 252 )
 
 [sub_resource type="SpriteFrames" id=29]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 2 ), SubResource( 1 ), SubResource( 4 ) ],
 "loop": true,
-"name": "idle",
-"speed": 3.0
+"name": "move-0",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 6 ), SubResource( 5 ), SubResource( 8 ) ],
 "loop": true,
@@ -194,13 +194,13 @@ animations = [ {
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 22 ), SubResource( 21 ), SubResource( 24 ) ],
 "loop": true,
-"name": "move-0",
+"name": "move-5",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 26 ), SubResource( 25 ), SubResource( 28 ) ],
 "loop": true,
-"name": "move-5",
-"speed": 5.0
+"name": "idle",
+"speed": 3.0
 } ]
 
 [sub_resource type="AtlasTexture" id=30]
@@ -228,17 +228,27 @@ flags = 4
 atlas = ExtResource( 21 )
 region = Rect2( 110, 0, 110, 154 )
 
-[sub_resource type="SpriteFrames" id=35]
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 110, 0, 110, 154 )
+
+[sub_resource type="SpriteFrames" id=36]
 animations = [ {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
 "loop": true,
-"name": "idle",
+"name": "talking-1",
 "speed": 2.5
 }, {
 "frames": [ SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,
-"name": "talking",
+"name": "talking-2",
 "speed": 3.0
+}, {
+"frames": [ SubResource( 35 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
 } ]
 
 [node name="Main" type="Node2D"]
@@ -360,7 +370,6 @@ position = Vector2( -772, 306 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
 frames = SubResource( 29 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Dialog" parent="Characters/Lan" instance=ExtResource( 24 )]
@@ -373,7 +382,7 @@ margin_bottom = -229.3
 position = Vector2( 761, -207 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
-frames = SubResource( 35 )
+frames = SubResource( 36 )
 animation = "idle"
 playing = true
 
@@ -399,11 +408,6 @@ position = Vector2( -80, 35 )
 z_index = 3
 z_as_relative = false
 enabled = false
-is_draggable = true
-draw_border = true
-border_color_dragging = Color( 1, 1, 1, 1 )
-border_width = 5
-moving_speed = 120
 [connection signal="pressed" from="UI/Home" to="." method="_on_Home_pressed"]
 [connection signal="pressed" from="UI/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="UI/Magnet" to="." method="_on_Magnet_pressed"]

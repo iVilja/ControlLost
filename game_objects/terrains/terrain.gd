@@ -7,7 +7,7 @@ signal interacted(step)
 export var enabled = true setget set_enabled
 export var is_blocking = false
 export var auto_interactable = false
-export var activated = false setget set_activate
+export var activated = false setget set_activated
 
 var type_name = "unknown"
 var initialized = false
@@ -20,12 +20,13 @@ func _ready():
 	pass
 
 
-func set_activate(value):
+func set_activated(value):
 	if activated == value:
 		return
 	activated = value
 	if has_node("Activated"):
 		$Activated.visible = value
+
 
 func initialize(game_):
 	if initialized:
@@ -56,7 +57,7 @@ func enclose(block):
 	if block_pos_ids == null or block_pos_ids.size() == 0:
 		return false
 	for block_pos_id in block_pos_ids:
-		if not (block_pos_id + block.moved_pos in pos_ids):
+		if not (block_pos_id in pos_ids):
 			return false
 	return true
 
@@ -68,4 +69,5 @@ func check_interact(block):
 
 
 func interact(_block):
+	yield(get_tree(), "idle_frame")
 	emit_signal("interacted", {})
