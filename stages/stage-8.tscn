@@ -41,6 +41,8 @@ polygon = PoolVector2Array( -483, 0, -241.5, 417, -80.5, 417, 0, 556, 80.5, 417,
 [node name="Goal2" parent="Terrains" instance=ExtResource( 4 )]
 position = Vector2( -80.5, 417 )
 enabled = true
+is_blocking = false
+activated = false
 
 [node name="Sprite" parent="Terrains/Goal2" index="0"]
 position = Vector2( 7, -4.34711 )
@@ -51,7 +53,12 @@ position = Vector2( 15.5, -0.347107 )
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -80.5, -417 )
 scale = Vector2( 1, -1 )
+enabled = true
+is_draggable = true
+draw_border = true
 border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Player" index="0"]
@@ -67,6 +74,11 @@ visible = true
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 161, 0 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block" index="0"]
@@ -79,6 +91,11 @@ enabled = true
 
 [node name="Block2" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -80.5, -417 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block2" index="0"]
@@ -91,6 +108,11 @@ enabled = true
 
 [node name="Block3" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 161, -278 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block3" index="0"]
@@ -103,6 +125,11 @@ enabled = true
 
 [node name="Block4" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -241.5, 139 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block4" index="0"]
@@ -115,6 +142,11 @@ enabled = true
 
 [node name="Block5" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 0, 278 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block5" index="0"]
@@ -127,6 +159,11 @@ enabled = true
 
 [node name="Block6" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 0, -278 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block6" index="0"]
@@ -139,6 +176,11 @@ enabled = true
 
 [node name="Block7" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 322, 0 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block7" index="0"]
@@ -151,6 +193,11 @@ enabled = true
 
 [node name="Block8" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402.5, -139 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block8" index="0"]
@@ -164,6 +211,11 @@ enabled = true
 
 [node name="Block9" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -241.5, -139 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block9" index="0"]
@@ -176,6 +228,11 @@ enabled = true
 
 [node name="Block10" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( 0, 278 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block10" index="0"]
@@ -188,6 +245,11 @@ enabled = true
 
 [node name="Block11" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -241.5, -139 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block11" index="0"]
@@ -200,6 +262,11 @@ enabled = true
 
 [node name="Block12" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -402.5, 139 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Blocks/Block12" index="0"]

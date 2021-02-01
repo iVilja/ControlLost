@@ -64,14 +64,19 @@ polygon = PoolVector2Array( -80.5, -417, -402.5, 139, -241.5, 417, 241.5, 417, 4
 [node name="Terrains" type="Node2D" parent="."]
 
 [node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
+is_blocking = false
+activated = false
 
 [node name="AnimatedSprite" parent="Terrains/Goal" index="2"]
-frame = 2
+frame = 5
 
 [node name="Lava" parent="Terrains" instance=ExtResource( 8 )]
 position = Vector2( -161, 0 )
 script = ExtResource( 9 )
+enabled = true
+is_blocking = false
 auto_interactable = true
+activated = false
 rescaling_time = 1.0
 
 [node name="Sprite" parent="Terrains/Lava" index="0"]
@@ -83,13 +88,17 @@ polygon = PoolVector2Array( -80.5, -139, 80.5, -417, 161, -278, 80.5, -139, 241.
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava"]
 position = Vector2( -80, -412 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 centered = false
 
 [node name="Lava2" parent="Terrains" instance=ExtResource( 8 )]
 position = Vector2( -241.5, 139 )
 script = ExtResource( 9 )
+enabled = true
+is_blocking = false
 auto_interactable = true
+activated = false
 rescaling_time = 1.0
 
 [node name="Sprite" parent="Terrains/Lava2" index="0"]
@@ -101,14 +110,16 @@ polygon = PoolVector2Array( -80.5, 139, 0, 278, 161, 278, 241.5, 139, 80.5, 139,
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava2"]
 position = Vector2( -80, 0 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 centered = false
 
 [node name="Lava3" parent="Terrains" instance=ExtResource( 8 )]
 position = Vector2( 0, 278 )
 script = ExtResource( 9 )
+enabled = true
+is_blocking = false
 auto_interactable = true
+activated = false
 rescaling_time = 1.0
 
 [node name="Sprite" parent="Terrains/Lava3" index="0"]
@@ -120,19 +131,34 @@ polygon = PoolVector2Array( 80.5, 139, 241.5, 139, 322, 0, 241.5, -139, 161, 0, 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lava3"]
 position = Vector2( 0, -138 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 centered = false
 
 [node name="Trigger" parent="Terrains" instance=ExtResource( 18 )]
 position = Vector2( -161, 278 )
+enabled = true
+is_blocking = false
+auto_interactable = false
+activated = false
+excluded = [ "normal" ]
 
 [node name="Trigger2" parent="Terrains" instance=ExtResource( 18 )]
 position = Vector2( 0, 278 )
+enabled = true
+is_blocking = false
+auto_interactable = false
+activated = false
+excluded = [ "normal" ]
 
 [node name="Blocks" type="Node2D" parent="."]
 
 [node name="Block" parent="Blocks" instance=ExtResource( 2 )]
 position = Vector2( -322, 0 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 
@@ -146,23 +172,42 @@ enabled = true
 
 [node name="Magnetic" parent="Blocks" instance=ExtResource( 19 )]
 position = Vector2( -322, 0 )
+enabled = true
+draw_border = true
 border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
 border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
+moving_speed = 120
 
 [node name="Magnetic2" parent="Blocks" instance=ExtResource( 19 )]
 position = Vector2( 161, 0 )
+enabled = true
+draw_border = true
 border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
 border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
+moving_speed = 120
 
 [node name="Special" parent="Blocks" instance=ExtResource( 11 )]
 position = Vector2( -80.5, -139 )
+enabled = true
 is_draggable = false
+draw_border = true
 border_color = Color( 0.145098, 0.145098, 0.145098, 1 )
 border_color_hovered = Color( 0.588235, 0.65098, 0.729412, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
+moving_speed = 120
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -80.5, 139 )
 scale = Vector2( 1, -1 )
+enabled = true
+is_draggable = true
+draw_border = true
+border_color_dragging = Color( 1, 1, 1, 1 )
 border_width = 6
 moving_speed = 180
 

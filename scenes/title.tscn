@@ -15,7 +15,7 @@
 [ext_resource path="res://textures/ui/title/title.png" type="Texture" id=13]
 [ext_resource path="res://textures/ui/title/hidden.png" type="Texture" id=14]
 [ext_resource path="res://textures/ui/title/cover.png" type="Texture" id=15]
-[ext_resource path="res://resources/fonts/start-zh.tres" type="DynamicFont" id=16]
+[ext_resource path="res://resources/fonts/start-en.tres" type="DynamicFont" id=16]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -159,7 +159,6 @@ position = Vector2( 15.5, -124 )
 z_index = 5
 frames = SubResource( 11 )
 animation = "up"
-frame = 5
 playing = true
 centered = false
 

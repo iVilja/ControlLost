@@ -43,115 +43,282 @@ polygon = PoolVector2Array( 80.5, -139, 0, -278, 161, -278, 80.5, -139, -483, 0,
 [node name="Goal" parent="Terrains" instance=ExtResource( 4 )]
 position = Vector2( 322, 0 )
 enabled = true
+is_blocking = false
+activated = false
 
 [node name="ReflectUp" type="Node2D" parent="Terrains"]
 
 [node name="Reflect" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( -322, -278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect2" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( -161, -278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect3" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( 0, -278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect4" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( 161, -278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect5" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( -322, 0 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect6" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( -161, 0 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect7" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect8" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( 161, 0 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect9" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( -322, 278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect10" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( -161, 278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect11" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( 0, 278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect12" parent="Terrains/ReflectUp" instance=ExtResource( 2 )]
 position = Vector2( 161, 278 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="ReflectDown" type="Node2D" parent="Terrains"]
 
 [node name="Reflect13" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( -402.5, -139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect14" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( -241.5, -139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect15" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( -80.5, -139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect16" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( 80.5, -139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect17" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( 241.5, -139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect18" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( -402.5, 139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect19" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( -241.5, 139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect20" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( -80.5, 139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect21" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( 80.5, 139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Reflect22" parent="Terrains/ReflectDown" instance=ExtResource( 7 )]
 position = Vector2( 241.5, 139 )
+enabled = true
+is_blocking = false
+activated = false
+direction = 0
+reflecting_speed = 2.0
+effect_showing_time = 0.4
 
 [node name="Lavas" type="Node2D" parent="Terrains"]
 
 [node name="Lava" parent="Terrains/Lavas" instance=ExtResource( 8 )]
 position = Vector2( -483, 0 )
+enabled = true
+is_blocking = false
+activated = false
 rescaling_time = 1.0
 
 [node name="Lava2" parent="Terrains/Lavas" instance=ExtResource( 8 )]
 position = Vector2( 322, 0 )
+enabled = true
+is_blocking = false
+activated = false
 rescaling_time = 1.0
 
 [node name="Lava3" parent="Terrains/Lavas" instance=ExtResource( 8 )]
 position = Vector2( 241.5, 139 )
+enabled = true
+is_blocking = false
+activated = false
 rescaling_time = 1.0
 
 [node name="Lava4" parent="Terrains/Lavas" instance=ExtResource( 8 )]
 position = Vector2( -80.5, 417 )
+enabled = true
+is_blocking = false
+activated = false
 rescaling_time = 1.0
 
 [node name="Lava5" parent="Terrains/Lavas" instance=ExtResource( 8 )]
 position = Vector2( -241.5, 417 )
+enabled = true
+is_blocking = false
+activated = false
 rescaling_time = 1.0
 
 [node name="Lava6" parent="Terrains/Lavas" instance=ExtResource( 9 )]
 position = Vector2( -322, -278 )
+enabled = true
+is_blocking = false
+activated = false
 
 [node name="Lava7" parent="Terrains/Lavas" instance=ExtResource( 9 )]
 position = Vector2( -161, -278 )
+enabled = true
+is_blocking = false
+activated = false
 
 [node name="Lava8" parent="Terrains/Lavas" instance=ExtResource( 9 )]
 position = Vector2( -241.5, -417 )
+enabled = true
+is_blocking = false
+activated = false
 
 [node name="Lava9" parent="Terrains/Lavas" instance=ExtResource( 9 )]
 position = Vector2( -80.5, -417 )
+enabled = true
+is_blocking = false
+activated = false
 
 [node name="Lava10" parent="Terrains/Lavas" instance=ExtResource( 9 )]
 position = Vector2( 80.5, -417 )
+enabled = true
+is_blocking = false
+activated = false
 
 [node name="Lava11" parent="Terrains/Lavas" instance=ExtResource( 9 )]
 position = Vector2( 161, -278 )
+enabled = true
+is_blocking = false
+activated = false
 
 [node name="Lava12" type="Area2D" parent="Terrains/Lavas"]
 position = Vector2( -80.5, 139 )
@@ -160,7 +327,10 @@ gravity_vec = Vector2( 0, 0 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 11 )
+enabled = true
+is_blocking = false
 auto_interactable = true
+activated = false
 rescaling_time = 1.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lavas/Lava12"]
@@ -183,7 +353,10 @@ gravity_vec = Vector2( 0, 0 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 11 )
+enabled = true
+is_blocking = false
 auto_interactable = true
+activated = false
 rescaling_time = 1.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lavas/Lava14"]
@@ -206,7 +379,10 @@ gravity_vec = Vector2( 0, 0 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 11 )
+enabled = true
+is_blocking = false
 auto_interactable = true
+activated = false
 rescaling_time = 1.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Terrains/Lavas/Lava13"]
@@ -224,7 +400,12 @@ enabled = true
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -483, 0 )
 scale = Vector2( 1, -1 )
+enabled = true
+is_draggable = true
+draw_border = true
 border_color = Color( 0.360784, 0.360784, 0.360784, 1 )
+border_color_dragging = Color( 1, 1, 1, 1 )
+border_width = 5
 moving_speed = 180
 
 [node name="Sprite" parent="Player" index="0"]

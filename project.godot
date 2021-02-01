@@ -204,8 +204,11 @@ locale_filter=[ 0, [ "en", "zh" ] ]
 translation_remaps={
 "res://resources/fonts/dialog-en.tres": PoolStringArray( "res://resources/fonts/dialog-zh.tres:zh" ),
 "res://resources/fonts/dialog-zh.tres": PoolStringArray( "res://resources/fonts/dialog-en.tres:en" ),
+"res://resources/fonts/ending-en.tres": PoolStringArray( "res://resources/fonts/ending-zh.tres:zh" ),
 "res://resources/fonts/ending-zh.tres": PoolStringArray( "res://resources/fonts/ending-en.tres:en" ),
+"res://resources/fonts/opening-en.tres": PoolStringArray( "res://resources/fonts/opening-zh.tres:zh" ),
 "res://resources/fonts/opening-zh.tres": PoolStringArray( "res://resources/fonts/opening-en.tres:en" ),
+"res://resources/fonts/start-en.tres": PoolStringArray( "res://resources/fonts/start-zh.tres:zh" ),
 "res://resources/fonts/start-zh.tres": PoolStringArray( "res://resources/fonts/start-en.tres:en" )
 }
 

@@ -7,7 +7,7 @@
 [ext_resource path="res://textures/ui/credits/title.png" type="Texture" id=5]
 [ext_resource path="res://textures/ui/common/icon.png" type="Texture" id=6]
 [ext_resource path="res://effects/dialog.gd" type="Script" id=7]
-[ext_resource path="res://resources/fonts/ending-zh.tres" type="DynamicFont" id=8]
+[ext_resource path="res://resources/fonts/ending-en.tres" type="DynamicFont" id=8]
 
 [node name="Ending" type="Control"]
 anchor_right = 1.0
