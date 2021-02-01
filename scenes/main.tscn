@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://game_objects/blocks/player.tscn" type="PackedScene" id=23]
 [ext_resource path="res://effects/dialog.tscn" type="PackedScene" id=24]
 [ext_resource path="res://textures/ui/common/dialog-lan.png" type="Texture" id=25]
+[ext_resource path="res://resources/fonts/dialog-en.tres" type="DynamicFont" id=26]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -68,42 +69,42 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 15 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 15 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 15 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=17]
@@ -148,22 +149,22 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 16 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="SpriteFrames" id=29]
@@ -180,12 +181,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
-"name": "move-2",
+"name": "move-1",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
-"name": "move-1",
+"name": "move-4",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
@@ -200,7 +201,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
-"name": "move-4",
+"name": "move-2",
 "speed": 5.0
 } ]
 
@@ -388,12 +389,12 @@ margin_left = 19.0
 margin_top = 18.0
 margin_right = 305.0
 margin_bottom = 162.0
+custom_fonts/font = ExtResource( 26 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
 position = Vector2( 25.4712, -1.49829 )
 frames = SubResource( 29 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="Bo" type="Node2D" parent="Characters"]
@@ -413,6 +414,7 @@ margin_left = 19.0
 margin_top = 18.0
 margin_right = 305.0
 margin_bottom = 162.0
+custom_fonts/font = ExtResource( 26 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]
 position = Vector2( 75.5099, 114.156 )

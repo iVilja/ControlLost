@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://resources/fonts/dialog-zh.tres" type="DynamicFont" id=1]
 [ext_resource path="res://effects/dialog.gd" type="Script" id=2]
 
 [node name="Dialog" type="Control"]
@@ -25,7 +24,6 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 340.0
 margin_bottom = 140.0
-custom_fonts/font = ExtResource( 1 )
 custom_constants/line_spacing = -4
 text = "Jettal Mine... What a memorable name."
 autowrap = true
