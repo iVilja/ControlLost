@@ -69,22 +69,22 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 15 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 15 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 15 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
-atlas = ExtResource( 18 )
+atlas = ExtResource( 15 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=13]
@@ -109,22 +109,22 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 15 )
+atlas = ExtResource( 18 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=21]
@@ -181,7 +181,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
-"name": "move-4",
+"name": "move-1",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
@@ -191,7 +191,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
-"name": "move-1",
+"name": "move-4",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
@@ -212,32 +212,32 @@ region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 21 )
+atlas = ExtResource( 22 )
 region = Rect2( 105, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
-atlas = ExtResource( 21 )
+atlas = ExtResource( 22 )
 region = Rect2( 210, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=33]
 flags = 4
-atlas = ExtResource( 21 )
+atlas = ExtResource( 22 )
 region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
-atlas = ExtResource( 22 )
+atlas = ExtResource( 21 )
 region = Rect2( 105, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=35]
 flags = 4
-atlas = ExtResource( 22 )
+atlas = ExtResource( 21 )
 region = Rect2( 210, 0, 105, 140 )
 
 [sub_resource type="AtlasTexture" id=36]
 flags = 4
-atlas = ExtResource( 22 )
+atlas = ExtResource( 21 )
 region = Rect2( 0, 0, 105, 140 )
 
 [sub_resource type="SpriteFrames" id=37]
@@ -249,13 +249,13 @@ animations = [ {
 }, {
 "frames": [ SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
-"name": "talking-2",
-"speed": 3.0
+"name": "talking-1",
+"speed": 2.5
 }, {
 "frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
 "loop": true,
-"name": "talking-1",
-"speed": 2.5
+"name": "talking-2",
+"speed": 3.0
 } ]
 
 [node name="Main" type="Node2D"]
@@ -385,17 +385,17 @@ margin_bottom = -280.028
 texture = ExtResource( 25 )
 
 [node name="Content" parent="Characters/Lan/Dialog" index="1"]
-margin_left = 19.0
-margin_top = 18.0
-margin_right = 305.0
-margin_bottom = 162.0
+margin_left = 18.0
+margin_top = 14.0
+margin_right = 310.0
+margin_bottom = 158.0
 custom_fonts/font = ExtResource( 26 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Lan"]
 position = Vector2( 25.4712, -1.49829 )
 frames = SubResource( 29 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Bo" type="Node2D" parent="Characters"]
@@ -411,10 +411,10 @@ margin_bottom = -119.571
 texture = ExtResource( 25 )
 
 [node name="Content" parent="Characters/Bo/Dialog" index="1"]
-margin_left = 19.0
-margin_top = 18.0
-margin_right = 305.0
-margin_bottom = 162.0
+margin_left = 18.0
+margin_top = 14.0
+margin_right = 310.0
+margin_bottom = 158.0
 custom_fonts/font = ExtResource( 26 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Characters/Bo"]

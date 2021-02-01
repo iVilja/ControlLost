@@ -40,6 +40,7 @@ func _fade(node: CanvasItem, time, is_out):
 	color_target.a = 0.0 if is_out else 1.0
 	if not is_out:
 		color_start.a = 0.0
+	node.modulate = color_start
 	node.visible = true
 	fading_elapsed = 0.0
 	fading_time = time
