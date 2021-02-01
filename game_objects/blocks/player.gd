@@ -28,6 +28,7 @@ func group_blocks(add_step = true):
 	SFX.play(SFX.CONSTRUCT)
 	grouped_blocks.clear()
 	grouped_block_offsets.clear()
+	grouped_block_scales.clear()
 	for block in groupable_blocks:
 		grouped_blocks.append(block)
 		grouped_block_offsets.append(block.position - position)
@@ -46,6 +47,8 @@ func group_blocks(add_step = true):
 
 
 func ungroup_all(add_step = true):
+	if grouped_blocks.size() == 0:
+		return
 	SFX.play(SFX.UNCONSTRUCT)
 	for block in grouped_blocks:
 		block.clear_availables()
@@ -53,6 +56,7 @@ func ungroup_all(add_step = true):
 		block.is_grouped = false
 	grouped_blocks.clear()
 	grouped_block_offsets.clear()
+	grouped_block_scales.clear()
 	is_grouped = false
 	if add_step:
 		var step = {
@@ -90,3 +94,4 @@ func restore_original():
 	.restore_original()
 	grouped_blocks.clear()
 	grouped_block_offsets.clear()
+	grouped_block_scales.clear()

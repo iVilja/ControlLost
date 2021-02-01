@@ -1,17 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://textures/ui/opening/bg.png" type="Texture" id=1]
 [ext_resource path="res://effects/dialog.gd" type="Script" id=2]
 [ext_resource path="res://textures/ui/opening/01.png" type="Texture" id=3]
 [ext_resource path="res://scenes/opening.gd" type="Script" id=4]
 [ext_resource path="res://textures/ui/common/icon.png" type="Texture" id=5]
-
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://resources/SourceHanSansCN-Regular.otf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 48
-font_data = SubResource( 1 )
+[ext_resource path="res://resources/fonts/opening-en.tres" type="DynamicFont" id=6]
 
 [node name="Opening" type="Control"]
 script = ExtResource( 4 )
@@ -33,6 +27,7 @@ margin_left = 437.0
 margin_top = 226.0
 margin_right = 1485.0
 margin_bottom = 662.0
+mouse_filter = 2
 texture = ExtResource( 3 )
 
 [node name="Dialog" type="Control" parent="."]
@@ -48,9 +43,9 @@ margin_left = 450.0
 margin_top = 720.0
 margin_right = 1470.0
 margin_bottom = 860.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 6 )
 custom_constants/line_spacing = -4
-text = "杰塔尔矿井...真是让人怀念的名字。"
+text = "Jettal Mine... What a memorable name."
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

@@ -122,6 +122,8 @@ SFX="*res://core/sfx.gd"
 
 window/size/width=1920
 window/size/height=1080
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -135,7 +137,7 @@ enabled=PoolStringArray(  )
 
 [gui]
 
-theme/custom_font="res://resources/source_han.tres"
+theme/custom_font="res://resources/fonts/dialog-zh.tres"
 
 [input]
 
@@ -199,8 +201,13 @@ select={
 
 [locale]
 
-translations=PoolStringArray(  )
+translations=PoolStringArray( "res://resources/i18n.zh.translation", "res://resources/i18n.en.translation" )
 locale_filter=[ 0, [ "en", "zh" ] ]
+translation_remaps={
+"res://resources/fonts/dialog-zh.tres": PoolStringArray( "res://resources/fonts/dialog-en.tres:en" ),
+"res://resources/fonts/opening-zh.tres": PoolStringArray( "res://resources/fonts/opening-en.tres:en" ),
+"res://resources/fonts/start-zh.tres": PoolStringArray( "res://resources/fonts/start-en.tres:en" )
+}
 
 [physics]
 

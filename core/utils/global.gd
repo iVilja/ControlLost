@@ -27,7 +27,15 @@ func _deferred_goto_scene(path):
 	get_tree().set_current_scene(current_scene)
 
 
-func load_scripts(file_name):
+func is_chinese():
+	return TranslationServer.get_locale().begins_with("zh")
+
+
+func load_scripts(file_name: String, no_redirect = false):
+	if not no_redirect and not is_chinese():
+		var s = load_scripts(file_name.replace("/scripts/", "/scripts/en/"), true)
+		if s != null:
+			return s
 	var file = File.new()
 	if not file.file_exists(file_name):
 		return null

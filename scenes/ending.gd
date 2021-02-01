@@ -6,7 +6,7 @@ func _ready():
 	yield(NodeTransform.fade_in($title, 0.5), "transformed")
 	NodeTransform.fade_in($bg, 1.0)
 	yield(NodeTransform.fade_in($credits, 2), "transformed")
-	$Dialog.type("感谢您能玩到这里！")
+	$Dialog.type(tr("THANKS"))
 	yield($Dialog, "typing_completed")
 	$icon.show()
 	ready = true

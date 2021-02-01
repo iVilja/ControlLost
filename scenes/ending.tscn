@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/ending.gd" type="Script" id=1]
 [ext_resource path="res://textures/background.png" type="Texture" id=2]
@@ -7,14 +7,7 @@
 [ext_resource path="res://textures/ui/credits/title.png" type="Texture" id=5]
 [ext_resource path="res://textures/ui/common/icon.png" type="Texture" id=6]
 [ext_resource path="res://effects/dialog.gd" type="Script" id=7]
-
-[sub_resource type="DynamicFontData" id=1]
-font_path = "res://resources/SourceHanSansCN-Regular.otf"
-
-[sub_resource type="DynamicFont" id=2]
-size = 36
-extra_spacing_bottom = 6
-font_data = SubResource( 1 )
+[ext_resource path="res://resources/fonts/ending-zh.tres" type="DynamicFont" id=8]
 
 [node name="Ending" type="Control"]
 anchor_right = 1.0
@@ -69,13 +62,13 @@ __meta__ = {
 typing_speed = 12.0
 
 [node name="Content" type="Label" parent="Dialog"]
-margin_left = 1098.39
-margin_top = 773.398
-margin_right = 1428.39
-margin_bottom = 832.398
-custom_fonts/font = SubResource( 2 )
+margin_left = 1098.0
+margin_top = 773.0
+margin_right = 1537.0
+margin_bottom = 832.0
+custom_fonts/font = ExtResource( 8 )
 custom_constants/line_spacing = -4
-text = "感谢您能玩到这里！"
+text = "Thanks for playing!"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

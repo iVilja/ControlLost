@@ -30,7 +30,7 @@ func say(character, content):
 var waiting_for_click = false
 signal cover_clicked
 func run_scripts(scripts):
-	var n = 10
+	var n = scripts.size()
 	for i in range(n):
 		dialog.clear()
 		icon.hide()
@@ -73,7 +73,6 @@ func _on_Background_gui_input(event):
 	if waiting_for_click and event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			emit_signal("cover_clicked")
-
 
 
 var last_bo_typed = -1.0

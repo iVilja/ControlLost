@@ -23,6 +23,7 @@ var entering_player_start = Vector2()
 var entering_player_target = Vector2()
 var showing_background = null
 func enter_stage(stage: Stage):
+	magnet.disabled = true
 	stage.scale = Vector2.ZERO
 	add_child(stage)
 	entering = 0.0
@@ -222,7 +223,7 @@ func run_scripts(scripts, ending = false):
 		return
 	is_ending = ending
 	bo_dialog.content.modulate = Color("c0c0c0") if ending else Color.white
-	if ending:
+	if ending and current_stage.stage_name != "stage-8":  # TODO
 		NodeTransform.fade_out($Characters/Lan, UI_SHOWING_TIME)
 	elif not $Characters/Lan.visible:
 		yield(NodeTransform.fade_in($Characters/Lan, UI_SHOWING_TIME), "transformed")
