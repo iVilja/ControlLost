@@ -49,22 +49,22 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 16 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 16 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 16 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 19 )
+atlas = ExtResource( 16 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=9]
@@ -149,22 +149,22 @@ region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 19 )
 region = Rect2( 0, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 19 )
 region = Rect2( 222, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 19 )
 region = Rect2( 444, 0, 222, 252 )
 
 [sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 16 )
+atlas = ExtResource( 19 )
 region = Rect2( 666, 0, 222, 252 )
 
 [sub_resource type="SpriteFrames" id=29]
@@ -176,7 +176,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
-"name": "move-5",
+"name": "move-2",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
@@ -201,7 +201,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
-"name": "move-2",
+"name": "move-5",
 "speed": 5.0
 } ]
 
@@ -395,7 +395,6 @@ custom_fonts/font = ExtResource( 26 )
 position = Vector2( 25.4712, -1.49829 )
 frames = SubResource( 29 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Bo" type="Node2D" parent="Characters"]

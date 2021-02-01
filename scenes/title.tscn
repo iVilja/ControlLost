@@ -159,7 +159,7 @@ position = Vector2( 15.5, -124 )
 z_index = 5
 frames = SubResource( 11 )
 animation = "up"
-frame = 2
+frame = 3
 playing = true
 centered = false
 

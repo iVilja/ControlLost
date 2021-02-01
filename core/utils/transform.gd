@@ -5,6 +5,16 @@ signal transformed(target)
 func is_busy():
 	return false
 
+
+func has_ended(node):
+	if node == null:
+		return true
+	var wr = weakref(node)
+	if not wr.get_ref():
+		return true
+	return node.ended
+
+
 var target: CanvasItem = null
 var fading_time = 1.0
 var fading_elapsed = -1.0

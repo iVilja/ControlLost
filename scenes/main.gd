@@ -7,7 +7,7 @@ signal stage_exited
 export var entering_time = 1.8
 export var exiting_time = 1.8
 
-const DEFAULT_STAGE = "stage-8"
+const DEFAULT_STAGE = "stage-1"
 
 const Stage = preload("res://stages/stage.gd")
 var current_stage: Stage = null
@@ -51,7 +51,7 @@ func update_stage_entering(delta):
 		emit_signal("stage_entered")
 		return
 	var t1 = entering / entering_time
-	if (showing_background == null or showing_background.ended) and t1 >= 0.7:
+	if NodeTransform.has_ended(showing_background) and t1 >= 0.7:
 		showing_background = NodeTransform.fade_in(background, BACKGROUND_SHOWING_TIME)
 	var t2 = Math.sigmoid(t1 * 12.0 - 6.0)
 	current_stage.scale = Vector2.ONE * t2
@@ -94,7 +94,7 @@ func update_stage_exiting(delta):
 		player.position = exiting_player_target
 		exiting = -1.0
 		exiting_fading = null
-		if showing_background != null and !showing_background.ended:
+		if not NodeTransform.has_ended(showing_background):
 			showing_background.stop_fading()
 			showing_background = null
 		emit_signal("stage_exited")
