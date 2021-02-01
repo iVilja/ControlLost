@@ -142,7 +142,11 @@ func hide_ui():
 	NodeTransform.fade_out(ui_node, UI_SHOWING_TIME)
 
 
+const ZH_FONT = preload("res://resources/fonts/dialog-zh.tres")
 func _ready():
+	if Global.is_chinese():
+		$Characters/Lan/Dialog/Content.add_font_override("font", ZH_FONT)
+		$Characters/Bo/Dialog/Content.add_font_override("font", ZH_FONT)
 	background.visible = false
 	ui_node.visible = false
 	characters.visible = false

@@ -8,7 +8,10 @@ onready var image = $Image
 onready var dialog = $Dialog
 onready var icon = $icon
 
+const ZH_FONT = preload("res://resources/fonts/opening-zh.tres")
 func _ready():
+	if Global.is_chinese():
+		$Dialog/Content.add_font_override("font", ZH_FONT)
 	var scripts = Global.load_scripts("res://resources/scripts/opening.res")
 	if scripts != null:
 		run_scripts(scripts)

@@ -71,5 +71,8 @@ func play_background_noise():
 	player.play()
 
 
+const ZH_FONT = preload("res://resources/fonts/start-zh.tres")
 func _ready():
+	if Global.is_chinese():
+		$Label.add_font_override("font", ZH_FONT)
 	play_background_noise()

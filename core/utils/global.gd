@@ -8,9 +8,6 @@ var loading_stage = null
 
 
 func _ready():
-	# For a web export issue, only display English version in browser.
-	if OS.get_name() == "HTML5":
-		TranslationServer.set_locale("en")
 	randomize()
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
